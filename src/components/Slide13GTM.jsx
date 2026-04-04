@@ -5,7 +5,7 @@ export default function Slide13GTM() {
     <div className="pdf-slide" style={{ padding: '6rem' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <h2 style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--pdf-navy)' }}>
+        <h2 className="text-white" style={{ fontSize: '3rem', fontWeight: 800 }}>
           Go-to-Market & Wedges
         </h2>
       </div>
@@ -14,37 +14,37 @@ export default function Slide13GTM() {
         
         {/* Left Side: GTM Timeline */}
         <div style={{ flex: 1 }}>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '2rem' }}>🚀</span> Go-to-Market
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
-            <div style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--pdf-blue)' }}>
-              <div style={{ fontWeight: 800, color: 'var(--pdf-blue)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-cyan) !important' }}>
+              <div style={{ fontWeight: 800, color: 'var(--accent-cyan)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>📣</span> NOW
               </div>
-              <p style={{ color: 'var(--text-dark)', lineHeight: '1.6' }}>
+              <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Promoting the software decisions tool to consultants and directly to companies.<br/>
                 Consultants use Clarioo to do ground work — preparing high-quality, evidence-based discussions before engaging.
               </p>
             </div>
 
-            <div style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--pdf-orange)' }}>
-              <div style={{ fontWeight: 800, color: 'var(--pdf-orange)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-amber) !important' }}>
+              <div style={{ fontWeight: 800, color: 'var(--accent-amber)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>💼</span> NEXT
               </div>
-              <p style={{ color: 'var(--text-dark)', lineHeight: '1.6' }}>
+              <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Sergey and Olga enter engagements as consultants with technology.<br/>
                 Leveraging ex-BCG / corporate tech background to help companies navigate vendor selection, agent adoption, and build-vs-buy decisions.
               </p>
             </div>
 
-            <div style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--pdf-green)' }}>
-              <div style={{ fontWeight: 800, color: 'var(--pdf-green)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-emerald) !important' }}>
+              <div style={{ fontWeight: 800, color: 'var(--accent-emerald)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>🌍</span> THEN
               </div>
-              <p style={{ color: 'var(--text-dark)', lineHeight: '1.6' }}>
+              <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Expand to the holistic decision platform.<br/>
                 Memory, context, and simulation capabilities across all company decisions.
               </p>
@@ -55,36 +55,36 @@ export default function Slide13GTM() {
 
         {/* Right Side: Wedges */}
         <div style={{ flex: 1 }}>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '2rem' }}>📊</span> Wedges
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
             {/* Revenue */}
-            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '2rem' }}>
-              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="glass-card">
+              <div className="text-emerald" style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>💰</span> Revenue & Budget Capture
               </div>
-              <ul style={{ paddingLeft: '1.5rem', margin: 0, color: 'var(--text-dark)', lineHeight: '1.6' }}>
-                <li>Lead generation revenue from vendors</li>
+              <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6' }}>
+                <li><span className="text-white">Lead generation revenue</span> from vendors</li>
                 <li>Tapping into existing technology transformation budgets</li>
                 <li>Currently spent on both consultants and software</li>
               </ul>
             </div>
 
             {/* Pilots */}
-            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '2rem' }}>
-              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="glass-card">
+              <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>🧪</span> Current Pilots
               </div>
-              <ul style={{ paddingLeft: '1.5rem', margin: 0, color: 'var(--text-dark)', lineHeight: '1.6' }}>
-                <li>Retail — “Discovery-to-decision”</li>
-                <li>Startups — “Buy vs. build assessment”</li>
-                <li>Transportation — “Tech stack analysis-to-discovery”</li>
+              <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6' }}>
+                <li>Retail — <span className="text-white">“Discovery-to-decision”</span></li>
+                <li>Startups — <span className="text-white">“Buy vs. build assessment”</span></li>
+                <li>Transportation — <span className="text-white">“Tech stack analysis-to-discovery”</span></li>
               </ul>
               
-              <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, color: 'var(--pdf-navy)' }}>
+              <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--border-light)', fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                 Stakeholders: CFO (startups), CEO (SMEs), CMO / Head of Procurement (2000+ employees)
               </div>
             </div>
