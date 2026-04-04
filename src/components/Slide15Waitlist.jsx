@@ -46,7 +46,7 @@ const CompanyLogo = ({ company }) => {
       padding: '0.25rem'
     }}>
       <img 
-        src={`https://img.logo.dev/${company.domain}?token=sk_MgypntRdRD2WdWoL4jbdGA`} 
+        src={`https://img.logo.dev/${company.domain}?token=pk_Fvbs8Zl6SWiC5WEoP8Qzbg`} 
         alt={company.name}
         title={company.name}
         style={{ 
