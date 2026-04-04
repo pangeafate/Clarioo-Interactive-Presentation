@@ -1,4 +1,5 @@
 import React from 'react'
+import { Rocket, Megaphone, Briefcase, Globe, BarChart, DollarSign, FlaskConical } from 'lucide-react'
 
 export default function Slide13GTM() {
   return (
@@ -15,14 +16,14 @@ export default function Slide13GTM() {
         {/* Left Side: GTM Timeline */}
         <div style={{ flex: 1 }}>
           <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '2rem' }}>🚀</span> Go-to-Market
+            <span style={{ display: 'flex', alignItems: 'center' }}><Rocket size={32} /></span> Go-to-Market
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
             <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-cyan) !important' }}>
               <div style={{ fontWeight: 800, color: 'var(--accent-cyan)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>📣</span> NOW
+                <span><Megaphone size={24} /></span> NOW
               </div>
               <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Promoting the software decisions tool to consultants and directly to companies.<br/>
@@ -32,7 +33,7 @@ export default function Slide13GTM() {
 
             <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-amber) !important' }}>
               <div style={{ fontWeight: 800, color: 'var(--accent-amber)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>💼</span> NEXT
+                <span><Briefcase size={24} /></span> NEXT
               </div>
               <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Sergey and Olga enter engagements as consultants with technology.<br/>
@@ -42,7 +43,7 @@ export default function Slide13GTM() {
 
             <div className="glass-card" style={{ paddingLeft: '2rem', borderLeft: '4px solid var(--accent-emerald) !important' }}>
               <div style={{ fontWeight: 800, color: 'var(--accent-emerald)', fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>🌍</span> THEN
+                <span><Globe size={24} /></span> THEN
               </div>
               <p className="text-white" style={{ lineHeight: '1.6' }}>
                 Expand to the holistic decision platform.<br/>
@@ -56,7 +57,7 @@ export default function Slide13GTM() {
         {/* Right Side: Wedges */}
         <div style={{ flex: 1 }}>
           <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '2rem' }}>📊</span> Wedges
+            <span style={{ display: 'flex', alignItems: 'center' }}><BarChart size={32} /></span> Wedges
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -64,7 +65,7 @@ export default function Slide13GTM() {
             {/* Revenue */}
             <div className="glass-card">
               <div className="text-emerald" style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>💰</span> Revenue & Budget Capture
+                <span><DollarSign size={24} /></span> Revenue & Budget Capture
               </div>
               <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6' }}>
                 <li><span className="text-white">Lead generation revenue</span> from vendors</li>
@@ -76,7 +77,7 @@ export default function Slide13GTM() {
             {/* Pilots */}
             <div className="glass-card">
               <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>🧪</span> Current Pilots
+                <span><FlaskConical size={24} /></span> Current Pilots
               </div>
               <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6' }}>
                 <li>Retail — <span className="text-white">“Discovery-to-decision”</span></li>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Lightbulb, Scissors, Shield } from 'lucide-react'
 
 export default function Slide12WhyNow() {
   return (
@@ -14,7 +15,7 @@ export default function Slide12WhyNow() {
         
         {/* Pillar 1 */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(14,165,233,0.5))' }}>💡</div>
+          <div style={{ marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(14,165,233,0.5))' }}><Lightbulb size={48} className="text-cyan" /></div>
           <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.5rem' }}>
             Dark Processes Become Visible
           </h3>
@@ -26,7 +27,7 @@ export default function Slide12WhyNow() {
 
         {/* Pillar 2 */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.5))' }}>✂️</div>
+          <div style={{ marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.5))' }}><Scissors size={48} className="text-emerald" /></div>
           <h3 className="text-emerald" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.5rem' }}>
             Build vs Buy is Shifting
           </h3>
@@ -39,7 +40,7 @@ export default function Slide12WhyNow() {
 
         {/* Pillar 3 */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.5))' }}>🛡️</div>
+          <div style={{ fontSize: '3rem', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.5))' }}><Shield size={48} className="text-purple" /></div>
           <h3 className="text-purple" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.5rem' }}>
             New Systems of Record & Agentic Harness
           </h3>

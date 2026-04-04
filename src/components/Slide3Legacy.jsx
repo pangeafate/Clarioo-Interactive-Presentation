@@ -1,4 +1,5 @@
 import React from 'react'
+import { Building2, Bot } from 'lucide-react'
 
 export default function Slide3Legacy() {
   return (
@@ -15,7 +16,7 @@ export default function Slide3Legacy() {
         {/* Left Box */}
         <div className="glass-card" style={{ flex: 1, height: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🏢</div>
+            <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}><Building2 size={48} className="text-cyan" /></div>
             <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 700 }}>Human-only organisations</h3>
           </div>
           <p className="text-white" style={{ fontWeight: 600, marginBottom: '1rem' }}>Any organisation = set of explicit & implicit decisions</p>
@@ -42,7 +43,7 @@ export default function Slide3Legacy() {
         {/* Right Box */}
         <div className="glass-card" style={{ flex: 1, height: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖</div>
+            <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}><Bot size={48} className="text-cyan" /></div>
             <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 700 }}>Hybrid: Human x Agentic organisations</h3>
           </div>
           <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.6' }}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Sparkles } from 'lucide-react'
 
 export default function Slide11Product() {
   return (
@@ -15,7 +16,7 @@ export default function Slide11Product() {
         {/* Panel 1: Criteria Building */}
         <div className="glass-card" style={{ flex: 1, padding: '2rem' }}>
           <h3 className="text-white" style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.25rem' }}>Criteria Building</h3>
-          <p className="text-cyan" style={{ fontSize: '0.875rem', marginBottom: '1.5rem', fontWeight: 600 }}>✨ AI helps build evaluation criteria</p>
+          <p className="text-cyan" style={{ fontSize: '0.875rem', marginBottom: '1.5rem', fontWeight: 600 }}><Sparkles size={16} className="text-cyan" style={{ display: 'inline-block', verticalAlign: 'text-bottom', marginRight: '4px' }} /> AI helps build evaluation criteria</p>
           
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
             <div className="text-white" style={{ fontWeight: 600, fontSize: '0.875rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>Evaluation Criteria (20)</div>
@@ -24,7 +25,7 @@ export default function Slide11Product() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)', padding: '1rem', borderRadius: '8px', fontSize: '0.875rem', transition: 'all 0.2s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--accent-cyan)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border-light)'}>
-              <div className="text-cyan" style={{ fontWeight: 600, marginBottom: '0.25rem' }}>✨ AI-Powered Bid Optimization</div>
+              <div className="text-cyan" style={{ fontWeight: 600, marginBottom: '0.25rem' }}><Sparkles size={16} className="text-cyan" style={{ display: 'inline-block', verticalAlign: 'text-bottom', marginRight: '4px' }} /> AI-Powered Bid Optimization</div>
               <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>Algorithmic bidding engines that automatically adjust bids 24/7 based on conversion probability...</div>
             </div>
             
