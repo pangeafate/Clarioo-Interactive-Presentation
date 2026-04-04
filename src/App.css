@@ -1,0 +1,126 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.logo span {
+  color: var(--accent-cyan);
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card);
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.nav-btn.active {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+}
+
+.slide-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Common Slide Styles */
+.slide {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.slide-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.slide-header p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pill.cyan { color: var(--accent-cyan); border-color: var(--border-subtle); background-color: rgba(14, 165, 233, 0.05); }
+.pill.purple { color: var(--accent-purple); border-color: rgba(129, 140, 248, 0.2); background-color: rgba(129, 140, 248, 0.05); }
+.pill.amber { color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.2); background-color: rgba(245, 158, 11, 0.05); }
+.pill.emerald { color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.2); background-color: rgba(16, 185, 129, 0.05); }
