@@ -2,9 +2,30 @@ import React from 'react'
 
 export default function Slide1Title() {
   return (
-    <div className="pdf-slide" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+    <div className="pdf-slide" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden' }}>
       
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', maxWidth: '800px', width: '100%' }}>
+      {/* Background Video */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.15,
+          pointerEvents: 'none'
+        }}
+      >
+        <source src={`${import.meta.env.BASE_URL}video/bg_optimized.mp4`} type="video/mp4" />
+      </video>
+
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', maxWidth: '800px', width: '100%' }}>
         
         <div className="glass-card" style={{ padding: '4rem 6rem', marginBottom: '4rem', width: '100%' }}>
           <h1 style={{ 
