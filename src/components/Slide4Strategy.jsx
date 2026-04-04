@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckCircle2, Clock } from 'lucide-react'
+import { CheckCircle2, Clock, ShoppingCart, Settings } from 'lucide-react'
 
 export default function Slide4Strategy() {
   return (
@@ -18,7 +18,9 @@ export default function Slide4Strategy() {
         <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem' }}>
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-            <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Phase 1: Decisions to buy</h3>
+            <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <ShoppingCart size={28} className="text-emerald" /> Phase 1: Decisions to buy
+            </h3>
             <div className="text-emerald" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: 700, padding: '0.25rem 0.75rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '9999px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
               <CheckCircle2 size={16} /> running w/ design partners
             </div>
@@ -43,7 +45,9 @@ export default function Slide4Strategy() {
         <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-amber) !important', padding: '2.5rem' }}>
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-            <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Phase 2: Decisions to build</h3>
+            <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <Settings size={28} className="text-amber" /> Phase 2: Decisions to build
+            </h3>
             <div className="text-amber" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: 700, padding: '0.25rem 0.75rem', background: 'rgba(245, 158, 11, 0.1)', borderRadius: '9999px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
               <Clock size={16} /> in Progress
             </div>
