@@ -4,45 +4,43 @@ export default function Slide4Strategy() {
   return (
     <div className="pdf-slide" style={{ padding: '4rem 6rem' }}>
       
-      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--pdf-navy)' }}>
-          March '26: Clarioo is running software discovery-to-decision process with corporate partners and consultants
-        </h2>
+      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <p style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-dark)', maxWidth: '900px', margin: '0 auto', lineHeight: '1.5' }}>
+          Our goal is to build the bridge: an end-to-end decision system that sits between people and AI agents inside enterprises.<br/><br/>
+          We realize that the task is huge. So we are eating this elephant one bite at a time, across three phases. The initial focus is on what is hot now - buy & build decisions in Tech.
+        </p>
       </div>
 
       <div style={{ display: 'flex', gap: '3rem', height: '100%' }}>
         
         {/* Phase 1 Card */}
         <div style={{ flex: 1, borderRadius: '24px', border: '1px solid #fee1cc', padding: '3rem', background: '#fff9f5', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '2rem', right: '2rem', color: 'var(--pdf-green)', fontSize: '1.5rem' }}>✓</div>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--pdf-orange)', marginBottom: '2rem' }}>Phase 1: Decisions to buy</h3>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--pdf-orange)', marginBottom: '0.5rem' }}>Phase 1: Decisions to buy (running w/ design partners)</h3>
+          <p style={{ fontWeight: 700, marginBottom: '1.5rem' }}>From unstructured evaluation to a managed, evidence-based decision process</p>
           
-          <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', fontSize: '1.125rem', color: 'var(--text-dark)' }}>
-            <li>
-              <span style={{ fontWeight: 700 }}>Phase 1a: Data enrichment</span> from continuous interactions of buyers & vendors (we continuously clarify intent and specs on both sides)
-            </li>
-            <li>
-              <span style={{ fontWeight: 700 }}>Phase 1b: Best practice workflows</span> (discovery-to-decision; business need-to-tech specs) that are embedded into the agent behavior
-            </li>
+          <ul style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1rem', color: 'var(--text-dark)', lineHeight: '1.5' }}>
+            <li>Starts from business problem -&gt; defines tailored evaluation criteria</li>
+            <li>Automates vendor research and builds side-by-side comparisons</li>
+            <li>Aligns stakeholders and orchestrates the decision process</li>
+            <li>Vendors enrich data about themself, follow client-defined criteria (pre-demo)</li>
+            <li>Captures all decisions as structured, reusable decision memory</li>
           </ul>
         </div>
 
         {/* Phase 2 Card */}
         <div style={{ flex: 1, borderRadius: '24px', border: '1px solid #e5e7eb', padding: '3rem', background: 'var(--pdf-gray)' }}>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '1.25rem' }}>⚙️</span> Phase 2: Decisions to build (in Progress)
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>
+            Phase 2: Decisions to build (in Progress)
           </h3>
+          <p style={{ fontWeight: 700, marginBottom: '1.5rem' }}>Applies the same system to turn unstructured requests into actionable, prioritized engineering work</p>
           
-          <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', fontSize: '1.125rem', color: 'var(--text-dark)' }}>
-            <li>
-              <span style={{ fontWeight: 700 }}>Proactive "path to resolution" harness.</span>
-            </li>
-            <li>
-              Agents that talk to people (light touch) and discover networks of power and relations.
-            </li>
-            <li>
-              Surfacing implicit decision processes and logic in our work.
-            </li>
+          <ul style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1rem', color: 'var(--text-dark)', lineHeight: '1.5' }}>
+            <li>Ingests unstructured requests from across the organization</li>
+            <li>Translates business needs into clear technical requirements</li>
+            <li>Filters, triages, and prioritizes incoming initiatives</li>
+            <li>Routes validated work to the right engineering teams</li>
+            <li>Reduces overload on engineering while maintaining responsiveness</li>
+            <li>Captures all intent - request - build decisions</li>
           </ul>
         </div>
 
