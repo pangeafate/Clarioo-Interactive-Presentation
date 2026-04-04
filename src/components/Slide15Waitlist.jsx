@@ -1,4 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+const waitlistCompanies = [
+  { name: 'ALSHAYA GROUP', domain: 'alshaya.com' },
+  { name: 'BBC STUDIOS', domain: 'bbcstudios.com' },
+  { name: 'asics', domain: 'asics.com' },
+  { name: 'Angi', domain: 'angi.com' },
+  { name: 'Clarks', domain: 'clarks.com' },
+  { name: 'dwelly', domain: 'dwelly.co' },
+  { name: 'TOUS', domain: 'tous.com' },
+  { name: 'Avolta', domain: 'avoltaworld.com' },
+  { name: 'AERONES', domain: 'aerones.com' },
+  { name: 'Lululemon', domain: 'lululemon.com' },
+  { name: 'CHALHOUB GROUP', domain: 'chalhoubgroup.com' },
+  { name: 'MAERSK', domain: 'maersk.com' },
+  { name: 'SWAROVSKI', domain: 'swarovski.com' },
+  { name: 'Holland&Barrett', domain: 'hollandandbarrett.com' },
+  { name: 'TIMES PROPERTY', domain: 'timesproperty.ca' },
+  { name: 'bluerock', domain: 'bluerock.com' },
+  { name: 'dojo', domain: 'dojo.tech' },
+  { name: 'BREITLING', domain: 'breitling.com' },
+  { name: 'Orium', domain: 'orium.com' },
+  { name: 'Velasca', domain: 'velasca.com' },
+  { name: 'BCG', domain: 'bcg.com' },
+  { name: 'SANDOZ', domain: 'sandoz.com' }
+];
+
+const CompanyLogo = ({ company }) => {
+  const [hasError, setHasError] = useState(false);
+  
+  if (hasError) {
+    return (
+      <div className="glass-card" style={{ padding: '0.4rem 0.8rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+        {company.name}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ 
+      width: '90px', 
+      height: '45px', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      background: 'rgba(255,255,255,0.02)',
+      borderRadius: '8px',
+      padding: '0.5rem',
+      border: '1px solid var(--border-light)'
+    }}>
+      <img 
+        src={`https://logo.clearbit.com/${company.domain}`} 
+        alt={company.name}
+        title={company.name}
+        style={{ 
+          maxWidth: '100%', 
+          maxHeight: '100%', 
+          objectFit: 'contain', 
+          filter: 'grayscale(1) brightness(1.5) contrast(1.2)' 
+        }}
+        onError={() => setHasError(true)}
+      />
+    </div>
+  );
+};
 
 export default function Slide15Waitlist() {
   return (
@@ -13,16 +77,9 @@ export default function Slide15Waitlist() {
       <div style={{ display: 'flex', gap: '4rem' }}>
         
         {/* Left: Logos */}
-        <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
-          {[
-            'ALSHAYA GROUP', 'BBC STUDIOS', 'asics', 'Angi', 'Clarks', 'dwelly', 'TOUS', 
-            'Avolta', 'AERONES', 'Lululemon', 'CHALHOUB GROUP', 'MAERSK', 'SWAROVSKI', 
-            'Holland&Barrett', 'TIMES PROPERTY MGT', 'bluerock', 'dojo', 'BREITLING 1884', 
-            'Orium', 'Velasca', 'BCG', 'SANDOZ'
-          ].map(logo => (
-            <div className="glass-card" key={logo} style={{ padding: '0.5rem 1rem', fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-              {logo}
-            </div>
+        <div style={{ flex: 1.2, display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
+          {waitlistCompanies.map(company => (
+            <CompanyLogo key={company.name} company={company} />
           ))}
         </div>
 
@@ -41,7 +98,7 @@ export default function Slide15Waitlist() {
 
           {/* Email mockup */}
           <div className="glass-card" style={{ marginTop: '1rem' }}>
-            <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>Quote from "Alexander" (Maersk):</div>
+            <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>Quote from "Alexander" (Angi):</div>
             <p className="text-secondary" style={{ fontSize: '0.875rem', lineHeight: '1.5', fontFamily: 'monospace' }}>
               "Hi Olga,<br/><br/>
               Yes that sounds interesting, hopefully we can replace all the RFI/RFP Excel files and endless PDF files someday! :)<br/><br/>
