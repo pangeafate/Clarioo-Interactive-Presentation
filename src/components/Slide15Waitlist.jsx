@@ -46,7 +46,7 @@ const CompanyLogo = ({ company }) => {
       padding: '0.25rem'
     }}>
       <img 
-        src={`https://logo.clearbit.com/${company.domain}`} 
+        src={`https://img.logo.dev/${company.domain}?token=sk_MgypntRdRD2WdWoL4jbdGA`} 
         alt={company.name}
         title={company.name}
         style={{ 
