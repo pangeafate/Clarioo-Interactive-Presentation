@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
+import { MessageSquareText, Route, Workflow, Bot, Users, Brain, ArrowUp } from 'lucide-react'
+
+const ICONS = {
+  capture: MessageSquareText,
+  compose: Route,
+  orchestrate: Workflow,
+  analyze: Bot,
+  collaborate: Users,
+  memory: Brain,
+}
 
 const journeySteps = [
   {
     id: 'capture',
-    icon: '💬',
+    iconKey: 'capture',
     label: 'Capture',
     subtitle: 'Intent → Record',
     color: '#00d2ff',
@@ -18,7 +28,7 @@ const journeySteps = [
   },
   {
     id: 'compose',
-    icon: '🗺️',
+    iconKey: 'compose',
     label: 'Compose Path',
     subtitle: 'Template → Graph',
     color: '#8b5cf6',
@@ -35,7 +45,7 @@ const journeySteps = [
   },
   {
     id: 'orchestrate',
-    icon: '⚙️',
+    iconKey: 'orchestrate',
     label: 'Orchestrate',
     subtitle: 'DAG Execution',
     color: '#f59e0b',
@@ -50,7 +60,7 @@ const journeySteps = [
   },
   {
     id: 'analyze',
-    icon: '🤖',
+    iconKey: 'analyze',
     label: 'Specialist Agents',
     subtitle: '7 AI Experts',
     color: '#ec4899',
@@ -68,7 +78,7 @@ const journeySteps = [
   },
   {
     id: 'collaborate',
-    icon: '👥',
+    iconKey: 'collaborate',
     label: 'Stakeholders',
     subtitle: 'Review & Decide',
     color: '#10b981',
@@ -83,7 +93,7 @@ const journeySteps = [
   },
   {
     id: 'memory',
-    icon: '🧠',
+    iconKey: 'memory',
     label: 'Decision Memory',
     subtitle: 'Learn & Reuse',
     color: '#6366f1',
@@ -158,7 +168,7 @@ export default function SlideDecisionJourney() {
                   outline: 'none',
                 }}
               >
-                <div style={{ fontSize: '2rem', lineHeight: 1 }}>{step.icon}</div>
+                <div style={{ lineHeight: 1 }}>{React.createElement(ICONS[step.iconKey], { size: 28, color: isActive ? step.color : 'rgba(255,255,255,0.6)', strokeWidth: 1.5, style: { transition: 'color 0.3s ease' } })}</div>
                 <div style={{ 
                   fontSize: '0.85rem', 
                   fontWeight: 700, 
@@ -243,7 +253,7 @@ export default function SlideDecisionJourney() {
               gap: '12px', 
               marginBottom: '1rem' 
             }}>
-              <span style={{ fontSize: '2.5rem' }}>{activeData.icon}</span>
+              <span>{React.createElement(ICONS[activeData.iconKey], { size: 36, color: activeData.color, strokeWidth: 1.5 })}</span>
               <div>
                 <h3 style={{ 
                   fontSize: '1.4rem', 
@@ -340,7 +350,7 @@ export default function SlideDecisionJourney() {
           opacity: 0.3,
         }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>👆</div>
+            <div style={{ marginBottom: '1rem' }}><ArrowUp size={48} color="rgba(255,255,255,0.4)" strokeWidth={1.5} /></div>
             <p style={{ fontSize: '1.1rem', color: '#fff', fontWeight: 600 }}>Select a stage above to explore</p>
           </div>
         </div>
