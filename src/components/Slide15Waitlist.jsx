@@ -38,25 +38,21 @@ const CompanyLogo = ({ company }) => {
 
   return (
     <div style={{ 
-      width: '90px', 
-      height: '45px', 
+      width: '100px', 
+      height: '40px', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      background: 'rgba(255,255,255,0.02)',
-      borderRadius: '8px',
-      padding: '0.5rem',
-      border: '1px solid var(--border-light)'
+      padding: '0.25rem'
     }}>
       <img 
-        src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=128`} 
+        src={`https://logo.clearbit.com/${company.domain}`} 
         alt={company.name}
         title={company.name}
         style={{ 
           maxWidth: '100%', 
           maxHeight: '100%', 
-          objectFit: 'contain', 
-          filter: 'grayscale(1) brightness(1.5) contrast(1.2)' 
+          objectFit: 'contain'
         }}
         onError={() => setHasError(true)}
       />
