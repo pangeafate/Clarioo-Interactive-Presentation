@@ -4,9 +4,12 @@ export default function Slide1Chaos() {
   return (
     <div className="slide">
       <div className="slide-header">
-        <span className="uppercase-label">The Problem Space</span>
-        <h1>From chaotic requests to <span className="text-cyan">structured decision tracks</span></h1>
-        <p>No system captures change intent. No one triages them. The few that get acted on depend on who shouted loudest — not what matters most.</p>
+        <span className="uppercase-label">The Decision Layer</span>
+        <h1>From change intent to <span className="text-cyan">structured decision data</span></h1>
+        <p>Helping companies make faster, evidence-based decisions by capturing change intent (bottom-up, central, and agent-driven) and turning it into observable data usable for people and AI agents alike.</p>
+        <div style={{ marginTop: '1rem', display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(14, 165, 233, 0.1)', border: '1px solid var(--accent-cyan)', borderRadius: '8px', color: 'var(--accent-cyan)', fontWeight: 600 }}>
+          The Future: Agents will need a Decision Layer to operate autonomously in "legacy" organizations.
+        </div>
       </div>
 
       <div className="grid-2">

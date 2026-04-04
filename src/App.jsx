@@ -11,12 +11,12 @@ function App() {
   const [activeTab, setActiveTab] = useState(0)
 
   const tabs = [
-    { id: 0, label: '1. The Chaos' },
-    { id: 1, label: '2. Core Loop' },
-    { id: 2, label: '3. The Wedge' },
-    { id: 3, label: '4. Landscape' },
-    { id: 4, label: '5. The Vision' },
-    { id: 5, label: '6. Ask & Traction' }
+    { id: 0, label: '1. The Decision Layer' },
+    { id: 1, label: '2. The Core Loop' },
+    { id: 2, label: '3. The Wedge (Phase 1)' },
+    { id: 3, label: '4. Competitive Moat' },
+    { id: 4, label: '5. Vision (Phase 2/3)' },
+    { id: 5, label: '6. Status & Ask' }
   ]
 
   const renderSlide = () => {

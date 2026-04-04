@@ -6,7 +6,7 @@ export default function Slide3Wedge() {
       <div className="slide-header">
         <span className="uppercase-label">Phase 1 (The Wedge)</span>
         <h1>Software <span className="text-emerald">Buying Workflow</span></h1>
-        <p>A high-value, immediate pain point. We orchestrate the discovery-to-decision software buying process.</p>
+        <p><strong>March '26:</strong> Clarioo is currently running the software discovery-to-decision workflow with corporate partners and consultants.</p>
       </div>
 
       <div className="grid-2">
