@@ -1,56 +1,65 @@
-import { useState } from 'react'
-import './App.css'
-import Slide1Chaos from './components/Slide1Chaos'
-import Slide2CoreLoop from './components/Slide2CoreLoop'
-import Slide3Wedge from './components/Slide3Wedge'
-import Slide4Landscape from './components/Slide4Landscape'
-import Slide5Vision from './components/Slide5Vision'
-import Slide6Ask from './components/Slide6Ask'
+import { useState, useEffect } from 'react'
+
+// Import all slides
+import Slide1Title from './components/Slide1Title'
+import Slide2Team from './components/Slide2Team'
+import Slide3Legacy from './components/Slide3Legacy'
+import Slide4Strategy from './components/Slide4Strategy'
+import Slide5Phase3 from './components/Slide5Phase3'
+import Slide6Simulations from './components/Slide6Simulations'
+import Slide7Moat from './components/Slide7Moat'
+import Slide8StatusAsk from './components/Slide8StatusAsk'
+import Slide9AppendixReactive from './components/Slide9AppendixReactive'
+import Slide10AppendixProactive from './components/Slide10AppendixProactive'
 
 function App() {
-  const [activeTab, setActiveTab] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
 
-  const tabs = [
-    { id: 0, label: '1. The Decision Layer' },
-    { id: 1, label: '2. The Core Loop' },
-    { id: 2, label: '3. The Wedge (Phase 1)' },
-    { id: 3, label: '4. Competitive Moat' },
-    { id: 4, label: '5. Vision (Phase 2/3)' },
-    { id: 5, label: '6. Status & Ask' }
+  const slides = [
+    <Slide1Title />,
+    <Slide2Team />,
+    <Slide3Legacy />,
+    <Slide4Strategy />,
+    <Slide5Phase3 />,
+    <Slide6Simulations />,
+    <Slide7Moat />,
+    <Slide8StatusAsk />,
+    <Slide9AppendixReactive />,
+    <Slide10AppendixProactive />
   ]
 
-  const renderSlide = () => {
-    switch (activeTab) {
-      case 0: return <Slide1Chaos />
-      case 1: return <Slide2CoreLoop />
-      case 2: return <Slide3Wedge />
-      case 3: return <Slide4Landscape />
-      case 4: return <Slide5Vision />
-      case 5: return <Slide6Ask />
-      default: return <Slide1Chaos />
+  const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))
+  const prevSlide = () => setCurrentSlide(prev => Math.max(prev - 1, 0))
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide()
+      if (e.key === 'ArrowLeft') prevSlide()
     }
-  }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
-    <div className="app-container">
-      <header>
-        <div className="logo">Clarioo <span>— From Chaos to Clarity</span></div>
-        <nav className="nav-tabs">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`nav-btn ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </nav>
-      </header>
-      
-      <main className="slide-container">
-        {renderSlide()}
-      </main>
+    <div className="presentation-container">
+      {slides.map((SlideComponent, index) => (
+        <div key={index} className={`slide-wrapper ${index === currentSlide ? 'active' : ''}`}>
+          {SlideComponent}
+        </div>
+      ))}
+
+      <div className="slide-indicator">
+        {currentSlide + 1} / {slides.length}
+      </div>
+
+      <div className="nav-controls">
+        <button className="nav-btn" onClick={prevSlide} disabled={currentSlide === 0}>
+          <span>←</span>
+        </button>
+        <button className="nav-btn" onClick={nextSlide} disabled={currentSlide === slides.length - 1}>
+          <span>→</span>
+        </button>
+      </div>
     </div>
   )
 }

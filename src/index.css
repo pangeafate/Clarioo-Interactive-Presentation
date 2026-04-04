@@ -1,18 +1,17 @@
 :root {
-  --bg-deep-navy: #0B1221;
-  --bg-card: #131D2F;
-  --bg-card-hover: #1E293B;
-  --accent-cyan: #0EA5E9;
-  --accent-cyan-dark: #0284C7;
-  --accent-purple: #818CF8;
-  --accent-amber: #F59E0B;
-  --accent-emerald: #10B981;
+  --pdf-bg-gradient: linear-gradient(135deg, #eef2f3 0%, #d5d9eb 100%);
+  --pdf-navy: #1a1a2e;
+  --pdf-white: #ffffff;
+  --pdf-salmon: #ff9a8b;
+  --pdf-blue: #4a90e2;
+  --pdf-orange: #fb923c;
+  --pdf-green: #34d399;
+  --pdf-gray: #f3f4f6;
   
-  --text-primary: #E2E8F0;
-  --text-secondary: #94A3B8;
-  
-  --border-subtle: rgba(14, 165, 233, 0.15);
-  --border-strong: rgba(14, 165, 233, 0.4);
+  --text-dark: #1f2937;
+  --text-light: #f8fafc;
+  --text-muted-dark: #6b7280;
+  --text-muted-light: #9ca3af;
 }
 
 * {
@@ -23,61 +22,104 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg-deep-navy);
-  color: var(--text-primary);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* Full screen presentation mode */
+  background-color: var(--pdf-navy);
+  color: var(--text-dark);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+.presentation-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
-  font-weight: 800;
-  font-size: 2.5rem;
-  letter-spacing: -0.025em;
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+  overflow-y: auto;
 }
 
-.text-cyan {
-  color: var(--accent-cyan);
+.slide-wrapper.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.text-amber {
-  color: var(--accent-amber);
+/* Base slide styles */
+.pdf-slide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 4vw;
+  position: relative;
+  background: var(--pdf-white);
 }
 
-.text-purple {
-  color: var(--accent-purple);
+.pdf-slide.dark {
+  background: var(--pdf-navy);
+  color: var(--text-light);
 }
 
-.text-emerald {
-  color: var(--accent-emerald);
+.pdf-slide.gradient {
+  background: var(--pdf-bg-gradient);
 }
 
-.text-secondary {
-  color: var(--text-secondary);
+/* Nav controls */
+.nav-controls {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 100;
+  background: rgba(0,0,0,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
 }
 
-.uppercase-label {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--accent-amber);
-  margin-bottom: 0.5rem;
-  display: block;
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.nav-btn:hover {
+  transform: scale(1.2);
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.slide-indicator {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-weight: bold;
+  z-index: 100;
+  background: rgba(0,0,0,0.3);
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
 }
