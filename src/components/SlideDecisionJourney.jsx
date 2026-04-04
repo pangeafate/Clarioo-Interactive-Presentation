@@ -1,345 +1,372 @@
-import React, { useState, useCallback, useMemo } from 'react'
-import {
-  ReactFlow,
-  Controls,
-  Background,
-  Handle,
-  Position,
-  useNodesState,
-  useEdgesState,
-  MarkerType,
-} from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
+import React, { useState } from 'react'
 
-/* ─── Detail content for each node ───────────────────────── */
-const nodeDetails = {
-  intent: {
-    title: '💬 Decision Intent Captured',
-    description: 'A decision-maker describes a decision in natural language via Telegram or Slack.',
+const journeySteps = [
+  {
+    id: 'capture',
+    icon: '💬',
+    label: 'Capture',
+    subtitle: 'Intent → Record',
+    color: '#00d2ff',
+    description: 'A decision-maker describes a decision in natural language via Slack or Telegram.',
     example: '"We need to select a cloud vendor for our new platform"',
-    details: [
-      'Raw text parsed into structured fields',
-      'Decision record created with title, description, priority, scope',
-      'Stakeholder list extracted and linked',
-      'Status set to "proposed"',
+    bullets: [
+      'Natural language parsed into structured fields',
+      'Decision record created: title, scope, priority, stakeholders',
+      'Auto-classified: vendor selection, tech choice, policy, etc.',
+      'Status set to "proposed" — ready for path composition',
     ],
   },
-  classify: {
-    title: '🏷️ Decision Type Classification',
-    description: 'The agent reasons about the decision type from the intake context.',
-    example: 'Classified as: Vendor Selection',
-    details: [
-      'Types: vendor selection, technology choice, policy, build-vs-buy',
-      'Classification influences template selection',
-      'Stored as enum in decisions table',
-    ],
-  },
-  path: {
-    title: '🗺️ Decision Path Composition',
-    description: 'A complete decision path is generated from the selected template.',
-    example: 'Template: Vendor Selection → 4 phases, 12 blocks',
-    details: [
+  {
+    id: 'compose',
+    icon: '🗺️',
+    label: 'Compose Path',
+    subtitle: 'Template → Graph',
+    color: '#8b5cf6',
+    description: 'A decision path is generated from the matched template with phases, blocks, edges, and gates.',
+    example: 'Vendor Selection template → 4 phases, 12 blocks, 15 edges',
+    bullets: [
+      'Template selected based on decision type',
       'Phases: Discovery → Analysis → Evaluation → Decision',
-      'Blocks, edges, and gates created atomically',
-      'Sequential & parallel execution flows defined',
-      'Path can be modified: add/remove/reorder blocks',
+      'Blocks define individual analysis tasks',
+      'Edges define execution flow (sequential, parallel, conditional)',
+      'Gates define phase completion criteria',
+      'Path can be modified live: add/remove/reorder blocks',
     ],
   },
-  orchestrate: {
-    title: '⚙️ DAG-Aware Orchestration',
-    description: 'Phases activate respecting dependency edges. Parallel tracks run concurrently.',
-    example: 'Phase 2 (Analysis) activates after Phase 1 gate passes',
-    details: [
-      'Phase gating: prerequisites must complete first',
+  {
+    id: 'orchestrate',
+    icon: '⚙️',
+    label: 'Orchestrate',
+    subtitle: 'DAG Execution',
+    color: '#f59e0b',
+    description: 'The decision graph executes as a DAG — parallel tracks run concurrently, sequential phases wait for predecessors.',
+    example: 'Phase 2 (Analysis) activates only after Phase 1 gate passes',
+    bullets: [
+      'DAG-aware phase activation with dependency edges',
       'Convergence blocks wait for all parallel tracks',
-      'Progress monitored in real-time',
-      'Overdue blocks trigger chase ladder',
+      'Multi-mode execution: AI-first, Human-first, Meeting, Automatic',
+      'Overdue detection triggers chase ladder: reminder → chase → escalation',
     ],
   },
-  specialists: {
-    title: '🤖 Specialist Agent Analysis',
-    description: '7 specialist AI agents analyze specific aspects of the decision.',
-    example: 'Financial Analyst assessing TCO across 3 vendors',
-    details: [
-      'Financial Analyst — cost modeling & ROI',
-      'Legal Reviewer — compliance & contracts',
-      'Technical Assessor — architecture fit',
-      'Risk Analyst — risk identification',
+  {
+    id: 'analyze',
+    icon: '🤖',
+    label: 'Specialist Agents',
+    subtitle: '7 AI Experts',
+    color: '#ec4899',
+    description: '7 specialist AI agents analyze specific aspects of the decision, each with domain expertise.',
+    example: 'Financial Analyst assessing TCO across 3 vendor options',
+    bullets: [
+      'Financial Analyst — cost modeling & ROI projections',
+      'Legal Reviewer — compliance & contract analysis',
+      'Technical Assessor — architecture fit evaluation',
+      'Risk Analyst — risk identification & mitigation',
       'Vendor Specialist — market comparison',
-      'Security Auditor — security posture',
-      'Market Analyst — competitive landscape',
+      'Security Auditor — security posture assessment',
+      'Market Analyst — competitive landscape analysis',
     ],
   },
-  stakeholders: {
-    title: '👥 Stakeholder Interaction',
-    description: 'Stakeholders approve, revise, or escalate directly from Telegram.',
-    example: 'CTO approves technical assessment via inline button',
-    details: [
-      'Responses classified: completed, partial, question, objection',
-      'Actions: mark_completed, request_clarification, escalate',
+  {
+    id: 'collaborate',
+    icon: '👥',
+    label: 'Stakeholders',
+    subtitle: 'Review & Decide',
+    color: '#10b981',
+    description: 'Stakeholders participate via Telegram inline buttons — approve, revise, or escalate without leaving their chat.',
+    example: 'CTO approves technical assessment via inline button ✅',
+    bullets: [
+      'Responses classified: completed, partial, question, objection, delegation',
       'Inline Telegram buttons for zero-friction participation',
-      'Chase ladder: reminder → chase → escalation',
+      'Real-time notifications for all decision events',
+      'Chase ladder ensures no stalled decisions',
     ],
   },
-  execution: {
-    title: '🔄 Multi-Mode Block Execution',
-    description: 'Each block executes in the appropriate mode based on its type.',
-    example: 'Vendor shortlist block runs in "ai_first" mode',
-    details: [
-      'AI-first: AI generates analysis, human reviews',
-      'Human-first: Human provides input, AI enriches',
-      'Meeting: Structured protocol with AI facilitation',
-      'Automatic: Deterministic rule-based execution',
-    ],
-  },
-  memory: {
-    title: '🧠 Decision Memory Extraction',
-    description: 'Learnings are automatically extracted from completed decisions.',
-    example: '8 memories extracted: "vendor evaluation took 2x expected time"',
-    details: [
-      'Process improvement insights',
-      'Stakeholder behavior patterns',
-      'Timing & cost learnings',
-      'Risk patterns for future decisions',
-      'Up to 20 memories per decision',
-    ],
-  },
-  agents_consume: {
-    title: '🔮 Agents Use Decision Memory',
-    description: 'Future decisions are enriched by institutional memory from past decisions.',
-    example: 'New vendor selection auto-applies learnings from 3 prior decisions',
-    details: [
-      'Agents query memory before composing paths',
-      'Template feedback improves future templates',
-      'Cross-decision relationship discovery',
-      'Decision graph shows organizational decision landscape',
+  {
+    id: 'memory',
+    icon: '🧠',
+    label: 'Decision Memory',
+    subtitle: 'Learn & Reuse',
+    color: '#6366f1',
+    description: 'Learnings are automatically extracted and stored — future decisions are enriched by institutional memory.',
+    example: '8 learnings extracted: "vendor evaluation took 2× expected time"',
+    bullets: [
+      '8 memory types: process, stakeholder, timing, cost, risk, communication, template, general',
+      'Up to 20 memories per completed decision',
+      'Future agents query memory before composing new paths',
+      'Cross-decision relationship graph shows organizational landscape',
       'CEO Dashboard surfaces bottlenecks & velocity metrics',
     ],
   },
-}
+]
 
-/* ─── Custom Node Component ──────────────────────────────── */
-const colors = {
-  intake:      { bg: 'rgba(0, 210, 255, 0.12)', border: '#00d2ff', glow: '0 0 20px rgba(0,210,255,0.3)', icon: '💬' },
-  classify:    { bg: 'rgba(139, 92, 246, 0.12)', border: '#8b5cf6', glow: '0 0 20px rgba(139,92,246,0.3)', icon: '🏷️' },
-  path:        { bg: 'rgba(16, 185, 129, 0.12)', border: '#10b981', glow: '0 0 20px rgba(16,185,129,0.3)', icon: '🗺️' },
-  orchestrate: { bg: 'rgba(245, 158, 11, 0.12)', border: '#f59e0b', glow: '0 0 20px rgba(245,158,11,0.3)', icon: '⚙️' },
-  execute:     { bg: 'rgba(236, 72, 153, 0.12)', border: '#ec4899', glow: '0 0 20px rgba(236,72,153,0.3)', icon: '🔄' },
-  memory:      { bg: 'rgba(99, 102, 241, 0.12)', border: '#6366f1', glow: '0 0 20px rgba(99,102,241,0.3)', icon: '🧠' },
-  agents:      { bg: 'rgba(14, 165, 233, 0.12)', border: '#0ea5e9', glow: '0 0 20px rgba(14,165,233,0.3)', icon: '🔮' },
-}
-
-function FlowNode({ data }) {
-  const { label, subtitle, colorKey, nodeId, onNodeClick, isExpanded } = data
-  const c = colors[colorKey] || colors.intake
-
-  return (
-    <div
-      onClick={() => onNodeClick(nodeId)}
-      style={{
-        background: isExpanded ? c.bg.replace('0.12', '0.25') : c.bg,
-        border: `2px solid ${c.border}`,
-        borderRadius: '16px',
-        padding: '16px 20px',
-        minWidth: '200px',
-        maxWidth: '240px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        boxShadow: isExpanded ? c.glow : 'none',
-        transform: isExpanded ? 'scale(1.05)' : 'scale(1)',
-      }}
-    >
-      <Handle type="target" position={Position.Top} style={{ background: c.border, width: 8, height: 8, border: 'none' }} />
-      <Handle type="source" position={Position.Bottom} style={{ background: c.border, width: 8, height: 8, border: 'none' }} />
-      <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{label}</div>
-      {subtitle && <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.3 }}>{subtitle}</div>}
-      <div style={{ fontSize: '0.65rem', color: c.border, marginTop: '6px', fontWeight: 600, letterSpacing: '0.05em' }}>
-        {isExpanded ? '▾ CLICK TO COLLAPSE' : '▸ CLICK TO EXPAND'}
-      </div>
-    </div>
-  )
-}
-
-/* ─── Detail Panel ───────────────────────────────────────── */
-function DetailPanel({ nodeId, onClose }) {
-  const info = nodeDetails[nodeId]
-  if (!info) return null
-
-  return (
-    <div style={{
-      position: 'absolute',
-      right: '24px',
-      top: '80px',
-      width: '380px',
-      maxHeight: 'calc(100% - 120px)',
-      overflowY: 'auto',
-      background: 'rgba(15, 23, 42, 0.95)',
-      border: '1px solid rgba(255,255,255,0.1)',
-      borderRadius: '20px',
-      padding: '28px',
-      backdropFilter: 'blur(20px)',
-      boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
-      zIndex: 10,
-      animation: 'slideIn 0.3s ease',
-    }}>
-      <button
-        onClick={onClose}
-        style={{
-          position: 'absolute', top: '12px', right: '16px',
-          background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)',
-          fontSize: '1.25rem', cursor: 'pointer', padding: '4px',
-        }}
-      >✕</button>
-
-      <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#fff', marginBottom: '12px', lineHeight: 1.3 }}>
-        {info.title}
-      </div>
-
-      <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '16px' }}>
-        {info.description}
-      </p>
-
-      {info.example && (
-        <div style={{
-          background: 'rgba(0, 210, 255, 0.08)',
-          border: '1px solid rgba(0, 210, 255, 0.2)',
-          borderRadius: '10px',
-          padding: '10px 14px',
-          marginBottom: '16px',
-          fontSize: '0.8rem',
-          fontStyle: 'italic',
-          color: 'rgba(0, 210, 255, 0.9)',
-        }}>
-          {info.example}
-        </div>
-      )}
-
-      <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', marginBottom: '10px', textTransform: 'uppercase' }}>
-        Details
-      </div>
-      <ul style={{ margin: 0, paddingLeft: '16px', listStyle: 'none' }}>
-        {info.details.map((d, i) => (
-          <li key={i} style={{
-            color: 'rgba(255,255,255,0.65)',
-            fontSize: '0.82rem',
-            lineHeight: 1.6,
-            marginBottom: '4px',
-            position: 'relative',
-            paddingLeft: '14px',
-          }}>
-            <span style={{ position: 'absolute', left: 0, color: 'rgba(0,210,255,0.6)' }}>›</span>
-            {d}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-/* ─── Main Component ─────────────────────────────────────── */
 export default function SlideDecisionJourney() {
-  const [expandedNode, setExpandedNode] = useState(null)
+  const [activeStep, setActiveStep] = useState(null)
 
-  const handleNodeClick = useCallback((nodeId) => {
-    setExpandedNode(prev => prev === nodeId ? null : nodeId)
-  }, [])
+  const handleStepClick = (stepId) => {
+    setActiveStep(prev => prev === stepId ? null : stepId)
+  }
 
-  const initialNodes = useMemo(() => [
-    // Row 1: Intent
-    { id: 'intent', type: 'flowNode', position: { x: 350, y: 0 }, data: { label: '💬 Decision Intent', subtitle: 'Natural language input via Slack / Telegram', colorKey: 'intake', nodeId: 'intent', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'intent' } },
-    // Row 2: Classify
-    { id: 'classify', type: 'flowNode', position: { x: 350, y: 120 }, data: { label: '🏷️ Type Classification', subtitle: 'Vendor selection, tech choice, policy…', colorKey: 'classify', nodeId: 'classify', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'classify' } },
-    // Row 3: Path
-    { id: 'path', type: 'flowNode', position: { x: 350, y: 240 }, data: { label: '🗺️ Path Composition', subtitle: 'Template → phases → blocks → edges → gates', colorKey: 'path', nodeId: 'path', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'path' } },
-    // Row 4: Orchestration (center), Specialists (left), Stakeholders (right)
-    { id: 'orchestrate', type: 'flowNode', position: { x: 350, y: 380 }, data: { label: '⚙️ DAG Orchestration', subtitle: 'Phase activation, gating, convergence', colorKey: 'orchestrate', nodeId: 'orchestrate', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'orchestrate' } },
-    { id: 'specialists', type: 'flowNode', position: { x: 60, y: 420 }, data: { label: '🤖 7 Specialist Agents', subtitle: 'Financial, Legal, Tech, Risk, Vendor, Security, Market', colorKey: 'execute', nodeId: 'specialists', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'specialists' } },
-    { id: 'stakeholders', type: 'flowNode', position: { x: 640, y: 420 }, data: { label: '👥 Stakeholder Loop', subtitle: 'Approve / Revise / Escalate via Telegram', colorKey: 'execute', nodeId: 'stakeholders', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'stakeholders' } },
-    // Row 5: Execution
-    { id: 'execution', type: 'flowNode', position: { x: 350, y: 540 }, data: { label: '🔄 Block Execution', subtitle: 'AI-first, Human-first, Meeting, Automatic', colorKey: 'execute', nodeId: 'execution', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'execution' } },
-    // Row 6: Memory
-    { id: 'memory', type: 'flowNode', position: { x: 350, y: 660 }, data: { label: '🧠 Decision Memory', subtitle: '8 memory types × up to 20 learnings extracted', colorKey: 'memory', nodeId: 'memory', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'memory' } },
-    // Row 7: Agents consume
-    { id: 'agents_consume', type: 'flowNode', position: { x: 350, y: 780 }, data: { label: '🔮 Future Decisions', subtitle: 'Agents query memory to enrich new paths', colorKey: 'agents', nodeId: 'agents_consume', onNodeClick: handleNodeClick, isExpanded: expandedNode === 'agents_consume' } },
-  ], [expandedNode, handleNodeClick])
-
-  const initialEdges = useMemo(() => [
-    { id: 'e-intent-classify', source: 'intent', target: 'classify', animated: true, style: { stroke: '#8b5cf6', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#8b5cf6' } },
-    { id: 'e-classify-path', source: 'classify', target: 'path', animated: true, style: { stroke: '#10b981', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#10b981' } },
-    { id: 'e-path-orchestrate', source: 'path', target: 'orchestrate', animated: true, style: { stroke: '#f59e0b', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#f59e0b' } },
-    { id: 'e-orchestrate-specialists', source: 'orchestrate', target: 'specialists', animated: true, style: { stroke: '#ec4899', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#ec4899' } },
-    { id: 'e-orchestrate-stakeholders', source: 'orchestrate', target: 'stakeholders', animated: true, style: { stroke: '#ec4899', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#ec4899' } },
-    { id: 'e-specialists-execution', source: 'specialists', target: 'execution', animated: true, style: { stroke: '#ec4899', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#ec4899' } },
-    { id: 'e-stakeholders-execution', source: 'stakeholders', target: 'execution', animated: true, style: { stroke: '#ec4899', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#ec4899' } },
-    { id: 'e-execution-memory', source: 'execution', target: 'memory', animated: true, style: { stroke: '#6366f1', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#6366f1' } },
-    { id: 'e-memory-agents', source: 'memory', target: 'agents_consume', animated: true, style: { stroke: '#0ea5e9', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#0ea5e9' } },
-    // Feedback loop: agents back to intent
-    { id: 'e-agents-intent', source: 'agents_consume', target: 'intent', animated: true, type: 'smoothstep', style: { stroke: '#0ea5e9', strokeWidth: 1.5, strokeDasharray: '8 4' }, markerEnd: { type: MarkerType.ArrowClosed, color: '#0ea5e9' }, label: 'enriches future decisions', labelStyle: { fill: 'rgba(14,165,233,0.7)', fontSize: 10, fontWeight: 600 }, labelBgStyle: { fill: 'rgba(15,23,42,0.8)', rx: 4 }, labelBgPadding: [4, 8] },
-  ], [])
-
-  const nodeTypes = useMemo(() => ({ flowNode: FlowNode }), [])
+  const activeData = journeySteps.find(s => s.id === activeStep)
 
   return (
-    <div className="pdf-slide" style={{ padding: 0, position: 'relative', overflow: 'hidden' }}>
-      {/* Title overlay */}
-      <div style={{
-        position: 'absolute',
-        top: '16px',
-        left: '24px',
-        zIndex: 5,
-        pointerEvents: 'none',
-      }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#fff', margin: 0, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
-          Decision Journey: <span style={{ color: '#00d2ff' }}>Intent → Memory → Agents</span>
+    <div className="pdf-slide" style={{ padding: '3rem 4rem', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      
+      {/* Title */}
+      <div style={{ textAlign: 'center', marginBottom: '2rem', flexShrink: 0 }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#fff', margin: 0 }}>
+          Decision Journey: <span style={{ color: '#00d2ff' }}>From Intent to Institutional Memory</span>
         </h2>
-        <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', marginTop: '4px', fontWeight: 500 }}>
-          Click any node to explore the detail
+        <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', marginTop: '6px' }}>
+          Click any stage to explore the details
         </p>
       </div>
 
-      {/* ReactFlow canvas */}
-      <div style={{ width: '100%', height: '100%', minHeight: '700px' }}>
-        <ReactFlow
-          nodes={initialNodes}
-          edges={initialEdges}
-          nodeTypes={nodeTypes}
-          fitView
-          fitViewOptions={{ padding: 0.2, maxZoom: 1 }}
-          proOptions={{ hideAttribution: true }}
-          minZoom={0.4}
-          maxZoom={1.5}
-          defaultViewport={{ x: 0, y: 0, zoom: 0.85 }}
-          style={{ background: 'transparent' }}
-          nodesDraggable={false}
-          nodesConnectable={false}
-          elementsSelectable={false}
-          panOnDrag={true}
-          zoomOnScroll={false}
-        >
-          <Background color="rgba(255,255,255,0.03)" gap={24} size={1} />
-          <Controls 
-            showInteractive={false}
-            position="bottom-left"
-            style={{ 
-              background: 'rgba(15,23,42,0.8)', 
-              border: '1px solid rgba(255,255,255,0.1)', 
-              borderRadius: '12px',
-              overflow: 'hidden'
-            }}
-          />
-        </ReactFlow>
+      {/* Horizontal Journey Pipeline */}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        gap: '0',
+        flexShrink: 0,
+        marginBottom: activeData ? '1.5rem' : '0',
+      }}>
+        {journeySteps.map((step, i) => {
+          const isActive = activeStep === step.id
+          return (
+            <React.Fragment key={step.id}>
+              {/* Step Card */}
+              <button
+                onClick={() => handleStepClick(step.id)}
+                style={{
+                  background: isActive 
+                    ? `${step.color}22` 
+                    : 'rgba(255,255,255,0.04)',
+                  border: `2px solid ${isActive ? step.color : 'rgba(255,255,255,0.08)'}`,
+                  borderRadius: '16px',
+                  padding: '16px 14px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '6px',
+                  minWidth: '120px',
+                  maxWidth: '150px',
+                  boxShadow: isActive ? `0 0 24px ${step.color}33` : 'none',
+                  transform: isActive ? 'translateY(-4px) scale(1.05)' : 'scale(1)',
+                  position: 'relative',
+                  outline: 'none',
+                }}
+              >
+                <div style={{ fontSize: '2rem', lineHeight: 1 }}>{step.icon}</div>
+                <div style={{ 
+                  fontSize: '0.85rem', 
+                  fontWeight: 700, 
+                  color: isActive ? step.color : '#fff',
+                  transition: 'color 0.3s ease',
+                }}>{step.label}</div>
+                <div style={{ 
+                  fontSize: '0.65rem', 
+                  color: 'rgba(255,255,255,0.4)', 
+                  fontWeight: 500 
+                }}>{step.subtitle}</div>
+
+                {/* Active indicator */}
+                {isActive && (
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '-18px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 0,
+                    height: 0,
+                    borderLeft: '10px solid transparent',
+                    borderRight: '10px solid transparent',
+                    borderTop: `10px solid ${step.color}`,
+                  }} />
+                )}
+              </button>
+
+              {/* Arrow connector */}
+              {i < journeySteps.length - 1 && (
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '0 2px',
+                  flexShrink: 0,
+                }}>
+                  <div style={{ 
+                    width: '24px', 
+                    height: '2px', 
+                    background: 'rgba(255,255,255,0.15)',
+                    position: 'relative',
+                  }}>
+                    <div style={{
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-4px',
+                      width: 0,
+                      height: 0,
+                      borderTop: '5px solid transparent',
+                      borderBottom: '5px solid transparent',
+                      borderLeft: '6px solid rgba(255,255,255,0.15)',
+                    }} />
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          )
+        })}
       </div>
 
-      {/* Detail Panel */}
-      {expandedNode && (
-        <DetailPanel nodeId={expandedNode} onClose={() => setExpandedNode(null)} />
+      {/* Expanded Detail Panel */}
+      {activeData && (
+        <div 
+          key={activeData.id}
+          style={{
+            flex: 1,
+            background: `linear-gradient(135deg, ${activeData.color}08, ${activeData.color}04)`,
+            border: `1px solid ${activeData.color}33`,
+            borderRadius: '20px',
+            padding: '2rem 2.5rem',
+            animation: 'fadeUp 0.35s ease',
+            display: 'flex',
+            gap: '3rem',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Left: Description */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '12px', 
+              marginBottom: '1rem' 
+            }}>
+              <span style={{ fontSize: '2.5rem' }}>{activeData.icon}</span>
+              <div>
+                <h3 style={{ 
+                  fontSize: '1.4rem', 
+                  fontWeight: 800, 
+                  color: activeData.color, 
+                  margin: 0 
+                }}>{activeData.label}</h3>
+                <span style={{ 
+                  fontSize: '0.8rem', 
+                  color: 'rgba(255,255,255,0.4)' 
+                }}>{activeData.subtitle}</span>
+              </div>
+            </div>
+
+            <p style={{ 
+              color: 'rgba(255,255,255,0.8)', 
+              fontSize: '1rem', 
+              lineHeight: 1.7, 
+              marginBottom: '1.25rem' 
+            }}>
+              {activeData.description}
+            </p>
+
+            {/* Example callout */}
+            <div style={{
+              background: `${activeData.color}12`,
+              border: `1px solid ${activeData.color}30`,
+              borderRadius: '12px',
+              padding: '12px 16px',
+              fontSize: '0.9rem',
+              fontStyle: 'italic',
+              color: activeData.color,
+              lineHeight: 1.5,
+            }}>
+              {activeData.example}
+            </div>
+          </div>
+
+          {/* Right: Bullet details */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ 
+              fontSize: '0.7rem', 
+              fontWeight: 700, 
+              color: 'rgba(255,255,255,0.3)', 
+              letterSpacing: '0.12em', 
+              textTransform: 'uppercase', 
+              marginBottom: '12px' 
+            }}>
+              How it works
+            </div>
+            <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+              {activeData.bullets.map((b, i) => (
+                <li 
+                  key={i} 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    padding: '8px 0',
+                    borderBottom: i < activeData.bullets.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                    animation: `fadeUp 0.3s ease ${i * 0.06}s both`,
+                  }}
+                >
+                  <span style={{ 
+                    color: activeData.color, 
+                    fontSize: '0.85rem', 
+                    fontWeight: 700, 
+                    lineHeight: '1.6',
+                    flexShrink: 0,
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span style={{ 
+                    color: 'rgba(255,255,255,0.7)', 
+                    fontSize: '0.9rem', 
+                    lineHeight: 1.6 
+                  }}>
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       )}
 
-      {/* Slide-in animation */}
+      {/* Empty state when nothing is selected */}
+      {!activeData && (
+        <div style={{ 
+          flex: 1, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          opacity: 0.3,
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>👆</div>
+            <p style={{ fontSize: '1.1rem', color: '#fff', fontWeight: 600 }}>Select a stage above to explore</p>
+          </div>
+        </div>
+      )}
+
+      {/* Feedback loop indicator */}
+      <div style={{ 
+        textAlign: 'center', 
+        flexShrink: 0, 
+        marginTop: '1rem',
+        padding: '8px 0',
+      }}>
+        <span style={{ 
+          fontSize: '0.75rem', 
+          color: 'rgba(255,255,255,0.25)', 
+          fontWeight: 500,
+          letterSpacing: '0.05em',
+        }}>
+          ↻ Decision Memory feeds back into future decisions — creating a continuous learning loop
+        </span>
+      </div>
+
       <style>{`
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateX(30px); }
-          to { opacity: 1; transform: translateX(0); }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>
