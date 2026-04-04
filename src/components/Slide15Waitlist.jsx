@@ -49,7 +49,7 @@ const CompanyLogo = ({ company }) => {
       border: '1px solid var(--border-light)'
     }}>
       <img 
-        src={`https://img.logo.dev/${company.domain}?token=sk_MgypntRdRD2WdWoL4jbdGA`} 
+        src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=128`} 
         alt={company.name}
         title={company.name}
         style={{ 
