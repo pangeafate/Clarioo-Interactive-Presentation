@@ -19,7 +19,7 @@ export default function Slide2Team() {
         
         {/* Profile 1 - Olga */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ width: '180px', height: '180px', borderRadius: '12px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', marginBottom: '1.5rem' }}></div>
+          <img src={`${import.meta.env.BASE_URL}team/photo1.png`} alt="Olga" style={{ width: '180px', height: '180px', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1.5rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1.5rem', alignSelf: 'flex-start' }}>Olga</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '1rem', paddingLeft: '1.25rem', margin: 0, alignSelf: 'flex-start' }}>
             <li style={{ marginBottom: '0.75rem' }}>- Mercaux founder: mid-market and enterprise vertical b2b, $100K-$1M+ ACVs, $25M raised, strategic exit in progress</li>
@@ -30,7 +30,7 @@ export default function Slide2Team() {
 
         {/* Profile 2 - Andrey */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ width: '180px', height: '180px', borderRadius: '12px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', marginBottom: '1.5rem' }}></div>
+          <img src={`${import.meta.env.BASE_URL}team/photo2.png`} alt="Andrey" style={{ width: '180px', height: '180px', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1.5rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1.5rem', alignSelf: 'flex-start' }}>Andrey</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '1rem', paddingLeft: '1.25rem', margin: 0, alignSelf: 'flex-start' }}>
             <li style={{ marginBottom: '0.75rem' }}>- 10+ years in AI/ML</li>
@@ -42,7 +42,7 @@ export default function Slide2Team() {
 
         {/* Profile 3 - Serj */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ width: '180px', height: '180px', borderRadius: '12px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', marginBottom: '1.5rem' }}></div>
+          <img src={`${import.meta.env.BASE_URL}team/photo3.png`} alt="Serj" style={{ width: '180px', height: '180px', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1.5rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1.5rem', alignSelf: 'flex-start' }}>Serj</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '1rem', paddingLeft: '1.25rem', margin: 0, alignSelf: 'flex-start' }}>
             <li style={{ marginBottom: '0.75rem' }}>- AI/ML agency founder since '23 (enterprise clients)</li>
