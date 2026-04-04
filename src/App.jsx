@@ -22,21 +22,21 @@ function App() {
 
   // Sequenced exactly as they appear in the PDF pages
   const slides = [
-    <Slide1Title />,             // Page 1
-    <Slide2Team />,              // Page 2
-    <Slide3Legacy />,            // Page 3
-    <Slide4Strategy />,          // Page 4
-    <Slide11Product />,          // Page 5
-    <Slide5Phase3 />,            // Page 6
-    <Slide6Simulations />,       // Page 7
-    <Slide12WhyNow />,           // Page 8
-    <Slide13GTM />,              // Page 9
-    <Slide14Model />,            // Page 10
-    <Slide7Moat />,              // Page 11
-    <Slide8StatusAsk />,         // Page 12
-    <Slide15Waitlist />,         // Page 13
-    <Slide9AppendixReactive />,  // Page 15
-    <Slide10AppendixProactive /> // Page 16
+    { name: "Title", component: <Slide1Title /> },
+    { name: "Team", component: <Slide2Team /> },
+    { name: "Legacy Orgs", component: <Slide3Legacy /> },
+    { name: "Strategy", component: <Slide4Strategy /> },
+    { name: "Product Snapshot", component: <Slide11Product /> },
+    { name: "Phase 3", component: <Slide5Phase3 /> },
+    { name: "Simulations", component: <Slide6Simulations /> },
+    { name: "Why Now", component: <Slide12WhyNow /> },
+    { name: "Go-To-Market", component: <Slide13GTM /> },
+    { name: "Business Model", component: <Slide14Model /> },
+    { name: "Moat Stack", component: <Slide7Moat /> },
+    { name: "Status & Ask", component: <Slide8StatusAsk /> },
+    { name: "Waitlist", component: <Slide15Waitlist /> },
+    { name: "Appx: Reactive", component: <Slide9AppendixReactive /> },
+    { name: "Appx: Proactive", component: <Slide10AppendixProactive /> }
   ]
 
   const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))
@@ -53,24 +53,31 @@ function App() {
 
   return (
     <div className="presentation-container">
-      {slides.map((SlideComponent, index) => (
-        <div key={index} className={`slide-wrapper ${index === currentSlide ? 'active' : ''}`}>
-          {SlideComponent}
+      
+      {/* Top Navigation */}
+      <div className="nav">
+        <div className="nav-brand">CLARI<span>OO</span></div>
+        <div className="nav-tabs">
+          {slides.map((slide, index) => (
+            <button 
+              key={index} 
+              className={`nav-tab ${index === currentSlide ? 'active' : ''}`}
+              onClick={() => setCurrentSlide(index)}
+            >
+              {index + 1}. {slide.name}
+            </button>
+          ))}
         </div>
-      ))}
-
-      <div className="slide-indicator">
-        {currentSlide + 1} / {slides.length}
       </div>
 
-      <div className="nav-controls">
-        <button className="nav-btn" onClick={prevSlide} disabled={currentSlide === 0}>
-          <span>←</span>
-        </button>
-        <button className="nav-btn" onClick={nextSlide} disabled={currentSlide === slides.length - 1}>
-          <span>→</span>
-        </button>
+      <div className="slides-viewport">
+        {slides.map((slide, index) => (
+          <div key={index} className={`slide-wrapper ${index === currentSlide ? 'active' : ''}`}>
+            {slide.component}
+          </div>
+        ))}
       </div>
+
     </div>
   )
 }
