@@ -16,6 +16,7 @@ import Slide8StatusAsk from './components/Slide8StatusAsk'
 import Slide15Waitlist from './components/Slide15Waitlist'
 import Slide9AppendixReactive from './components/Slide9AppendixReactive'
 import Slide10AppendixProactive from './components/Slide10AppendixProactive'
+import SlideDecisionJourney from './components/SlideDecisionJourney'
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -36,7 +37,8 @@ function App() {
     { name: "Status & Ask", component: <Slide8StatusAsk /> },
     { name: "Waitlist", component: <Slide15Waitlist /> },
     { name: "Appx: Reactive", component: <Slide9AppendixReactive /> },
-    { name: "Appx: Proactive", component: <Slide10AppendixProactive /> }
+    { name: "Appx: Proactive", component: <Slide10AppendixProactive /> },
+    { name: "Decision Journey", component: <SlideDecisionJourney /> }
   ]
 
   const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))
