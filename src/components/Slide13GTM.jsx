@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rocket, Megaphone, Briefcase, Globe, BarChart, DollarSign, FlaskConical } from 'lucide-react'
+import { Rocket, Megaphone, Briefcase, Globe, PieChart, DollarSign, FlaskConical } from 'lucide-react'
 
 export default function Slide13GTM() {
   return (
@@ -57,7 +57,7 @@ export default function Slide13GTM() {
         {/* Right Side: Wedges */}
         <div style={{ flex: 1 }}>
           <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center' }}><BarChart size={32} /></span> Wedges
+            <span style={{ display: 'flex', alignItems: 'center' }}><PieChart size={32} /></span> Wedges
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Bell, Trash2, Trophy } from 'lucide-react'
 
 export default function Slide10AppendixProactive() {
   return (
@@ -47,7 +48,7 @@ export default function Slide10AppendixProactive() {
 
         {/* Step 4 */}
         <div className="glass-card" style={{ width: '70%', padding: '1.5rem 2rem', border: '1px solid var(--accent-amber) !important', boxShadow: '0 0 20px rgba(245,158,11,0.2)' }}>
-          <h4 className="text-amber" style={{ fontWeight: 800, fontSize: '1.125rem', marginBottom: '0.5rem' }}>4. Re-evaluation Triggered</h4>
+          <h4 className="text-amber" style={{ fontWeight: 800, fontSize: '1.125rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Bell size={20} /> 4. Re-evaluation Triggered</h4>
           <p className="text-white" style={{ fontSize: '0.875rem', margin: 0 }}>assignment + priority based on impact/urgency (e.g., contract expiring in 60 days = high priority)</p>
         </div>
 
@@ -60,7 +61,7 @@ export default function Slide10AppendixProactive() {
             <li><span className="text-white" style={{ fontWeight: 600 }}>if renew as-is:</span> Renewal confirmation -&gt; update contracts + Decision Graph. Notify stakeholders / Slack / Teams / Email.</li>
             <li><span className="text-white" style={{ fontWeight: 600 }}>if renegotiate:</span> Vendor Engagement -&gt; validation + new evidence -&gt; approvals + budget review + stakeholder sign-off -&gt; Updated terms -&gt; Decision Graph updated.</li>
             <li><span className="text-white" style={{ fontWeight: 600 }}>if replace:</span> New Discovery Flow (Data Flow 1) triggered with pre-loaded context from Decision Graph.</li>
-            <li><span className="text-white" style={{ fontWeight: 600 }}>if retire:</span> Decommission workflow -&gt; migration plan + stakeholder comms + timeline -&gt; Stack updated + Savings captured.</li>
+            <li><span className="text-white" style={{ fontWeight: 600 }}>if retire:</span> Decommission workflow -&gt; migration plan + stakeholder comms + timeline -&gt; Stack updated + Savings captured <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle', color: 'var(--accent-cyan)' }}><Trash2 size={16} /> <Trophy size={16} /></span></li>
           </ul>
         </div>
 

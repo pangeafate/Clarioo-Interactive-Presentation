@@ -1,4 +1,5 @@
 import React from 'react'
+import { FileText, MessageSquare } from 'lucide-react'
 
 export default function Slide5Phase3() {
   return (
@@ -53,12 +54,14 @@ export default function Slide5Phase3() {
         <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>Every decision — who made it, why, what alternatives were considered — becomes structured, searchable, reusable organizational memory</p>
         
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', fontSize: '0.875rem' }}>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <FileText size={32} className="text-white" style={{ marginBottom: '0.5rem' }} />
             <div className="text-white" style={{ fontWeight: 700 }}>Explicit decisions</div>
             <div style={{ color: 'var(--text-muted)' }}>Documented choices, approvals, trade-offs</div>
           </div>
           <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.5rem' }}>+</div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <MessageSquare size={32} className="text-white" style={{ marginBottom: '0.5rem' }} />
             <div className="text-white" style={{ fontWeight: 700 }}>Implicit decisions</div>
             <div style={{ color: 'var(--text-muted)' }}>Reasoning, context, tacit knowledge that never made it into a doc</div>
           </div>
