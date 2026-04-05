@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Slide1Title from './components/Slide1Title'
 import Slide2Team from './components/Slide2Team'
 import Slide3Legacy from './components/Slide3Legacy'
+import Slide3bMissingLayer from './components/Slide3bMissingLayer'
 import Slide4Strategy from './components/Slide4Strategy'
 import Slide11Product from './components/Slide11Product'
 import Slide5Phase3 from './components/Slide5Phase3'
@@ -26,6 +27,7 @@ function App() {
     { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
     { name: "Legacy Orgs", component: <Slide3Legacy /> },
+    { name: "Missing Layer", component: <Slide3bMissingLayer /> },
     { name: "Strategy", component: <Slide4Strategy /> },
     { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
