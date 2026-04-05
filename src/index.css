@@ -167,4 +167,76 @@ p, li, div {
 .text-purple { color: var(--accent-purple) !important; }
 .text-white { color: var(--text-primary) !important; }
 
+/* Animated glow button — gentle rotating light on the outline.
+ * Set accent via inline CSS var: style={{ '--glow-color': 'var(--accent-emerald)' }} */
+.glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem 1.25rem;
+  min-height: 4.25rem;
+  border-radius: 0.875rem;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: 50%;
+  top: 50%;
+  width: 220%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 70deg,
+    var(--glow-color, var(--accent-cyan)) 95deg,
+    transparent 120deg,
+    transparent 250deg,
+    var(--glow-color, var(--accent-cyan)) 275deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  filter: blur(0.35rem);
+  opacity: 0.85;
+  animation: glow-spin 5s linear infinite;
+}
+
+.glow-btn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0.125rem;
+  border-radius: 0.75rem;
+  background: rgba(11, 18, 33, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glow-btn:hover {
+  transform: translateY(-0.15rem);
+}
+
+.glow-btn:hover::before {
+  opacity: 1;
+  animation-duration: 3s;
+}
+
+@keyframes glow-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
 

@@ -15,8 +15,8 @@ export default function Slide4Strategy() {
       <div style={{ display: 'flex', gap: '3rem', height: '100%' }}>
         
         {/* Phase 1 Card */}
-        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem' }}>
-          
+        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <ShoppingCart size={28} className="text-emerald" /> Phase 1: Decisions to buy
@@ -25,13 +25,13 @@ export default function Slide4Strategy() {
               <CheckCircle2 size={16} /> running w/ design partners
             </div>
           </div>
-          
+
           <p className="text-emerald" style={{ fontWeight: 600, fontSize: '1.125rem', marginBottom: '1.5rem' }}>
             From unstructured evaluation to a managed, evidence-based decision process
           </p>
 
           <hr style={{ border: 'none', borderTop: '1px solid var(--border-light)', marginBottom: '1.5rem' }} />
-          
+
           <ul style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1rem', lineHeight: '1.5', color: 'var(--text-secondary)' }}>
             <li><span className="text-white">Starts from business problem</span> -&gt; defines tailored evaluation criteria</li>
             <li><span className="text-white">Automates vendor research</span> and builds side-by-side comparisons</li>
@@ -39,11 +39,33 @@ export default function Slide4Strategy() {
             <li><span className="text-white">Vendors enrich data about themself</span>, follow client-defined criteria (pre-demo)</li>
             <li><span className="text-white">Captures all decisions</span> as structured, reusable decision memory</li>
           </ul>
+
+          <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+            <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Check our first Decision Agent</p>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="glow-btn"
+                style={{ flex: 1, '--glow-color': 'var(--accent-emerald)' }}
+              >
+                Software Discovery-to-Decision Agent
+              </a>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="glow-btn"
+                style={{ flex: 1, '--glow-color': 'var(--accent-emerald)' }}
+              >
+                Understand how this Agent works
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Phase 2 Card */}
-        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-amber) !important', padding: '2.5rem' }}>
-          
+        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-amber) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <Settings size={28} className="text-amber" /> Phase 2: Decisions to build
@@ -58,7 +80,7 @@ export default function Slide4Strategy() {
           </p>
 
           <hr style={{ border: 'none', borderTop: '1px solid var(--border-light)', marginBottom: '1.5rem' }} />
-          
+
           <ul style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1rem', lineHeight: '1.5', color: 'var(--text-secondary)' }}>
             <li><span className="text-white">Ingests unstructured requests</span> from across the organization</li>
             <li><span className="text-white">Translates business needs</span> into clear technical requirements</li>
@@ -67,6 +89,28 @@ export default function Slide4Strategy() {
             <li><span className="text-white">Reduces overload</span> on engineering while maintaining responsiveness</li>
             <li><span className="text-white">Captures all intent</span> - request - build decisions</li>
           </ul>
+
+          <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+            <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>See the decision layer prototype:</p>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="glow-btn"
+                style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
+              >
+                Decision path
+              </a>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="glow-btn"
+                style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
+              >
+                Watch how the functional prototype works
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>
