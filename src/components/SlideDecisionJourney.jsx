@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MessageSquareText, Route, Workflow, Bot, Users, Brain, ArrowUp } from 'lucide-react'
+import { MessageSquareText, Route, Workflow, Bot, Users, Brain, ArrowUp, ExternalLink } from 'lucide-react'
 
 const ICONS = {
   capture: MessageSquareText,
@@ -42,6 +42,10 @@ const journeySteps = [
       'Gates define phase completion criteria',
       'Path can be modified live: add/remove/reorder blocks',
     ],
+    link: {
+      url: 'https://clarioo.decisionbot.lakestrom.com/d/24',
+      label: 'See it Live — Decision Path Interface',
+    },
   },
   {
     id: 'orchestrate',
@@ -290,6 +294,36 @@ export default function SlideDecisionJourney() {
             }}>
               {activeData.example}
             </div>
+
+            {/* CTA Link Button */}
+            {activeData.link && (
+              <a
+                href={activeData.link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  marginTop: '1.25rem',
+                  padding: '12px 24px',
+                  background: `linear-gradient(135deg, ${activeData.color}, ${activeData.color}cc)`,
+                  color: '#fff',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  boxShadow: `0 4px 20px ${activeData.color}44`,
+                  letterSpacing: '0.02em',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = `0 8px 30px ${activeData.color}66`; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `0 4px 20px ${activeData.color}44`; }}
+              >
+                <ExternalLink size={18} strokeWidth={2} />
+                {activeData.link.label}
+              </a>
+            )}
           </div>
 
           {/* Right: Bullet details */}
