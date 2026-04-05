@@ -40,9 +40,44 @@ export default function Slide1Title() {
           </h1>
         </div>
 
-        <p style={{ fontSize: '1.5rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-          Helping companies make faster, evidence-based decisions by <span style={{ fontWeight: 'bold', color: 'var(--text-primary)' }}>capturing change intent from across the organization</span> (bottom-up, central, and agent-driven) and turning it into a structured, observable decision data <span style={{ fontWeight: 'bold', color: 'var(--text-primary)' }}>usable for people and AI agents alike.</span>
+        <h2 style={{ 
+          fontSize: '2.5rem', 
+          fontWeight: 700, 
+          color: 'var(--text-primary)', 
+          marginTop: '0',
+          marginBottom: '1.5rem',
+          lineHeight: '1.2'
+        }}>
+          The Decision Infrastructure for the Agentic Era
+        </h2>
+
+        <p style={{ 
+          fontSize: '1.25rem', 
+          lineHeight: '1.6', 
+          color: 'var(--text-secondary)',
+          margin: '0 0 2rem 0',
+          maxWidth: '96%'
+        }}>
+          Clarioo captures intent for change across your organization and turns it into structured, evidence-based decisions with clear owners, timelines, and audit trails.
         </p>
+
+        <div style={{
+          padding: '0.75rem 1.75rem',
+          borderRadius: '2rem',
+          background: 'rgba(56, 189, 248, 0.1)',
+          border: '1px solid rgba(56, 189, 248, 0.2)',
+          display: 'inline-block'
+        }}>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            fontWeight: '600',
+            color: 'var(--accent-cyan)',
+            margin: 0,
+            letterSpacing: '0.02em'
+          }}>
+            The decision layer between your people, AI agents, and systems of record.
+          </p>
+        </div>
 
       </div>
     </div>
