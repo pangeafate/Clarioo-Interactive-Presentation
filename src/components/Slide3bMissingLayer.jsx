@@ -24,75 +24,61 @@ import {
  */
 
 // ---------------------------------------------------------------------------
-// FlowArrow — inline SVG with <marker> arrowheads per slide-building guide.
+// FlowArrow — simple inline SVG, no markers. Variants:
+//   broken         → dashed amber line, single V arrowhead pointing down
+//   bidirectional  → solid cyan line, V arrowhead at both ends
 // ---------------------------------------------------------------------------
 function FlowArrow({ variant = 'broken' }) {
-  if (variant === 'bidirectional') {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '0.35rem 0' }}>
-        <svg viewBox="0 0 40 32" style={{ width: '2.4rem', height: '1.9rem' }}>
-          <defs>
-            <marker
-              id="cyanHeadUp"
-              markerWidth="8"
-              markerHeight="8"
-              refX="4"
-              refY="1"
-              orient="auto"
-            >
-              <path d="M0,7 L4,0 L8,7 z" fill="var(--accent-cyan)" />
-            </marker>
-            <marker
-              id="cyanHeadDown"
-              markerWidth="8"
-              markerHeight="8"
-              refX="4"
-              refY="7"
-              orient="auto"
-            >
-              <path d="M0,0 L4,7 L8,0 z" fill="var(--accent-cyan)" />
-            </marker>
-          </defs>
-          <line
-            x1="20"
-            y1="5"
-            x2="20"
-            y2="27"
-            stroke="var(--accent-cyan)"
-            strokeWidth="2.8"
-            markerStart="url(#cyanHeadUp)"
-            markerEnd="url(#cyanHeadDown)"
-          />
-        </svg>
-      </div>
-    )
-  }
+  const isBidirectional = variant === 'bidirectional'
+  const stroke = isBidirectional
+    ? 'var(--accent-cyan)'
+    : 'var(--accent-amber)'
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '0.35rem 0' }}>
-      <svg viewBox="0 0 40 32" style={{ width: '2.4rem', height: '1.9rem' }}>
-        <defs>
-          <marker
-            id="amberHeadDown"
-            markerWidth="8"
-            markerHeight="8"
-            refX="4"
-            refY="7"
-            orient="auto"
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '0.35rem 0',
+      }}
+    >
+      <svg viewBox="0 0 24 36" style={{ width: '1.8rem', height: '2.1rem' }}>
+        {isBidirectional ? (
+          <g
+            stroke={stroke}
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path d="M0,0 L4,7 L8,0 z" fill="var(--accent-amber)" opacity="0.8" />
-          </marker>
-        </defs>
-        <line
-          x1="20"
-          y1="2"
-          x2="20"
-          y2="28"
-          stroke="var(--accent-amber)"
-          strokeWidth="2.2"
-          strokeDasharray="3 3.5"
-          opacity="0.75"
-          markerEnd="url(#amberHeadDown)"
-        />
+            {/* Top arrowhead */}
+            <polyline points="6,9 12,3 18,9" />
+            {/* Shaft */}
+            <line x1="12" y1="3" x2="12" y2="33" />
+            {/* Bottom arrowhead */}
+            <polyline points="6,27 12,33 18,27" />
+          </g>
+        ) : (
+          <g
+            stroke={stroke}
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.85"
+          >
+            {/* Dashed shaft */}
+            <line
+              x1="12"
+              y1="3"
+              x2="12"
+              y2="27"
+              strokeDasharray="3 3"
+            />
+            {/* Solid arrowhead at bottom */}
+            <polyline points="6,27 12,33 18,27" />
+          </g>
+        )}
       </svg>
     </div>
   )
@@ -222,10 +208,16 @@ export default function Slide3bMissingLayer() {
             margin: 0,
           }}
         >
-          Every company is a set of{' '}
-          <span className="text-cyan">decisions</span>.{' '}
           <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
-            Only the byproducts have infrastructure.
+            Every company is a set of{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>decisions</span>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            . We want to expose the{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>reasoning</span>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            {' '}behind them.
           </span>
         </h2>
       </div>
@@ -238,7 +230,7 @@ export default function Slide3bMissingLayer() {
           display: 'flex',
           justifyContent: 'center',
           flexShrink: 0,
-          marginTop: '1rem',
+          marginTop: '2.25rem',
         }}
       >
         <div
@@ -502,13 +494,11 @@ export default function Slide3bMissingLayer() {
 
           <div
             style={{
-              paddingTop: '0.85rem',
-              marginTop: '0.8rem',
+              marginTop: '0.95rem',
               fontSize: '0.92rem',
               color: 'var(--accent-amber)',
               fontStyle: 'italic',
               textAlign: 'center',
-              borderTop: '1px solid var(--border-light)',
               fontWeight: 600,
             }}
           >
@@ -692,13 +682,11 @@ export default function Slide3bMissingLayer() {
 
           <div
             style={{
-              paddingTop: '0.85rem',
-              marginTop: '0.8rem',
+              marginTop: '0.95rem',
               fontSize: '0.92rem',
               color: 'var(--accent-cyan)',
               fontStyle: 'italic',
               textAlign: 'center',
-              borderTop: '1px solid var(--border-cyan)',
               fontWeight: 700,
             }}
           >
@@ -753,55 +741,6 @@ export default function Slide3bMissingLayer() {
         </div>
       </div>
 
-      {/* ====================================================================
-            FEEDBACK LOOP — whisper-quiet long-term-value annotation
-         ==================================================================== */}
-      <svg
-        viewBox="0 0 1000 44"
-        preserveAspectRatio="none"
-        style={{
-          width: '100%',
-          height: '2.2rem',
-          marginTop: '0.65rem',
-          opacity: 0.7,
-          flexShrink: 0,
-        }}
-      >
-        <path
-          d="M 950 16 Q 500 50 50 16"
-          fill="none"
-          stroke="var(--accent-purple)"
-          strokeWidth="1.4"
-          strokeDasharray="4 4"
-        />
-        <text
-          x="770"
-          y="12"
-          fill="var(--text-secondary)"
-          fontSize="13"
-          fontWeight="600"
-        >
-          Decision captured
-        </text>
-        <text
-          x="430"
-          y="12"
-          fill="var(--text-secondary)"
-          fontSize="13"
-          fontWeight="600"
-        >
-          Context graph enriched
-        </text>
-        <text
-          x="55"
-          y="12"
-          fill="var(--text-secondary)"
-          fontSize="13"
-          fontWeight="600"
-        >
-          Next decision starts smarter
-        </text>
-      </svg>
     </div>
   )
 }
