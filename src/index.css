@@ -25,6 +25,22 @@
   padding: 0;
 }
 
+/*
+ * Responsive root font-size.
+ * 1rem scales with the viewport so every rem-based size in every slide
+ * adapts automatically to the viewer's screen. The formula takes the smaller
+ * of "1.5% of viewport height" and "0.85% of viewport width" (16:9-matched),
+ * clamped to a sensible min/max so text stays legible on extreme sizes.
+ *
+ * At 1920x1080 → ~16.2px (matches browser default)
+ * At 1366x 768 → ~11.5px (laptop)
+ * At 2560x1440 → ~21.6px (large monitor)
+ * At 3840x2160 → ~24px   (clamped)
+ */
+html {
+  font-size: clamp(10px, min(1.5vh, 0.85vw), 24px);
+}
+
 body {
   font-family: 'Inter', sans-serif;
   overflow: hidden;
