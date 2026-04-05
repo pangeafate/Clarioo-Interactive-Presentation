@@ -632,7 +632,7 @@ export default function Slide3bMissingLayer() {
             <div
               style={{
                 display: 'flex',
-                gap: '1.1rem',
+                gap: '0.75rem 1.1rem',
                 fontSize: '0.85rem',
                 color: 'var(--accent-emerald)',
                 fontWeight: 700,
@@ -651,6 +651,14 @@ export default function Slide3bMissingLayer() {
               <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                 <CheckCircle2 style={{ width: '1rem', height: '1rem' }} />
                 Auditable
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <CheckCircle2 style={{ width: '1rem', height: '1rem' }} />
+                End-to-end provenance
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <CheckCircle2 style={{ width: '1rem', height: '1rem' }} />
+                Governance by data-structure design
               </span>
             </div>
           </div>
