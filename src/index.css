@@ -245,9 +245,13 @@ p, li, div {
    Laptop view (>= 768px) is completely untouched.
    ============================================= */
 @media (max-width: 768px) {
-  /* General: reduce slide padding on small screens */
+  /* General: reduce slide padding, allow content to exceed viewport */
   .pdf-slide {
     padding: 1.5rem 1.25rem !important;
+    flex: none !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
   }
 
   /* Allow vertical scroll when stacked content exceeds viewport */
