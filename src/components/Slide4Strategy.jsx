@@ -6,9 +6,19 @@ export default function Slide4Strategy() {
     <div className="pdf-slide" style={{ padding: '4rem 6rem' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <p className="text-white" style={{ fontSize: '1.25rem', fontWeight: 600, maxWidth: '900px', margin: '0 auto', lineHeight: '1.5' }}>
-          We realized the need for the decision layer when we developed and started testing with our customers our first agent — the <span className="text-cyan" style={{ fontWeight: 700 }}>Software Discovery-to-Decision Agent</span>. That is when we understood that this is a part of a much larger problem.
-        </p>
+        <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, margin: 0 }}>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            We realized the need for the decision layer when we developed and started testing with our customers our first agent — the{' '}
+          </span>
+          <span style={{ color: 'var(--accent-cyan)' }}>
+            Software Discovery-to-Decision Agent
+          </span>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            . That is when we understood that this is a part of a{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>much bigger problem</span>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>.</span>
+        </h2>
       </div>
 
       <div style={{ display: 'flex', gap: '3rem', height: '100%' }}>
