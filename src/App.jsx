@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 // Import all slides
+import SlideHeroPipeline from './components/SlideHeroPipeline'
 import Slide1Title from './components/Slide1Title'
 import Slide2Team from './components/Slide2Team'
 import Slide3Legacy from './components/Slide3Legacy'
@@ -24,6 +25,7 @@ function App() {
 
   // Sequenced exactly as they appear in the PDF pages
   const slides = [
+    { name: "Pipeline", component: <SlideHeroPipeline /> },
     { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
     { name: "Legacy Orgs", component: <Slide3Legacy /> },
@@ -40,7 +42,7 @@ function App() {
     { name: "Waitlist", component: <Slide15Waitlist /> },
     { name: "Appx: Reactive", component: <Slide9AppendixReactive /> },
     { name: "Appx: Proactive", component: <Slide10AppendixProactive /> },
-    { name: "Decision Journey", component: <SlideDecisionJourney /> }
+    { name: "Decision Journey", component: <SlideDecisionJourney /> },
   ]
 
   const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))
