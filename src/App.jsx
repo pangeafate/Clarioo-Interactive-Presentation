@@ -25,24 +25,24 @@ function App() {
 
   // Sequenced exactly as they appear in the PDF pages
   const slides = [
-    { name: "Pipeline", component: <SlideHeroPipeline /> },
-{ name: "Title", component: <Slide1Title /> },
+    { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
-    { name: "Strategy", component: <Slide4Strategy /> },
-    { name: "Product Snapshot", component: <Slide11Product /> },
+    { name: "Clarioo", component: <SlideHeroPipeline /> },
+    { name: "The Journey", component: <Slide4Strategy /> },
+    // { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
-    { name: "Simulations", component: <Slide6Simulations /> },
+    // { name: "Simulations", component: <Slide6Simulations /> },
     { name: "Why Now", component: <Slide12WhyNow /> },
     { name: "Go-To-Market", component: <Slide13GTM /> },
     { name: "Business Model", component: <Slide14Model /> },
     { name: "Moat Stack", component: <Slide7Moat /> },
     { name: "Status & Ask", component: <Slide8StatusAsk /> },
     { name: "Waitlist", component: <Slide15Waitlist /> },
-    { name: "Appx: Reactive", component: <Slide9AppendixReactive /> },
-    { name: "Appx: Proactive", component: <Slide10AppendixProactive /> },
-    { name: "Decision Journey", component: <SlideDecisionJourney /> },
+    // { name: "Appx: Reactive", component: <Slide9AppendixReactive /> },
+    // { name: "Appx: Proactive", component: <Slide10AppendixProactive /> },
+    // { name: "Decision Journey", component: <SlideDecisionJourney /> },
   ]
 
   const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))

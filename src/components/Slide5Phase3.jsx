@@ -3,7 +3,7 @@ import { FileText, MessageSquare } from 'lucide-react'
 
 export default function Slide5Phase3() {
   return (
-    <div className="pdf-slide" style={{ padding: '4rem 6rem', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+    <div className="pdf-slide" style={{ padding: '4rem 14rem', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <h2 className="text-cyan" style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem' }}>
@@ -16,11 +16,12 @@ export default function Slide5Phase3() {
         
         {/* Left Split */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '2rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '1rem' }}>
+          <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
             Information Sources
           </h3>
+          <p style={{ fontWeight: 600, color: 'var(--text-muted)', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '1rem' }}>Draws from all sources of data</p>
           <ul className="text-secondary" style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1.125rem' }}>
-            <li>Copilots</li>
+            <li>AI Copilots</li>
             <li>Call transcriptions</li>
             <li>Documents</li>
             <li>Agent interactions</li>

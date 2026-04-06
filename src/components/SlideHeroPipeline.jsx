@@ -147,9 +147,11 @@ const FRAMES = [
 
 /* ────────────────────────── Component ────────────────────────── */
 export default function SlideHeroPipeline() {
-  const [frame, setFrame] = useState(-1)
+  const [frame, setFrame] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
   const playRef = useRef(null)
+  const slideRef = useRef(null)
 
   const totalFrames = FRAMES.length
 
@@ -256,6 +258,40 @@ export default function SlideHeroPipeline() {
     applyFrame(frame)
   }, [frame, applyFrame])
 
+  /* Auto-start playback when slide becomes visible */
+  useEffect(() => {
+    const el = slideRef.current
+    if (!el) return
+    const observer = new MutationObserver(() => {
+      const wrapper = el.closest('.slide-wrapper')
+      if (wrapper && wrapper.classList.contains('active')) {
+        if (!hasStarted) {
+          setHasStarted(true)
+          setFrame(0)
+          setPlaying(true)
+        }
+      } else {
+        /* Reset when navigating away so it replays on return */
+        if (hasStarted) {
+          setHasStarted(false)
+          setPlaying(false)
+          setFrame(0)
+        }
+      }
+    })
+    const wrapper = el.closest('.slide-wrapper')
+    if (wrapper) {
+      observer.observe(wrapper, { attributes: true, attributeFilter: ['class'] })
+      /* Check immediately in case already active */
+      if (wrapper.classList.contains('active') && !hasStarted) {
+        setHasStarted(true)
+        setFrame(0)
+        setPlaying(true)
+      }
+    }
+    return () => observer.disconnect()
+  }, [hasStarted])
+
   /* Auto-play: advance one frame every 800ms */
   useEffect(() => {
     if (playing) {
@@ -304,7 +340,7 @@ export default function SlideHeroPipeline() {
   const GX = 865, DRX = 960
 
   return (
-    <div className="pdf-slide" style={{
+    <div ref={slideRef} className="pdf-slide" style={{
       padding: 0, display: 'flex', flexDirection: 'column',
       height: '100%', overflow: 'hidden', background: 'var(--bg-deep-navy)'
     }}>
@@ -438,10 +474,10 @@ export default function SlideHeroPipeline() {
 
           {/* Intro text — visible frames 2-4, hidden from frame 5 */}
           <g id="pl-intro-text" className="pl-hidden">
-            <text x="600" y="320" textAnchor="middle" fill="#F8FAFC" fontSize="18" fontWeight="600" fontFamily={F}>
-              Today, Change Intent and Decisions are chaotic and wasteful
+            <text x="600" y="318" textAnchor="middle" fill="#F8FAFC" fontSize="23" fontWeight="600" fontFamily={F}>
+              Today, Intent and Decisions are chaotic and wasteful
             </text>
-            <text x="600" y="355" textAnchor="middle" fill="#0EA5E9" fontSize="23" fontWeight="600" fontFamily={F}>
+            <text x="600" y="355" textAnchor="middle" fill="#0EA5E9" fontSize="30" fontWeight="600" fontFamily={F}>
               We are about to change it for the better
             </text>
           </g>
