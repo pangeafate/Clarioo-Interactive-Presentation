@@ -703,52 +703,6 @@ export default function Slide3bMissingLayer() {
         </div>
       </div>
 
-      {/* ====================================================================
-            BOTTOM STRIP — Delivery: the answer the VP gets in each world
-         ==================================================================== */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '1.75rem',
-          marginTop: '1rem',
-          flexShrink: 0,
-        }}
-      >
-        <div
-          style={{
-            padding: '0.85rem 1.1rem',
-            borderRadius: '0.7rem',
-            border: '1px solid var(--accent-amber)',
-            background: 'rgba(245,158,11,0.08)',
-            fontSize: '1rem',
-            color: 'var(--text-secondary)',
-            lineHeight: 1.4,
-          }}
-        >
-          <span style={{ color: 'var(--accent-amber)', fontWeight: 800 }}>
-            Today →{' '}
-          </span>
-          "Nobody remembers. Re-do the evaluation from scratch."
-        </div>
-        <div
-          style={{
-            padding: '0.85rem 1.1rem',
-            borderRadius: '0.7rem',
-            border: '1px solid var(--accent-cyan)',
-            background: 'rgba(14,165,233,0.1)',
-            fontSize: '1rem',
-            color: 'var(--text-primary)',
-            lineHeight: 1.4,
-          }}
-        >
-          <span style={{ color: 'var(--accent-cyan)', fontWeight: 800 }}>
-            With Clarioo →{' '}
-          </span>
-          Answered in 10 seconds with sources, stakeholders, and rationale.
-        </div>
-      </div>
-
     </div>
   )
 }
