@@ -25,12 +25,12 @@ export default function Slide4Strategy() {
         </h2>
       </div>
 
-      <div style={{ display: 'flex', gap: '3rem', height: '100%' }}>
-        
+      <div className="journey-cards" style={{ display: 'flex', gap: '3rem', height: '100%' }}>
+
         {/* Phase 1 Card — dimmed to let Phase 2 be the focal point */}
         <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column', opacity: 0.55 }}>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+          <div className="journey-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <ShoppingCart size={28} className="text-emerald" /> Phase 1: Decisions to buy
             </h3>
@@ -55,7 +55,7 @@ export default function Slide4Strategy() {
 
           <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
             <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Check our first Decision Agent</p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="journey-buttons" style={{ display: 'flex', gap: '1rem' }}>
               <a
                 href="#"
                 onClick={(e) => e.preventDefault()}
@@ -87,7 +87,7 @@ export default function Slide4Strategy() {
           boxShadow: '0 0 30px rgba(245,158,11,0.2), 0 0 60px rgba(245,158,11,0.08)',
         }}>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+          <div className="journey-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <Settings size={28} className="text-amber" /> Phase 2: Decision Layer (Buy vs Build and more!)
             </h3>
@@ -113,7 +113,7 @@ export default function Slide4Strategy() {
 
           <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
             <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>See the decision layer prototype:</p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="journey-buttons" style={{ display: 'flex', gap: '1rem' }}>
               <a
                 href="#"
                 onClick={(e) => e.preventDefault()}

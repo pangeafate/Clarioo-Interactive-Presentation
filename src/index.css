@@ -313,5 +313,22 @@ p, li, div {
     gap: 1.25rem !important;
     flex: none !important;
   }
+
+  /* ---- Slide 4: The Journey ---- */
+  .journey-cards {
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 1.5rem !important;
+  }
+
+  .journey-card-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .journey-buttons {
+    flex-direction: column !important;
+  }
 }
 
