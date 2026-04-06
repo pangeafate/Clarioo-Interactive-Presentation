@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 /* ───────────────────────── CSS ───────────────────────── */
 const PIPELINE_CSS = `
 /* ── Base visibility ── */
-.pl-hidden { opacity: 0; pointer-events: none; }
+.pl-hidden { opacity: 1; stroke-dashoffset: 0 !important; }
 .pl-visible { opacity: 1; transition: opacity 0.4s ease; }
 .pl-visible-emerging { opacity: 0.7; transition: opacity 0.4s ease; }
 .pl-visible-ghost { opacity: 0.2; transition: opacity 0.4s ease; }
@@ -193,7 +193,7 @@ export default function SlideHeroPipeline() {
   /* Block X positions */
   const BX1 = 350, BX2 = 485, BX3 = 620
   /* Gate & DR */
-  const GX = 820, DRX = 900
+  const GX = 865, DRX = 960
 
   return (
     <div className="pdf-slide" style={{
@@ -217,7 +217,7 @@ export default function SlideHeroPipeline() {
 
       {/* ═══ PILLAR CARDS ═══ */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.3rem 1rem 0.4rem', flex: '0 0 auto' }}>
-        <div id="pl-card-1" className="pl-card pl-card-hero">
+        <div id="pl-card-1" className="pl-card pl-card-hero pl-card-active-cyan">
           <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Graph as Execution Engine: </span>
             <span style={{ color: 'var(--text-secondary)' }}>
@@ -226,19 +226,19 @@ export default function SlideHeroPipeline() {
             </span>
           </p>
         </div>
-        <div id="pl-card-2" className="pl-card">
+        <div id="pl-card-2" className="pl-card pl-card-active-emerald">
           <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Agentic Evidence: </span>
             <span style={{ color: 'var(--text-secondary)' }}>Each answer sharpens the next question — evidence quality compounds automatically</span>
           </p>
         </div>
-        <div id="pl-card-3" className="pl-card">
+        <div id="pl-card-3" className="pl-card pl-card-active-amber">
           <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Governance: </span>
             <span style={{ color: 'var(--text-secondary)' }}>Isolation at the graph engine, not application code. Every decision append-only.</span>
           </p>
         </div>
-        <div id="pl-card-4" className="pl-card">
+        <div id="pl-card-4" className="pl-card pl-card-active-purple">
           <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Decision Memory: </span>
             <span style={{ color: 'var(--text-secondary)' }}>Past decisions shape future paths — the moat deepens with every use</span>
@@ -250,65 +250,88 @@ export default function SlideHeroPipeline() {
       <div style={{ flex: 1, minHeight: 0, padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg viewBox="0 0 1200 650" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
           <defs>
-            <marker id="pl-arr-c" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-              <polygon points="0,0 7,2.5 0,5" fill="#0EA5E9" />
+            <marker id="pl-arr-c" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0,0 6,2.5 0,5" fill="#0EA5E9" />
             </marker>
-            <marker id="pl-arr-e" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-              <polygon points="0,0 7,2.5 0,5" fill="#10B981" />
+            <marker id="pl-arr-e" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0,0 6,2.5 0,5" fill="#10B981" />
             </marker>
-            <marker id="pl-arr-p" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-              <polygon points="0,0 7,2.5 0,5" fill="#8B5CF6" />
+            <marker id="pl-arr-p" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0,0 6,2.5 0,5" fill="#8B5CF6" />
             </marker>
-            <marker id="pl-arr-a" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-              <polygon points="0,0 7,2.5 0,5" fill="#F59E0B" />
+            <marker id="pl-arr-a" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0,0 6,2.5 0,5" fill="#F59E0B" />
+            </marker>
+            <marker id="pl-arr-g" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0,0 6,2.5 0,5" fill="#64748B" />
             </marker>
             <linearGradient id="pl-grad-fly" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#10B981" />
               <stop offset="100%" stopColor="#8B5CF6" />
             </linearGradient>
+            <filter id="pl-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
           </defs>
 
-          {/* ════════ ZONE 5: Flywheel arc (behind everything) ════════ */}
+          {/* ════════ ZONE 5: Flywheel — elbow from DR up → left → down to Memory ════════ */}
+          {/* Flywheel: DR up → left at y=62 → into Memory Node right side */}
           <path id="pl-flywheel" className="pl-hidden"
-            d="M 963,282 C 970,15 20,5 120,78"
+            d="M 1025,282 V 74 Q 1025,62 1013,62 H 146"
             fill="none" stroke="url(#pl-grad-fly)" strokeWidth="2"
-            strokeDasharray="1400" strokeDashoffset="1400" />
-          <text id="pl-flywheel-label" className="pl-hidden" x="550" y="22"
+            markerEnd="url(#pl-arr-p)" />
+          <text id="pl-flywheel-label" className="pl-hidden" x="600" y="54"
             textAnchor="middle" fill="#94A3B8" fontSize="11" fontStyle="italic" fontFamily={F}>
             Each decision trains the next
           </text>
 
           {/* ════════ ZONE 1: Memory Node + Intent Node + Evidence ════════ */}
 
-          {/* Memory Node */}
+          {/* Memory Node — non-oriented graph cluster */}
           <g id="pl-mem-node" className="pl-hidden">
-            <circle cx="120" cy="58" r="22" fill="rgba(139,92,246,0.08)" stroke="#8B5CF6" strokeWidth="1.5" />
-            <text x="120" y="64" textAnchor="middle" fill="#8B5CF6" fontSize="18" fontFamily={F}>∞</text>
-            <text x="120" y="35" textAnchor="middle" fill="#94A3B8" fontSize="8.5" fontFamily={F}>Memory</text>
-            <text x="120" y="44" textAnchor="middle" fill="#94A3B8" fontSize="8.5" fontFamily={F}>Node</text>
+            {/* Outer circle boundary */}
+            <circle cx="120" cy="62" r="26" fill="rgba(139,92,246,0.06)" stroke="#8B5CF6" strokeWidth="1" opacity="0.4" />
+            {/* Graph edges (undirected, no arrows) */}
+            <line x1="110" y1="52" x2="130" y2="48" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="130" y1="48" x2="136" y2="66" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="136" y1="66" x2="118" y2="74" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="118" y1="74" x2="104" y2="66" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="104" y1="66" x2="110" y2="52" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="110" y1="52" x2="120" y2="60" stroke="#8B5CF6" strokeWidth="1" opacity="0.4" />
+            <line x1="130" y1="48" x2="120" y2="60" stroke="#8B5CF6" strokeWidth="1" opacity="0.4" />
+            <line x1="136" y1="66" x2="120" y2="60" stroke="#8B5CF6" strokeWidth="1" opacity="0.4" />
+            {/* Graph nodes */}
+            <circle cx="110" cy="52" r="3.5" fill="#8B5CF6" opacity="0.8" />
+            <circle cx="130" cy="48" r="3" fill="#8B5CF6" opacity="0.7" />
+            <circle cx="136" cy="66" r="3.5" fill="#8B5CF6" opacity="0.8" />
+            <circle cx="118" cy="74" r="3" fill="#8B5CF6" opacity="0.7" />
+            <circle cx="104" cy="66" r="2.5" fill="#8B5CF6" opacity="0.6" />
+            <circle cx="120" cy="60" r="4" fill="#A78BFA" opacity="0.9" />
+            {/* Label */}
+            <text x="120" y="100" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Memory</text>
+            <text x="120" y="110" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Node</text>
           </g>
 
-          {/* Decorative particles around Memory Node */}
+          {/* Decorative particle scatter to the left of Memory Node */}
           <g id="pl-particles" className="pl-hidden">
             {[
-              { cx: 88, cy: 42, r: 2, dx: '-3px', dy: '-2px', dur: '3s', del: '0s' },
-              { cx: 148, cy: 50, r: 1.5, dx: '2px', dy: '-3px', dur: '2.8s', del: '0.4s' },
-              { cx: 100, cy: 78, r: 1.8, dx: '-2px', dy: '2px', dur: '3.2s', del: '0.8s' },
-              { cx: 142, cy: 35, r: 1.2, dx: '3px', dy: '1px', dur: '2.6s', del: '1.2s' },
-              { cx: 96, cy: 38, r: 1.5, dx: '-1px', dy: '-3px', dur: '3.4s', del: '0.6s' },
-              { cx: 150, cy: 72, r: 1.3, dx: '2px', dy: '2px', dur: '2.9s', del: '1s' },
-              { cx: 108, cy: 85, r: 1, dx: '-2px', dy: '1px', dur: '3.1s', del: '1.4s' },
+              { cx: 72, cy: 46, r: 2.5 }, { cx: 80, cy: 62, r: 2 },
+              { cx: 66, cy: 56, r: 1.5 }, { cx: 78, cy: 74, r: 1.8 },
+              { cx: 60, cy: 48, r: 1.2 }, { cx: 68, cy: 68, r: 1 },
+              { cx: 55, cy: 58, r: 1.5 }, { cx: 74, cy: 42, r: 1 },
+              { cx: 62, cy: 72, r: 1.3 }, { cx: 85, cy: 50, r: 1.8 },
+              { cx: 50, cy: 52, r: 1 }, { cx: 76, cy: 80, r: 1.5 },
             ].map((p, i) => (
-              <circle key={i} cx={p.cx} cy={p.cy} r={p.r} fill="#8B5CF6" className="pl-particle"
-                style={{ '--dx': p.dx, '--dy': p.dy, '--dur': p.dur, '--del': p.del }} />
+              <circle key={i} cx={p.cx} cy={p.cy} r={p.r}
+                fill={i % 3 === 0 ? '#0EA5E9' : '#8B5CF6'} opacity={0.2 + Math.random() * 0.35} />
             ))}
           </g>
 
           {/* Arrow: Memory Node → Intent Node */}
           <line id="pl-mem-to-intent" className="pl-hidden"
-            x1="120" y1="80" x2="120" y2="265"
-            stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="185" strokeDashoffset="185"
-            markerEnd="url(#pl-arr-p)" />
+            x1="120" y1="112" x2="120" y2="265"
+            stroke="#8B5CF6" strokeWidth="2" markerEnd="url(#pl-arr-p)" />
 
           {/* Signal dots */}
           <circle id="pl-sig1" className="pl-hidden" cx="100" cy="290" r="4" fill="#0EA5E9" />
@@ -323,67 +346,68 @@ export default function SlideHeroPipeline() {
 
           {/* Intent Node */}
           <g id="pl-intent-node" className="pl-hidden">
+            {/* Outer glow */}
+            <rect x="30" y="260" width="180" height="100" rx="12" ry="12"
+              fill="none" stroke="#0EA5E9" strokeWidth="2" opacity="0.15" filter="url(#pl-glow)" />
+            {/* Main box */}
             <rect id="pl-intent-rect" x="35" y="265" width="170" height="90" rx="8" ry="8"
-              fill="rgba(255,255,255,0.06)" stroke="#0EA5E9" strokeWidth="2" />
-            <text x="120" y="307" textAnchor="middle" fill="#F8FAFC" fontSize="14" fontWeight="700" fontFamily={F}>Intent Node</text>
+              fill="rgba(18,28,48,0.92)" stroke="#0EA5E9" strokeWidth="2.5" />
+            {/* Input port dot */}
+            <circle cx="40" cy="310" r="3" fill="#0EA5E9" opacity="0.7" />
+            <text x="120" y="314" textAnchor="middle" fill="#F8FAFC" fontSize="16" fontWeight="700" fontFamily={F}>Intent Node</text>
           </g>
-          <text id="pl-intent-label" className="pl-hidden" x="120" y="373"
-            textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Intent Capture</text>
+          <text id="pl-intent-label" className="pl-hidden" x="120" y="375"
+            textAnchor="middle" fill="#94A3B8" fontSize="9.5" fontFamily={F}>Intent Capture</text>
 
           {/* Evidence Sources group */}
-          <text id="pl-ev-label-top" className="pl-hidden" x="120" y="398"
-            textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Evidence Sources</text>
-
-          {/* Group box around evidence */}
-          <rect id="pl-ev-group-box" className="pl-hidden" x="22" y="405" width="196" height="58" rx="6" ry="6"
-            fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+          <text id="pl-ev-label-top" className="pl-hidden" x="120" y="395"
+            textAnchor="middle" fill="#94A3B8" fontSize="10" fontFamily={F}>Evidence Sources</text>
 
           <g id="pl-src-sys" className="pl-hidden">
-            <rect x="28" y="411" width="88" height="46" rx="5" ry="5"
-              fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-            <text x="72" y="438" textAnchor="middle" fill="#475569" fontSize="10" fontFamily={F}>Systems</text>
+            <rect x="28" y="408" width="88" height="50" rx="6" ry="6"
+              fill="rgba(18,28,48,0.85)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+            <text x="72" y="437" textAnchor="middle" fill="#94A3B8" fontSize="11" fontFamily={F}>Systems</text>
           </g>
           <g id="pl-src-docs" className="pl-hidden">
-            <rect x="124" y="411" width="88" height="46" rx="5" ry="5"
-              fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-            <text x="168" y="438" textAnchor="middle" fill="#475569" fontSize="10" fontFamily={F}>Docs</text>
+            <rect x="124" y="408" width="88" height="50" rx="6" ry="6"
+              fill="rgba(18,28,48,0.85)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+            <text x="168" y="437" textAnchor="middle" fill="#94A3B8" fontSize="11" fontFamily={F}>Docs</text>
           </g>
 
           <text id="pl-ev-label-bot" className="pl-hidden" x="120" y="478"
-            textAnchor="middle" fill="#94A3B8" fontSize="9" fontStyle="italic" fontFamily={F}>Agentic Evidence</text>
+            textAnchor="middle" fill="#94A3B8" fontSize="10" fontFamily={F}>Agentic Evidence</text>
 
-          {/* Query lines: Intent → Evidence (dashed, cyan) */}
+          {/* Query lines: Intent → Evidence (dashed, dark teal) */}
           <line id="pl-query-sys" className="pl-hidden"
-            x1="85" y1="355" x2="72" y2="411"
-            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" />
+            x1="80" y1="355" x2="55" y2="408"
+            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" opacity="0.5" />
           <line id="pl-query-docs" className="pl-hidden"
-            x1="155" y1="355" x2="168" y2="411"
-            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" />
+            x1="160" y1="355" x2="185" y2="408"
+            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" opacity="0.5" />
 
-          {/* Return lines: Evidence → Intent (solid, emerald) */}
+          {/* Return lines: Evidence → Intent (dashed, emerald with arrow) */}
           <line id="pl-return-sys" className="pl-hidden"
-            x1="72" y1="411" x2="95" y2="355"
-            stroke="#10B981" strokeWidth="1.5" strokeDasharray="62" strokeDashoffset="62" />
+            x1="90" y1="408" x2="105" y2="355"
+            stroke="#10B981" strokeWidth="1.2" strokeDasharray="5,3" opacity="0.6"
+            markerEnd="url(#pl-arr-e)" />
           <line id="pl-return-docs" className="pl-hidden"
-            x1="168" y1="411" x2="145" y2="355"
-            stroke="#10B981" strokeWidth="1.5" strokeDasharray="62" strokeDashoffset="62" />
+            x1="150" y1="408" x2="140" y2="355"
+            stroke="#10B981" strokeWidth="1.2" strokeDasharray="5,3" opacity="0.6"
+            markerEnd="url(#pl-arr-e)" />
 
-          {/* ════════ Connector: Intent Node → DAG zone ════════ */}
-          <line id="pl-intent-to-dag" className="pl-hidden"
-            x1="205" y1="310" x2="270" y2="310"
-            stroke="#0EA5E9" strokeWidth="2" strokeDasharray="65" strokeDashoffset="65"
-            markerEnd="url(#pl-arr-c)" />
-
-          {/* Fan-out splits to 3 lanes */}
-          <line id="pl-split-1" className="pl-hidden"
-            x1="270" y1="310" x2="348" y2={L1Y}
-            stroke="#0EA5E9" strokeWidth="1.2" strokeDasharray="150" strokeDashoffset="150" />
-          <line id="pl-split-2" className="pl-hidden"
-            x1="270" y1="310" x2="348" y2={L2Y}
-            stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="78" strokeDashoffset="78" />
-          <line id="pl-split-3" className="pl-hidden"
-            x1="270" y1="310" x2="348" y2={L3Y}
-            stroke="#F59E0B" strokeWidth="1.2" strokeDasharray="150" strokeDashoffset="150" />
+          {/* ════════ Fan-out elbows from Intent Node to lane containers ════════ */}
+          {/* Lane 1: right from Intent → turn up → right to container */}
+          <path id="pl-split-1" className="pl-hidden"
+            d={`M 205,310 H 238 Q 250,310 250,298 V ${L1Y + 12} Q 250,${L1Y} 262,${L1Y} H 270`}
+            fill="none" stroke="#0EA5E9" strokeWidth="2" markerEnd="url(#pl-arr-c)" />
+          {/* Lane 2: straight from Intent to container */}
+          <path id="pl-split-2" className="pl-hidden"
+            d="M 205,310 H 270"
+            fill="none" stroke="#8B5CF6" strokeWidth="2" markerEnd="url(#pl-arr-p)" />
+          {/* Lane 3: right from Intent → turn down → right to container */}
+          <path id="pl-split-3" className="pl-hidden"
+            d={`M 205,310 H 238 Q 250,310 250,322 V ${L3Y - 12} Q 250,${L3Y} 262,${L3Y} H 270`}
+            fill="none" stroke="#F59E0B" strokeWidth="2" markerEnd="url(#pl-arr-a)" />
 
           {/* ════════ ZONE 3: DAG Lanes ════════ */}
 
@@ -393,35 +417,35 @@ export default function SlideHeroPipeline() {
             The path is discovered, not designed
           </text>
 
-          {/* Lane background bands */}
-          <rect id="pl-lane-bg-1" className="pl-hidden" x="260" y={L1Y - 30} width="510" height={BH + 4} rx="4" ry="4"
-            fill="rgba(14,165,233,0.03)" stroke="rgba(14,165,233,0.06)" strokeWidth="0.5" />
-          <rect id="pl-lane-bg-2" className="pl-hidden" x="260" y={L2Y - 30} width="510" height={BH + 4} rx="4" ry="4"
-            fill="rgba(139,92,246,0.03)" stroke="rgba(139,92,246,0.06)" strokeWidth="0.5" />
-          <rect id="pl-lane-bg-3" className="pl-hidden" x="260" y={L3Y - 30} width="510" height={BH + 4} rx="4" ry="4"
-            fill="rgba(245,158,11,0.03)" stroke="rgba(245,158,11,0.06)" strokeWidth="0.5" />
+          {/* Lane container boxes — prominent, with labels INSIDE */}
+          <rect id="pl-lane-bg-1" className="pl-hidden" x="270" y={L1Y - 42} width="500" height="84" rx="8" ry="8"
+            fill="rgba(14,165,233,0.05)" stroke="rgba(14,165,233,0.25)" strokeWidth="1.5" />
+          <rect id="pl-lane-bg-2" className="pl-hidden" x="270" y={L2Y - 42} width="500" height="84" rx="8" ry="8"
+            fill="rgba(139,92,246,0.05)" stroke="rgba(139,92,246,0.25)" strokeWidth="1.5" />
+          <rect id="pl-lane-bg-3" className="pl-hidden" x="270" y={L3Y - 42} width="500" height="84" rx="8" ry="8"
+            fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.25)" strokeWidth="1.5" />
 
-          {/* Lane labels */}
+          {/* Lane labels — inside containers, left side */}
           <g id="pl-lane-lbl-1" className="pl-hidden">
-            <text x="275" y={L1Y - 4} fill="#0EA5E9" fontSize="10" fontWeight="600" fontFamily={F}>Legal</text>
-            <text x="275" y={L1Y + 8} fill="#0EA5E9" fontSize="10" fontWeight="600" fontFamily={F}>Review</text>
+            <text x="285" y={L1Y - 4} fill="#0EA5E9" fontSize="12" fontWeight="700" fontFamily={F}>Legal</text>
+            <text x="285" y={L1Y + 10} fill="#0EA5E9" fontSize="12" fontWeight="700" fontFamily={F}>Review</text>
           </g>
           <g id="pl-lane-lbl-2" className="pl-hidden">
-            <text x="270" y={L2Y - 4} fill="#8B5CF6" fontSize="10" fontWeight="600" fontFamily={F}>Product</text>
-            <text x="270" y={L2Y + 8} fill="#8B5CF6" fontSize="10" fontWeight="600" fontFamily={F}>Analysis</text>
+            <text x="280" y={L2Y - 4} fill="#8B5CF6" fontSize="12" fontWeight="700" fontFamily={F}>Product</text>
+            <text x="280" y={L2Y + 10} fill="#8B5CF6" fontSize="12" fontWeight="700" fontFamily={F}>Analysis</text>
           </g>
           <g id="pl-lane-lbl-3" className="pl-hidden">
-            <text x="275" y={L3Y - 4} fill="#F59E0B" fontSize="10" fontWeight="600" fontFamily={F}>Ops</text>
-            <text x="275" y={L3Y + 8} fill="#F59E0B" fontSize="10" fontWeight="600" fontFamily={F}>Assessment</text>
+            <text x="285" y={L3Y - 4} fill="#F59E0B" fontSize="12" fontWeight="700" fontFamily={F}>Ops</text>
+            <text x="285" y={L3Y + 10} fill="#F59E0B" fontSize="12" fontWeight="700" fontFamily={F}>Assessment</text>
           </g>
 
           {/* ── LANE 1: Legal Review (cyan) ── */}
           <line id="pl-l1e12" className="pl-hidden"
             x1={BX1 + BW} y1={L1Y} x2={BX2} y2={L1Y}
-            stroke="#0EA5E9" strokeWidth="1.5" strokeDasharray="20" strokeDashoffset="20" />
+            stroke="#64748B" strokeWidth="2" markerEnd="url(#pl-arr-g)" />
           <line id="pl-l1e2g" className="pl-hidden"
             x1={BX2 + BW} y1={L1Y} x2={BX3} y2={L1Y}
-            stroke="#0EA5E9" strokeWidth="0.5" strokeDasharray="2,4" />
+            stroke="#64748B" strokeWidth="1" strokeDasharray="3,4" markerEnd="url(#pl-arr-g)" />
 
           <g id="pl-l1b1" className="pl-hidden">
             <rect x={BX1} y={L1Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
@@ -435,10 +459,10 @@ export default function SlideHeroPipeline() {
             <text x={BX2 + BW / 2} y={L1Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Policy</text>
             <text x={BX2 + BW / 2} y={L1Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Mapping</text>
           </g>
-          <g id="pl-l1ghost" className="pl-hidden">
+          <g id="pl-l1ghost" className="pl-hidden" opacity="0.25">
             <rect x={BX3} y={L1Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
               fill="none" stroke="#0EA5E9" strokeWidth="0.6" strokeDasharray="2,4" />
-            <text x={BX3 + BW / 2} y={L1Y + 4} textAnchor="middle" fill="#0EA5E9" fontSize="18" opacity="0.35">+</text>
+            <text x={BX3 + BW / 2} y={L1Y + 4} textAnchor="middle" fill="#0EA5E9" fontSize="18">+</text>
           </g>
 
           {/* Ambient edge dot */}
@@ -447,7 +471,7 @@ export default function SlideHeroPipeline() {
           {/* ── LANE 2: Product Analysis (purple, disruption) ── */}
           <line id="pl-l2e12" className="pl-hidden"
             x1={BX1 + BW} y1={L2Y} x2={BX2} y2={L2Y}
-            stroke="#8B5CF6" strokeWidth="1.5" strokeDasharray="20" strokeDashoffset="20" />
+            stroke="#64748B" strokeWidth="2" markerEnd="url(#pl-arr-g)" />
 
           <g id="pl-l2b1" className="pl-hidden">
             <rect x={BX1} y={L2Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
@@ -455,80 +479,97 @@ export default function SlideHeroPipeline() {
             <text x={BX1 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Contradiction</text>
             <text x={BX1 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Detection</text>
           </g>
-          <g id="pl-l2b2" className="pl-hidden">
+          <g id="pl-l2b2" className="pl-hidden" opacity="0.35">
             <rect x={BX2} y={L2Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
               fill="rgba(255,255,255,0.05)" stroke="#8B5CF6" strokeWidth="1.5" />
             <text x={BX2 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Scope</text>
             <text x={BX2 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Assessment</text>
           </g>
 
-          {/* Strikethrough */}
-          <line id="pl-l2-strike" className="pl-hidden"
+          {/* Strikethrough (always visible in static) */}
+          <line id="pl-l2-strike"
             x1={BX2 + 5} y1={L2Y - BH / 2 + 5} x2={BX2 + BW - 5} y2={L2Y + BH / 2 - 5}
-            stroke="#EF4444" strokeWidth="2.5" strokeDasharray="130" strokeDashoffset="130" />
+            stroke="#EF4444" strokeWidth="2.5" />
 
           {/* "New evidence" label */}
           <text id="pl-l2-newev" className="pl-hidden" x={BX2 + BW / 2} y={L2Y - BH / 2 - 6}
             textAnchor="middle" fill="#F59E0B" fontSize="8.5" fontWeight="600" fontFamily={F}>⚡ New evidence</text>
 
+          {/* Edge B2→B3 (solid gray, with arrow) */}
+          <line className="pl-hidden"
+            x1={BX2 + BW} y1={L2Y} x2={BX3} y2={L2Y}
+            stroke="#64748B" strokeWidth="2" markerEnd="url(#pl-arr-g)" />
+
           {/* Disruption dot */}
           <circle id="pl-disrupt-dot" className="pl-hidden" cx="270" cy={L2Y + 100} r="4" fill="#F59E0B" />
 
-          {/* Bypass edge */}
-          <path id="pl-l2-bypass" className="pl-hidden"
-            d={`M ${BX1 + BW},${L2Y} Q ${BX2 + BW / 2},${L2Y + 55} ${BX3},${L2Y}`}
-            fill="none" stroke="#8B5CF6" strokeWidth="1" strokeDasharray="6,4"
-            strokeDashoffset="220" />
+          {/* Bypass edge removed — direct B2→B3 edge handles this */}
 
-          <g id="pl-l2b3" className="pl-hidden">
+          <g id="pl-l2b3" className="pl-hidden" opacity="0.7">
             <rect x={BX3} y={L2Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
               fill="rgba(255,255,255,0.03)" stroke="#8B5CF6" strokeWidth="1" strokeDasharray="4,3" />
-            <text x={BX3 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.8" fontFamily={F}>Owner</text>
-            <text x={BX3 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.8" fontFamily={F}>Derivation</text>
+            <text x={BX3 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Owner</text>
+            <text x={BX3 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Derivation</text>
           </g>
 
           {/* ── LANE 3: Ops Assessment (amber) ── */}
+          {/* Cross-lane elbow: Policy Mapping (L1 B2 bottom) → Owner Derivation (L2 B3 top), dotted */}
+          <path id="pl-cross-l1-l2" className="pl-hidden"
+            d={`M ${BX2 + BW / 2},${L1Y + BH / 2} V ${(L1Y + L2Y) / 2 - 12} Q ${BX2 + BW / 2},${(L1Y + L2Y) / 2} ${BX2 + BW / 2 + 12},${(L1Y + L2Y) / 2} H ${BX3 + BW / 2 - 12} Q ${BX3 + BW / 2},${(L1Y + L2Y) / 2} ${BX3 + BW / 2},${(L1Y + L2Y) / 2 + 12} V ${L2Y - BH / 2}`}
+            fill="none" stroke="#64748B" strokeWidth="1.5" strokeDasharray="5,4"
+            markerEnd="url(#pl-arr-g)" />
+
+          {/* Cross-lane elbow: Owner Derivation (L2 B3 bottom) → Impact Analysis (L3 B1 top) */}
+          <path id="pl-cross-l2-l3" className="pl-hidden"
+            d={`M ${BX3 + BW / 2},${L2Y + BH / 2} V ${L2Y + BH / 2 + 25} Q ${BX3 + BW / 2},${L2Y + BH / 2 + 37} ${BX3 + BW / 2 - 12},${L2Y + BH / 2 + 37} H ${BX2 + BW / 2 + 12} Q ${BX2 + BW / 2},${L2Y + BH / 2 + 37} ${BX2 + BW / 2},${L2Y + BH / 2 + 49} V ${L3Y - BH / 2}`}
+            fill="none" stroke="#64748B" strokeWidth="1.5" markerEnd="url(#pl-arr-g)" />
+
+          {/* Edge: Impact Analysis → Decision Delta (position 2 → position 3) */}
           <line id="pl-l3e12" className="pl-hidden"
-            x1={BX1 + BW} y1={L3Y} x2={BX2} y2={L3Y}
-            stroke="#F59E0B" strokeWidth="1" strokeDasharray="6,4" />
+            x1={BX2 + BW} y1={L3Y} x2={BX3} y2={L3Y}
+            stroke="#64748B" strokeWidth="2" markerEnd="url(#pl-arr-g)" />
 
+          {/* Impact Analysis at position 2 (BX2) */}
           <g id="pl-l3b1" className="pl-hidden">
-            <rect x={BX1} y={L3Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
-              fill="rgba(255,255,255,0.05)" stroke="#F59E0B" strokeWidth="1.5" />
-            <text x={BX1 + BW / 2} y={L3Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Impact</text>
-            <text x={BX1 + BW / 2} y={L3Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Analysis</text>
-          </g>
-          <g id="pl-l3b2" className="pl-hidden">
             <rect x={BX2} y={L3Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
+              fill="rgba(255,255,255,0.05)" stroke="#F59E0B" strokeWidth="1.5" />
+            <text x={BX2 + BW / 2} y={L3Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Impact</text>
+            <text x={BX2 + BW / 2} y={L3Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Analysis</text>
+          </g>
+          {/* Decision Delta at position 3 (BX3) */}
+          <g id="pl-l3b2" className="pl-hidden" opacity="0.7">
+            <rect x={BX3} y={L3Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
               fill="rgba(255,255,255,0.03)" stroke="#F59E0B" strokeWidth="1" strokeDasharray="4,3" />
-            <text x={BX2 + BW / 2} y={L3Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.8" fontFamily={F}>Decision</text>
-            <text x={BX2 + BW / 2} y={L3Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.8" fontFamily={F}>Delta</text>
+            <text x={BX3 + BW / 2} y={L3Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Decision</text>
+            <text x={BX3 + BW / 2} y={L3Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Delta</text>
           </g>
 
-          {/* ════════ Convergence lines → Gate ════════ */}
-          <line id="pl-conv-1" className="pl-hidden"
-            x1={BX3 + BW} y1={L1Y} x2={GX - 45} y2={L2Y - 5}
-            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="155" strokeDashoffset="155" />
-          <line id="pl-conv-2" className="pl-hidden"
-            x1={BX3 + BW} y1={L2Y} x2={GX - 45} y2={L2Y}
-            stroke="#8B5CF6" strokeWidth="1" strokeDasharray="6,4" />
-          <line id="pl-conv-3" className="pl-hidden"
-            x1={BX2 + BW} y1={L3Y} x2={GX - 45} y2={L2Y + 5}
-            stroke="#F59E0B" strokeWidth="1" strokeDasharray="6,4" />
+          {/* ════════ Convergence lines → Gate — from container right edges ════════ */}
+          {/* Lane 1 → Gate: from container right (770) → turn down → into gate */}
+          <path id="pl-conv-1" className="pl-hidden"
+            d={`M 770,${L1Y} H 783 Q 795,${L1Y} 795,${L1Y + 12} V ${L2Y - 12} Q 795,${L2Y} 807,${L2Y} H ${GX - 45}`}
+            fill="none" stroke="#0EA5E9" strokeWidth="1.5" />
+          {/* Lane 2 → Gate: horizontal from container right */}
+          <path id="pl-conv-2" className="pl-hidden"
+            d={`M 770,${L2Y} H ${GX - 45}`}
+            fill="none" stroke="#8B5CF6" strokeWidth="1.5" strokeDasharray="6,4" />
+          {/* Lane 3 → Gate: from container right (770) → turn up → into gate */}
+          <path id="pl-conv-3" className="pl-hidden"
+            d={`M 770,${L3Y} H 783 Q 795,${L3Y} 795,${L3Y - 12} V ${L2Y + 12} Q 795,${L2Y} 807,${L2Y} H ${GX - 45}`}
+            fill="none" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="6,4" />
 
-          {/* ════════ GATE (hexagon) ════════ */}
+          {/* ════════ GATE (hexagon) — shown in approved state ════════ */}
           <g id="pl-gate" className="pl-hidden">
             <polygon id="pl-gate-poly"
               points={`${GX - 45},${L2Y} ${GX - 22},${L2Y - 35} ${GX + 22},${L2Y - 35} ${GX + 45},${L2Y} ${GX + 22},${L2Y + 35} ${GX - 22},${L2Y + 35}`}
-              fill="rgba(245,158,11,0.06)" stroke="#F59E0B" strokeWidth="1.5" />
+              fill="rgba(16,185,129,0.08)" stroke="#10B981" strokeWidth="1.5" />
             <text x={GX} y={L2Y - 8} textAnchor="middle" fill="#F8FAFC" fontSize="10" fontWeight="600" fontFamily={F}>Human</text>
             <text x={GX} y={L2Y + 5} textAnchor="middle" fill="#F8FAFC" fontSize="10" fontWeight="600" fontFamily={F}>Approval Gate</text>
             <text id="pl-gate-status" x={GX} y={L2Y + 20} textAnchor="middle"
-              fill="#F59E0B" fontSize="8.5" fontWeight="700" fontFamily={F}>Pending</text>
+              fill="#10B981" fontSize="8.5" fontWeight="700" fontFamily={F}>Approved</text>
           </g>
 
-          <circle id="pl-gate-pulse" className="pl-hidden" cx={GX} cy={L2Y} r="20"
-            fill="none" stroke="#10B981" strokeWidth="1.5" opacity="0" />
+          {/* gate pulse circle removed */}
           <text id="pl-gate-check" className="pl-hidden" x={GX} y={L2Y - 40}
             textAnchor="middle" fill="#10B981" fontSize="14">✓</text>
 
@@ -540,7 +581,7 @@ export default function SlideHeroPipeline() {
           {/* Gate → Decision Record */}
           <line id="pl-gate-to-dr" className="pl-hidden"
             x1={GX + 45} y1={L2Y} x2={DRX} y2={L2Y}
-            stroke="#10B981" strokeWidth="1.5" strokeDasharray="35" strokeDashoffset="35"
+            stroke="#10B981" strokeWidth="2.5"
             markerEnd="url(#pl-arr-e)" />
 
           {/* ════════ Decision Record ════════ */}
@@ -553,19 +594,23 @@ export default function SlideHeroPipeline() {
           </g>
 
           {/* ════════ ZONE 4: Provenance ════════ */}
-          <line id="pl-provenance" className="pl-hidden"
-            x1={DRX + 65} y1={L2Y + 40} x2="120" y2={L2Y + 40}
-            stroke="#0EA5E9" strokeWidth="0.8" opacity="0.35"
-            strokeDasharray="920" strokeDashoffset="920" />
 
-          <line id="pl-timeline" className="pl-hidden"
-            x1="260" y1="560" x2="1050" y2="560"
-            stroke="rgba(14,165,233,0.3)" strokeWidth="1"
-            strokeDasharray="790" strokeDashoffset="790" />
-          <text id="pl-timeline-label" className="pl-hidden" x="655" y="578"
-            textAnchor="middle" fill="#475569" fontSize="9.5" fontFamily={F}>Provenance timeline</text>
-          <text id="pl-timeline-lock" className="pl-hidden" x="1060" y="564"
-            fill="#475569" fontSize="10">🔒</text>
+          {/* Provenance timeline with tick marks */}
+          <g id="pl-timeline" className="pl-hidden">
+            {/* Main horizontal line */}
+            <line x1="280" y1="570" x2="1060" y2="570"
+              stroke="rgba(14,165,233,0.35)" strokeWidth="1.5" />
+            {/* Tick marks — endcaps taller, inner ticks shorter */}
+            {[280, 358, 436, 514, 592, 670, 748, 826, 904, 982, 1060].map((tx, i) => {
+              const isEnd = i === 0 || i === 10
+              return <line key={tx} x1={tx} y1={isEnd ? 562 : 564} x2={tx} y2={isEnd ? 578 : 576}
+                stroke="rgba(14,165,233,0.35)" strokeWidth="1.5" />
+            })}
+          </g>
+          <text id="pl-timeline-label" className="pl-hidden" x="670" y="594"
+            textAnchor="middle" fill="#475569" fontSize="11" fontFamily={F}>Provenance timeline</text>
+          <text id="pl-timeline-lock" className="pl-hidden" x="1080" y="575"
+            fill="#475569" fontSize="13">🔒</text>
 
         </svg>
       </div>
