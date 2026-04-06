@@ -18,7 +18,7 @@ export default function Slide4Strategy() {
             Software Discovery-to-Decision Agent
           </span>
           <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
-            . That is when we understood that this is a part of a{' '}
+            . That is when we understood there is a{' '}
           </span>
           <span style={{ color: 'var(--text-primary)' }}>much bigger problem</span>
           <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>.</span>
