@@ -15,7 +15,7 @@ export default function Slide2Team() {
     >
       {/* Header */}
       <div style={{ textAlign: 'center' }}>
-        <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, marginBottom: '0.6rem', color: 'var(--text-primary)' }}>
+        <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, marginBottom: '0.6rem', color: 'var(--accent-cyan)' }}>
           Who we are
         </h2>
         <p style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto' }}>
