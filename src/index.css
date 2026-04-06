@@ -240,3 +240,67 @@ p, li, div {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* =============================================
+   MOBILE RESPONSIVE — activates below 768px.
+   Laptop view (>= 768px) is completely untouched.
+   ============================================= */
+@media (max-width: 768px) {
+  /* General: reduce slide padding on small screens */
+  .pdf-slide {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  /* Allow vertical scroll when stacked content exceeds viewport */
+  .slide-wrapper.active {
+    overflow-y: auto !important;
+  }
+
+  /* Nav tabs: hide slide names, keep numbers compact */
+  .nav {
+    padding: 0 1rem !important;
+    height: 48px !important;
+  }
+  .nav-tab {
+    padding: 6px 10px !important;
+    font-size: 10px !important;
+  }
+  .slides-viewport {
+    height: calc(100vh - 48px) !important;
+    margin-top: 48px !important;
+  }
+
+  /* ---- Slide 2: Team ---- */
+  .team-cards {
+    flex-direction: column !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+  }
+
+  .team-cards .glass-card {
+    width: 100% !important;
+    max-width: 26rem !important;
+    flex: none !important;
+  }
+
+  /* ---- Slide 3: Legacy Orgs ---- */
+  .legacy-top-row {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  .legacy-bridge {
+    display: none !important;
+  }
+
+  .legacy-bottom-row {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .legacy-x-connector {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+}
+

@@ -24,7 +24,7 @@ export default function Slide2Team() {
       </div>
 
       {/* Profile cards */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '1.25rem', maxWidth: '80%', alignSelf: 'center' }}>
+      <div className="team-cards" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '1.25rem', maxWidth: '80%', alignSelf: 'center' }}>
 
         {/* Profile 1 - Olga */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>

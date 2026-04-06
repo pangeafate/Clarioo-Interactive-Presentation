@@ -12,7 +12,7 @@ export default function Slide3Legacy() {
       </div>
 
       {/* Main 3-column layout */}
-      <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', gap: '0', marginBottom: '3rem' }}>
+      <div className="legacy-top-row" style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', gap: '0', marginBottom: '3rem' }}>
         
         {/* Left Box - Human-only */}
         <div style={{ 
@@ -51,11 +51,11 @@ export default function Slide3Legacy() {
         </div>
 
         {/* Center Bridge */}
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
+        <div className="legacy-bridge" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
           padding: '1rem 1.5rem',
           minWidth: '220px'
         }}>
@@ -142,7 +142,7 @@ export default function Slide3Legacy() {
       </div>
 
       {/* Bottom flow: Two boxes with X in middle */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0' }}>
+      <div className="legacy-bottom-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0' }}>
         
         {/* Left bottom box */}
         <div style={{ 
@@ -158,7 +158,7 @@ export default function Slide3Legacy() {
         </div>
 
         {/* Arrow + X Circle + Arrow */}
-        <div style={{ display: 'flex', alignItems: 'center', padding: '0 0.75rem' }}>
+        <div className="legacy-x-connector" style={{ display: 'flex', alignItems: 'center', padding: '0 0.75rem' }}>
           <ArrowRight size={20} style={{ color: 'var(--text-muted)', marginRight: '-4px' }} />
           <div style={{ 
             width: '48px', 
