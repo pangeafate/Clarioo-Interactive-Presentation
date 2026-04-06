@@ -77,7 +77,7 @@ export default function Slide4Strategy() {
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Settings size={28} className="text-amber" /> Phase 2: Decisions to build
+              <Settings size={28} className="text-amber" /> Phase 2: Decision Layer (Buy vs Build and more!)
             </h3>
             <div className="text-amber" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: 700, padding: '0.25rem 0.75rem', background: 'rgba(245, 158, 11, 0.1)', borderRadius: '9999px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
               <Clock size={16} /> in Progress
