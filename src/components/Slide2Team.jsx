@@ -18,7 +18,7 @@ export default function Slide2Team() {
         <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, marginBottom: '0.6rem', color: 'var(--text-primary)' }}>
           Who we are
         </h2>
-        <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto', lineHeight: '1.5' }}>
+        <p style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto' }}>
           Serial b2b founders with <span className="text-white">10+ years</span> building, selling and buying software, and <span className="text-white">10+ years</span> in AI, ML, and Search. London-based.
         </p>
       </div>
