@@ -7,8 +7,7 @@ export default function Slide4Strategy() {
       
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <p className="text-white" style={{ fontSize: '1.25rem', fontWeight: 600, maxWidth: '900px', margin: '0 auto', lineHeight: '1.5' }}>
-          Our goal is to build the bridge: an end-to-end decision system that sits between people and AI agents inside enterprises.<br/><br/>
-          We realize that the task is huge. So we are eating this elephant one bite at a time, across three phases. The initial focus is on what is hot now - buy & build decisions in Tech.
+          We realized the need for the decision layer when we developed and started testing with our customers our first agent — the <span className="text-cyan" style={{ fontWeight: 700 }}>Software Discovery-to-Decision Agent</span>. That is when we understood that this is a part of a much larger problem.
         </p>
       </div>
 
