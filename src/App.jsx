@@ -15,6 +15,7 @@ import Slide13GTM from './components/Slide13GTM'
 import Slide14Model from './components/Slide14Model'
 import Slide7Moat from './components/Slide7Moat'
 import Slide8StatusAsk from './components/Slide8StatusAsk'
+import SlidePositioning from './components/SlidePositioning'
 import Slide15Waitlist from './components/Slide15Waitlist'
 import Slide9AppendixReactive from './components/Slide9AppendixReactive'
 import Slide10AppendixProactive from './components/Slide10AppendixProactive'
@@ -30,6 +31,7 @@ function App() {
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
     { name: "Clarioo", component: <SlideHeroPipeline /> },
+    { name: "Positioning", component: <SlidePositioning /> },
     { name: "The Journey", component: <Slide4Strategy /> },
     // { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
