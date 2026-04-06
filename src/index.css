@@ -302,5 +302,12 @@ p, li, div {
     transform: rotate(90deg);
     margin: 0.5rem 0;
   }
+
+  /* ---- Slide 3b: Missing Layer ---- */
+  .missing-layer-panels {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    flex: none !important;
+  }
 }
 

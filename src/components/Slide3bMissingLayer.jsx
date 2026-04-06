@@ -296,6 +296,7 @@ export default function Slide3bMissingLayer() {
             MAIN CORE — two panels tracing THE SAME decision
          ==================================================================== */}
       <div
+        className="missing-layer-panels"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
