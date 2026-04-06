@@ -23,8 +23,8 @@ export default function Slide4Strategy() {
 
       <div style={{ display: 'flex', gap: '3rem', height: '100%' }}>
         
-        {/* Phase 1 Card */}
-        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+        {/* Phase 1 Card — dimmed to let Phase 2 be the focal point */}
+        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column', opacity: 0.55 }}>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -72,8 +72,16 @@ export default function Slide4Strategy() {
           </div>
         </div>
 
-        {/* Phase 2 Card */}
-        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-amber) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+        {/* Phase 2 Card — hero: full border + glow + gradient tint */}
+        <div className="glass-card" style={{
+          flex: 1,
+          border: '2px solid var(--accent-amber) !important',
+          padding: '2.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          background: 'linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.03) 100%)',
+          boxShadow: '0 0 30px rgba(245,158,11,0.2), 0 0 60px rgba(245,158,11,0.08)',
+        }}>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
