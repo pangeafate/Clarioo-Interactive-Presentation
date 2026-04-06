@@ -27,10 +27,10 @@ export default function Slide2Team() {
       </div>
 
       {/* Profile cards */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1.5rem', marginTop: '1.25rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '1.25rem' }}>
 
         {/* Profile 1 - Olga */}
-        <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
+        <div className="glass-card" style={{ width: '18rem', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
           <img src={`${import.meta.env.BASE_URL}team/photo1.png`} alt="Olga" style={{ width: '8.75rem', height: '8.75rem', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.75rem', alignSelf: 'flex-start' }}>Olga</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.45', fontSize: '0.9rem', paddingLeft: '1.1rem', margin: 0, alignSelf: 'flex-start' }}>
@@ -41,7 +41,7 @@ export default function Slide2Team() {
         </div>
 
         {/* Profile 2 - Andrey */}
-        <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
+        <div className="glass-card" style={{ width: '18rem', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
           <img src={`${import.meta.env.BASE_URL}team/photo2.png`} alt="Andrey" style={{ width: '8.75rem', height: '8.75rem', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.75rem', alignSelf: 'flex-start' }}>Andrey</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.45', fontSize: '0.9rem', paddingLeft: '1.1rem', margin: 0, alignSelf: 'flex-start' }}>
@@ -53,7 +53,7 @@ export default function Slide2Team() {
         </div>
 
         {/* Profile 3 - Sergey */}
-        <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
+        <div className="glass-card" style={{ width: '18rem', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
           <img src={`${import.meta.env.BASE_URL}team/photo3.png`} alt="Sergey" style={{ width: '8.75rem', height: '8.75rem', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center top', marginBottom: '1rem', border: '2px solid var(--accent-cyan)' }} />
           <h3 className="text-cyan" style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.75rem', alignSelf: 'flex-start' }}>Sergey</h3>
           <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.45', fontSize: '0.9rem', paddingLeft: '1.1rem', margin: 0, alignSelf: 'flex-start' }}>
