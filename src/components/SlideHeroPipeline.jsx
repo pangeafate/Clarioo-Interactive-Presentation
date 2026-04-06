@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 
 /* ───────────────────────── CSS ───────────────────────── */
 const PIPELINE_CSS = `
 /* ── Base visibility ── */
-.pl-hidden { opacity: 1; stroke-dashoffset: 0 !important; }
-.pl-visible { opacity: 1; transition: opacity 0.4s ease; }
-.pl-visible-emerging { opacity: 0.7; transition: opacity 0.4s ease; }
-.pl-visible-ghost { opacity: 0.2; transition: opacity 0.4s ease; }
+.pl-hidden { opacity: 0; pointer-events: none; transition: opacity 0.8s ease-in-out; }
+.pl-visible { opacity: 1; transition: opacity 0.8s ease-in-out; }
+.pl-visible-emerging { opacity: 0.7; transition: opacity 0.8s ease-in-out; }
+.pl-visible-ghost { opacity: 0.2; transition: opacity 0.8s ease-in-out; }
 .pl-visible-invalidated { opacity: 0.3; transition: opacity 0.8s ease; }
 
 /* ── Glass cards ── */
 .pl-card {
-  width: 15rem; min-height: 7rem; border-radius: 0.75rem;
+  width: 17rem; min-height: 7rem; border-radius: 0.75rem;
   background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1);
   backdrop-filter: blur(10px); padding: 0.75rem 0.85rem;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out, opacity 0.8s ease-in-out, filter 0.8s ease-in-out;
   display: flex; align-items: center;
 }
 .pl-card-hero { border-width: 2px; }
@@ -73,116 +73,224 @@ const PIPELINE_CSS = `
 
 @keyframes pl-particle { 0%,100%{opacity:.15;transform:translate(0,0)}50%{opacity:.4;transform:translate(var(--dx),var(--dy))} }
 .pl-particle { animation: pl-particle var(--dur) ease-in-out infinite; animation-delay: var(--del); }
+
+/* Evidence flow lines — dashes move upward */
+@keyframes pl-ev-up { to { stroke-dashoffset: -16; } }
+.pl-ev-flow { animation: pl-ev-up 1.2s linear infinite; }
+
+/* Intent signal dots flying into Intent Node */
+@keyframes pl-fly-in {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  15%  { opacity: 0.7; }
+  85%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translate(155px, 0px); }
+}
+.pl-intent-fly { animation: pl-fly-in 2.8s ease-in-out infinite; }
+
+/* ── Card inactive (gray) state ── */
+.pl-card-inactive { opacity: 0.5; filter: saturate(0); transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out; }
+
+/* ── Gate inactive (gray) state ── */
+.pl-gate-inactive { opacity: 0.35; filter: saturate(0); transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out; }
+.pl-gate-active { opacity: 1; filter: saturate(1); transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out; }
+
+/* ── Frame counter UI ── */
+.pl-frame-bar {
+  position: absolute; bottom: 0.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 0.8rem; z-index: 10;
+  background: rgba(11,18,33,0.85); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem; padding: 0.4rem 1rem; backdrop-filter: blur(8px);
+}
+.pl-frame-btn {
+  background: none; border: 1px solid rgba(255,255,255,0.2); color: #94A3B8;
+  border-radius: 5px; padding: 0.3rem 0.75rem; cursor: pointer; font-size: 1rem;
+  font-family: Inter, system-ui, sans-serif;
+}
+.pl-frame-btn:hover { background: rgba(255,255,255,0.08); color: #F8FAFC; }
+.pl-frame-label { color: #94A3B8; font-size: 0.9rem; font-family: Inter, system-ui, sans-serif; min-width: 8rem; text-align: center; }
+.pl-frame-play { color: #10B981; }
 `;
+
+
+/* ── Animation frames: each frame is a list of element IDs to reveal ── */
+const FRAMES = [
+  { name: 'Cards (inactive)', ids: [], cardsGray: true },
+  { name: 'Signal scatter', ids: ['pl-intent-scatter', 'pl-intro-text'], hideIds: { 'pl-intro-text': 4 } },
+  { name: 'Intent Node', ids: ['pl-intent-node', 'pl-intent-label'] },
+  { name: 'Evidence labels', ids: ['pl-ev-label-top', 'pl-src-sys', 'pl-src-docs', 'pl-ev-label-bot'] },
+  { name: 'Evidence arrows', ids: ['pl-return-sys', 'pl-return-docs'] },
+  { name: 'Card: Agentic Evidence', ids: ['pl-card-2'], cardClass: 'pl-card-active-emerald' },
+  { name: 'DAG container + label', ids: ['pl-dag-bg', 'pl-dag-title', 'pl-path-label'] },
+  { name: 'Fan-out connectors (L1+L2)', ids: ['pl-split-1', 'pl-split-2'] },
+  { name: 'Card: Execution Engine', ids: ['pl-card-1'], cardClass: 'pl-card-active-cyan' },
+  { name: 'Convergence + Gate (inactive)', ids: ['pl-conv-1', 'pl-conv-2', 'pl-gate', 'pl-gate-check', 'pl-gate-badges'], gateGray: true },
+  { name: 'Lane containers (L1+L2)', ids: ['pl-lane-bg-1', 'pl-lane-bg-2', 'pl-lane-lbl-1', 'pl-lane-lbl-2'] },
+  { name: 'L1: Claim Extraction', ids: ['pl-l1b1', 'pl-l1e12'] },
+  { name: 'L1: Policy Mapping', ids: ['pl-l1b2', 'pl-l1e2g'] },
+  { name: 'L1: Human Approval Gate', ids: ['pl-l1-gate'] },
+  { name: 'L2: Contradiction Detection', ids: ['pl-l2b1', 'pl-l2e12'] },
+  { name: 'L2: Scope Assessment (invalidated)', ids: ['pl-l2b2', 'pl-l2-newev'] },
+  { name: 'L2: Owner Derivation', ids: ['pl-l2b3'] },
+  { name: 'Cross: Policy→Owner', ids: ['pl-cross-l1-l2'] },
+  { name: 'Ops Assessment lane', ids: ['pl-split-3', 'pl-lane-bg-3', 'pl-lane-lbl-3', 'pl-conv-3'] },
+  { name: 'Cross: Owner→Impact', ids: ['pl-cross-l2-l3'] },
+  { name: 'L3: Impact Analysis', ids: ['pl-l3b1', 'pl-l3e12'] },
+  { name: 'L3: Decision Delta', ids: ['pl-l3b2'] },
+  { name: 'Gate activates', ids: [], gateActivate: true },
+  { name: 'Gate → Decision Record', ids: ['pl-gate-to-dr', 'pl-decision-record'] },
+  { name: 'Card: Governance', ids: ['pl-card-3'], cardClass: 'pl-card-active-amber' },
+  { name: 'Provenance timeline', ids: ['pl-timeline', 'pl-timeline-label', 'pl-timeline-lock'] },
+  { name: 'Flywheel arc', ids: ['pl-flywheel', 'pl-flywheel-label'] },
+  { name: 'Memory Graph', ids: ['pl-mem-node', 'pl-particles', 'pl-mem-to-intent'] },
+  { name: 'Card: Decision Memory', ids: ['pl-card-4'], cardClass: 'pl-card-active-purple' },
+]
 
 /* ────────────────────────── Component ────────────────────────── */
 export default function SlideHeroPipeline() {
-  useEffect(() => {
-    const timers = []
-    let cancelled = false
+  const [frame, setFrame] = useState(-1)
+  const [playing, setPlaying] = useState(false)
+  const playRef = useRef(null)
 
-    function at(ms, fn) { timers.push(setTimeout(() => { if (!cancelled) fn() }, ms)) }
-    function el(id) { return document.getElementById(id) }
-    function show(id, cls = 'pl-visible') { const e = el(id); if (!e) return; e.classList.remove('pl-hidden'); e.classList.add(cls) }
-    function addClass(id, cls) { const e = el(id); if (e) e.classList.add(cls) }
-    function drawLine(id) { const e = el(id); if (!e) return; e.classList.remove('pl-hidden'); e.classList.add('pl-visible', 'pl-draw') }
-    function drawSlow(id) { const e = el(id); if (!e) return; e.classList.remove('pl-hidden'); e.classList.add('pl-visible', 'pl-draw-slow') }
-    function drawVSlow(id) { const e = el(id); if (!e) return; e.classList.remove('pl-hidden'); e.classList.add('pl-visible', 'pl-draw-vslow') }
+  const totalFrames = FRAMES.length
 
-    /* ═══ PHASE 1: Signal Capture (0–6s) ═══ */
-    at(400,  () => { show('pl-sig1'); addClass('pl-sig1', 'pl-sig-fly') })
-    at(700,  () => { show('pl-sig2'); addClass('pl-sig2', 'pl-sig-fly') })
-    at(1000, () => { show('pl-sig3'); addClass('pl-sig3', 'pl-sig-fly') })
-    at(1300, () => { show('pl-sig4'); addClass('pl-sig4', 'pl-sig-fly') })
-    at(2200, () => { show('pl-intent-node'); show('pl-intent-label') })
-    at(2800, () => addClass('pl-intent-rect', 'pl-ambient-pulse'))
-    at(3000, () => addClass('pl-card-1', 'pl-card-active-cyan'))
-    at(3500, () => {
-      show('pl-trickle-1'); addClass('pl-trickle-1', 'pl-trickle-active')
-      show('pl-trickle-2'); addClass('pl-trickle-2', 'pl-trickle-active')
-      show('pl-trickle-3'); addClass('pl-trickle-3', 'pl-trickle-active')
+  /* Show all elements up to and including the target frame */
+  const applyFrame = useCallback((targetFrame) => {
+    const cardIds = ['pl-card-1', 'pl-card-2', 'pl-card-3', 'pl-card-4']
+    const cardClasses = ['pl-card-active-cyan', 'pl-card-active-emerald', 'pl-card-active-amber', 'pl-card-active-purple']
+
+    /* First hide all SVG animated elements */
+    document.querySelectorAll('.pl-hidden, .pl-visible, .pl-visible-emerging, .pl-visible-ghost').forEach(el => {
+      el.classList.add('pl-hidden')
+      el.classList.remove('pl-visible', 'pl-visible-emerging', 'pl-visible-ghost')
     })
 
-    /* ═══ PHASE 2: Evidence Enrichment (6–12s) ═══ */
-    at(6000,  () => { show('pl-ev-label-top'); show('pl-ev-group-box') })
-    at(6500,  () => { show('pl-src-sys'); show('pl-src-docs') })
-    at(7200,  () => { drawLine('pl-query-sys'); drawLine('pl-query-docs') })
-    at(8200,  () => { drawLine('pl-return-sys'); drawLine('pl-return-docs') })
-    at(8800,  () => show('pl-ev-label-bot'))
-    at(9000,  () => addClass('pl-card-2', 'pl-card-active-emerald'))
-    at(9500,  () => { addClass('pl-query-sys', 'pl-flowing'); addClass('pl-query-docs', 'pl-flowing') })
-
-    /* ═══ PHASE 3: DAG Composition (12–22s) ═══ */
-    at(12000, () => { drawLine('pl-intent-to-dag'); show('pl-path-label') })
-    at(12400, () => drawLine('pl-split-1'))
-    at(12600, () => drawLine('pl-split-2'))
-    at(12800, () => drawLine('pl-split-3'))
-    at(12800, () => { show('pl-lane-bg-1'); show('pl-lane-bg-2'); show('pl-lane-bg-3') })
-    at(13000, () => { show('pl-lane-lbl-1'); show('pl-lane-lbl-2'); show('pl-lane-lbl-3') })
-
-    /* Lane 1 (cyan) */
-    at(14000, () => { show('pl-l1b1'); drawLine('pl-l1e12') })
-    at(14500, () => { show('pl-l1b2'); drawLine('pl-l1e2g') })
-    at(15000, () => show('pl-l1ghost', 'pl-visible-ghost'))
-
-    /* Lane 2 (purple) */
-    at(14200, () => { show('pl-l2b1'); drawLine('pl-l2e12') })
-    at(14700, () => show('pl-l2b2'))
-
-    /* Lane 3 (amber) */
-    at(15000, () => { show('pl-l3b1'); drawLine('pl-l3e12') })
-    at(15500, () => show('pl-l3b2', 'pl-visible-emerging'))
-
-    /* Ambient edge dots */
-    at(16000, () => { show('pl-edot-l1'); addClass('pl-edot-l1', 'pl-edot-active') })
-
-    /* === DISRUPTION (17s) === */
-    at(17000, () => { show('pl-disrupt-dot'); addClass('pl-disrupt-dot', 'pl-disrupt-animate') })
-    at(17550, () => {
-      const b = el('pl-l2b2'); if (b) { b.classList.remove('pl-visible'); b.classList.add('pl-visible-invalidated') }
-      const e = el('pl-l2e12'); if (e) e.style.opacity = '0.3'
+    /* Reset all cards to hidden state */
+    cardIds.forEach(id => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.classList.remove('pl-card-inactive', ...cardClasses)
+        el.style.opacity = ''
+      }
     })
-    at(17600, () => { const s = el('pl-l2-strike'); if (s) { s.classList.remove('pl-hidden'); s.classList.add('pl-visible', 'pl-strike-draw') } })
-    at(17900, () => show('pl-l2-newev'))
-    at(18200, () => drawLine('pl-l2-bypass'))
-    at(18800, () => show('pl-l2b3', 'pl-visible-emerging'))
 
-    /* Gate convergence (20–22s) */
-    at(20000, () => { show('pl-gate'); drawLine('pl-conv-1'); drawLine('pl-conv-2'); drawLine('pl-conv-3') })
-    at(21000, () => {
-      const poly = el('pl-gate-poly')
-      if (poly) { poly.setAttribute('stroke', '#10B981'); poly.setAttribute('fill', 'rgba(16,185,129,0.08)') }
-      const txt = el('pl-gate-status')
-      if (txt) { txt.setAttribute('fill', '#10B981'); txt.textContent = 'Approved' }
-      addClass('pl-gate', 'pl-gate-glow')
-      show('pl-gate-pulse'); addClass('pl-gate-pulse', 'pl-radial-pulse')
-    })
-    at(21200, () => show('pl-gate-check'))
-    at(21500, () => show('pl-gate-badges'))
-    at(21800, () => { show('pl-decision-record'); drawLine('pl-gate-to-dr') })
-    at(22000, () => addClass('pl-card-3', 'pl-card-active-amber'))
+    /* Check if any frame up to targetFrame has cardsGray */
+    let showCardsGray = false
+    const activatedCards = new Set()
+    for (let i = 0; i <= targetFrame; i++) {
+      const f = FRAMES[i]
+      if (!f) continue
+      if (f.cardsGray) showCardsGray = true
+      if (f.cardClass) f.ids.forEach(id => activatedCards.add(id))
+    }
 
-    /* ═══ PHASE 4: Provenance (22–26s) ═══ */
-    at(22200, () => drawVSlow('pl-provenance'))
-    at(24200, () => { drawSlow('pl-timeline'); show('pl-timeline-label') })
-    at(24800, () => show('pl-timeline-lock'))
+    /* Show cards gray if triggered, then activate specific ones */
+    if (showCardsGray) {
+      cardIds.forEach(id => {
+        const el = document.getElementById(id)
+        if (!el) return
+        if (activatedCards.has(id)) {
+          el.classList.remove('pl-card-inactive')
+        } else {
+          el.classList.add('pl-card-inactive')
+        }
+      })
+    }
 
-    /* ═══ PHASE 5: Flywheel (26–30s) ═══ */
-    at(26000, () => drawVSlow('pl-flywheel'))
-    at(28200, () => { show('pl-mem-node'); addClass('pl-mem-node', 'pl-mem-pulse'); show('pl-particles') })
-    at(28500, () => drawSlow('pl-mem-to-intent'))
-    at(28700, () => show('pl-flywheel-label'))
-    at(29200, () => addClass('pl-card-4', 'pl-card-active-purple'))
-
-    /* Keyboard: P to pause */
-    function handleKey(e) {
-      if ((e.key === 'p' || e.key === 'P') && e.target.tagName !== 'INPUT') {
-        cancelled = true; timers.forEach(clearTimeout); timers.length = 0
+    /* Reveal all SVG frames from 0 to targetFrame */
+    for (let i = 0; i <= targetFrame; i++) {
+      const f = FRAMES[i]
+      if (!f) continue
+      const isCurrentFrame = (i === targetFrame)
+      f.ids.forEach((id, idx) => {
+        const el = document.getElementById(id)
+        if (!el) return
+        el.classList.remove('pl-hidden')
+        el.classList.add('pl-visible')
+        /* Stagger only the current frame's elements */
+        if (isCurrentFrame && f.ids.length > 1) {
+          el.style.transitionDelay = `${idx * 0.12}s`
+        } else {
+          el.style.transitionDelay = '0s'
+        }
+      })
+      if (f.cardClass) {
+        f.ids.forEach(id => {
+          const el = document.getElementById(id)
+          if (el) el.classList.add(f.cardClass)
+        })
       }
     }
-    window.addEventListener('keydown', handleKey)
-    return () => { cancelled = true; timers.forEach(clearTimeout); timers.length = 0; window.removeEventListener('keydown', handleKey) }
+
+    /* Handle gate gray/active state */
+    const gateEl = document.getElementById('pl-gate')
+    if (gateEl) {
+      let gateShown = false
+      let gateActivated = false
+      for (let i = 0; i <= targetFrame; i++) {
+        if (FRAMES[i]?.gateGray) gateShown = true
+        if (FRAMES[i]?.gateActivate) gateActivated = true
+      }
+      gateEl.classList.remove('pl-gate-inactive', 'pl-gate-active')
+      if (gateShown && !gateActivated) {
+        gateEl.classList.add('pl-gate-inactive')
+      } else if (gateShown && gateActivated) {
+        gateEl.classList.add('pl-gate-active')
+      }
+    }
+
+    /* Hide elements that have a hideIds threshold */
+    for (let i = 0; i <= targetFrame; i++) {
+      const f = FRAMES[i]
+      if (!f || !f.hideIds) continue
+      Object.entries(f.hideIds).forEach(([id, hideAtFrame]) => {
+        if (targetFrame >= hideAtFrame) {
+          const el = document.getElementById(id)
+          if (el) { el.classList.add('pl-hidden'); el.classList.remove('pl-visible') }
+        }
+      })
+    }
   }, [])
+
+  /* When frame changes, apply it */
+  useEffect(() => {
+    applyFrame(frame)
+  }, [frame, applyFrame])
+
+  /* Auto-play: advance one frame every 800ms */
+  useEffect(() => {
+    if (playing) {
+      playRef.current = setInterval(() => {
+        setFrame(prev => {
+          if (prev >= totalFrames - 1) {
+            setPlaying(false)
+            return prev
+          }
+          return prev + 1
+        })
+      }, 1400)
+    }
+    return () => { if (playRef.current) clearInterval(playRef.current) }
+  }, [playing, totalFrames])
+
+  const goNext = () => setFrame(prev => Math.min(prev + 1, totalFrames - 1))
+  const goPrev = () => setFrame(prev => Math.max(prev - 1, -1))
+  const rewind = () => { setPlaying(false); setFrame(-1) }
+  const togglePlay = () => {
+    if (frame >= totalFrames - 1) setFrame(-1)
+    setPlaying(p => !p)
+  }
+
+  /* Keyboard: left/right arrows, space to play/pause */
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); goNext() }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); goPrev() }
+      else if (e.key === ' ') { e.preventDefault(); e.stopPropagation(); togglePlay() }
+    }
+    window.addEventListener('keydown', handleKey, true)
+    return () => window.removeEventListener('keydown', handleKey, true)
+  }, [frame, totalFrames])
 
   /* ═══════════════════════ CONSTANTS ═══════════════════════ */
   const F = 'Inter, system-ui, sans-serif'
@@ -210,15 +318,18 @@ export default function SlideHeroPipeline() {
         <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontStyle: 'italic', margin: '0.3rem 0 0', lineHeight: 1.4 }}>
           A self-composing, evidence-driven decision architecture — not a workflow tool, not a knowledge base.
         </p>
-        <p style={{ color: 'var(--accent-cyan)', fontSize: '0.9rem', margin: '0.25rem 0 0', lineHeight: 1.3, textShadow: '0 0 12px rgba(14,165,233,0.25)' }}>
-          Others use graphs to improve search. We use graphs to model decisions — where the LLM proposes and humans approve.
-        </p>
       </div>
 
       {/* ═══ PILLAR CARDS ═══ */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.3rem 1rem 0.4rem', flex: '0 0 auto' }}>
-        <div id="pl-card-1" className="pl-card pl-card-hero pl-card-active-cyan">
-          <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+        <div id="pl-card-2" className="pl-card">
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.45, margin: 0 }}>
+            <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Agentic Evidence: </span>
+            <span style={{ color: 'var(--text-secondary)' }}>Each answer sharpens the next question — evidence quality compounds automatically</span>
+          </p>
+        </div>
+        <div id="pl-card-1" className="pl-card pl-card-hero">
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Graph as Execution Engine: </span>
             <span style={{ color: 'var(--text-secondary)' }}>
               The graph is both the <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>data structure</span> and
@@ -226,20 +337,14 @@ export default function SlideHeroPipeline() {
             </span>
           </p>
         </div>
-        <div id="pl-card-2" className="pl-card pl-card-active-emerald">
-          <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
-            <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Agentic Evidence: </span>
-            <span style={{ color: 'var(--text-secondary)' }}>Each answer sharpens the next question — evidence quality compounds automatically</span>
-          </p>
-        </div>
-        <div id="pl-card-3" className="pl-card pl-card-active-amber">
-          <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+        <div id="pl-card-3" className="pl-card">
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Governance: </span>
             <span style={{ color: 'var(--text-secondary)' }}>Isolation at the graph engine, not application code. Every decision append-only.</span>
           </p>
         </div>
-        <div id="pl-card-4" className="pl-card pl-card-active-purple">
-          <p style={{ fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+        <div id="pl-card-4" className="pl-card">
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Decision Memory: </span>
             <span style={{ color: 'var(--text-secondary)' }}>Past decisions shape future paths — the moat deepens with every use</span>
           </p>
@@ -248,7 +353,7 @@ export default function SlideHeroPipeline() {
 
       {/* ═══ SVG PIPELINE ═══ */}
       <div style={{ flex: 1, minHeight: 0, padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg viewBox="0 0 1200 650" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
+        <svg viewBox="-38 0 1200 650" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
           <defs>
             <marker id="pl-arr-c" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
               <polygon points="0,0 6,2.5 0,5" fill="#0EA5E9" />
@@ -266,8 +371,8 @@ export default function SlideHeroPipeline() {
               <polygon points="0,0 6,2.5 0,5" fill="#64748B" />
             </marker>
             <linearGradient id="pl-grad-fly" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#10B981" />
-              <stop offset="100%" stopColor="#8B5CF6" />
+              <stop offset="0%" stopColor="#8B5CF6" />
+              <stop offset="100%" stopColor="#10B981" />
             </linearGradient>
             <filter id="pl-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="5" result="blur" />
@@ -281,7 +386,7 @@ export default function SlideHeroPipeline() {
             d="M 1025,282 V 74 Q 1025,62 1013,62 H 146"
             fill="none" stroke="url(#pl-grad-fly)" strokeWidth="2"
             markerEnd="url(#pl-arr-p)" />
-          <text id="pl-flywheel-label" className="pl-hidden" x="600" y="54"
+          <text id="pl-flywheel-label" className="pl-hidden" x="520" y="54"
             textAnchor="middle" fill="#94A3B8" fontSize="11" fontStyle="italic" fontFamily={F}>
             Each decision trains the next
           </text>
@@ -290,8 +395,6 @@ export default function SlideHeroPipeline() {
 
           {/* Memory Node — non-oriented graph cluster */}
           <g id="pl-mem-node" className="pl-hidden">
-            {/* Outer circle boundary */}
-            <circle cx="120" cy="62" r="26" fill="rgba(139,92,246,0.06)" stroke="#8B5CF6" strokeWidth="1" opacity="0.4" />
             {/* Graph edges (undirected, no arrows) */}
             <line x1="110" y1="52" x2="130" y2="48" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
             <line x1="130" y1="48" x2="136" y2="66" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
@@ -309,8 +412,8 @@ export default function SlideHeroPipeline() {
             <circle cx="104" cy="66" r="2.5" fill="#8B5CF6" opacity="0.6" />
             <circle cx="120" cy="60" r="4" fill="#A78BFA" opacity="0.9" />
             {/* Label */}
-            <text x="120" y="100" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Memory</text>
-            <text x="120" y="110" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily={F}>Node</text>
+            <text x="120" y="96" textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Decision &amp; Intent</text>
+            <text x="120" y="108" textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Memory Graph</text>
           </g>
 
           {/* Decorative particle scatter to the left of Memory Node */}
@@ -333,16 +436,43 @@ export default function SlideHeroPipeline() {
             x1="120" y1="112" x2="120" y2="265"
             stroke="#8B5CF6" strokeWidth="2" markerEnd="url(#pl-arr-p)" />
 
-          {/* Signal dots */}
-          <circle id="pl-sig1" className="pl-hidden" cx="100" cy="290" r="4" fill="#0EA5E9" />
-          <circle id="pl-sig2" className="pl-hidden" cx="80" cy="330" r="4" fill="#0EA5E9" />
-          <circle id="pl-sig3" className="pl-hidden" cx="120" cy="275" r="3.5" fill="#8B5CF6" />
-          <circle id="pl-sig4" className="pl-hidden" cx="90" cy="340" r="3.5" fill="#0EA5E9" />
+          {/* Intro text — visible frames 2-4, hidden from frame 5 */}
+          <g id="pl-intro-text" className="pl-hidden">
+            <text x="600" y="320" textAnchor="middle" fill="#F8FAFC" fontSize="18" fontWeight="600" fontFamily={F}>
+              Today, Change Intent and Decisions are chaotic and wasteful
+            </text>
+            <text x="600" y="355" textAnchor="middle" fill="#0EA5E9" fontSize="23" fontWeight="600" fontFamily={F}>
+              We are about to change it for the better
+            </text>
+          </g>
 
-          {/* Trickle dots */}
-          <circle id="pl-trickle-1" className="pl-hidden" cx="100" cy="300" r="2.5" fill="#0EA5E9" opacity="0.5" />
-          <circle id="pl-trickle-2" className="pl-hidden" cx="115" cy="320" r="2" fill="#8B5CF6" opacity="0.5" />
-          <circle id="pl-trickle-3" className="pl-hidden" cx="90" cy="310" r="2" fill="#0EA5E9" opacity="0.4" />
+          {/* Intent signal scatter — static dots forming a cone to the left */}
+          <g id="pl-intent-scatter" className="pl-hidden">
+            {[
+              { cx: -30, cy: 280, r: 3, c: '#0EA5E9' },
+              { cx: -20, cy: 300, r: 2.5, c: '#8B5CF6' },
+              { cx: -35, cy: 320, r: 2, c: '#0EA5E9' },
+              { cx: -15, cy: 340, r: 3, c: '#0EA5E9' },
+              { cx: -45, cy: 290, r: 1.8, c: '#8B5CF6' },
+              { cx: -50, cy: 310, r: 2.5, c: '#0EA5E9' },
+              { cx: -40, cy: 335, r: 1.5, c: '#8B5CF6' },
+              { cx: -55, cy: 300, r: 2, c: '#0EA5E9' },
+              { cx: -60, cy: 320, r: 1.5, c: '#8B5CF6' },
+              { cx: -25, cy: 260, r: 1.8, c: '#0EA5E9' },
+              { cx: -48, cy: 345, r: 1.2, c: '#0EA5E9' },
+              { cx: -10, cy: 310, r: 2, c: '#8B5CF6' },
+            ].map((p, i) => (
+              <circle key={i} cx={p.cx} cy={p.cy} r={p.r} fill={p.c}
+                opacity={0.2 + (i % 4) * 0.12} />
+            ))}
+            {/* Animated dots that fly into Intent Node */}
+            {[0, 1, 2, 3, 4].map(i => (
+              <circle key={`fly-${i}`} cx={-40 + i * 8} cy={285 + i * 12} r={2 + (i % 2)}
+                fill={i % 2 === 0 ? '#0EA5E9' : '#8B5CF6'}
+                className="pl-intent-fly"
+                style={{ animationDelay: `${i * 1.4}s` }} />
+            ))}
+          </g>
 
           {/* Intent Node */}
           <g id="pl-intent-node" className="pl-hidden">
@@ -352,9 +482,8 @@ export default function SlideHeroPipeline() {
             {/* Main box */}
             <rect id="pl-intent-rect" x="35" y="265" width="170" height="90" rx="8" ry="8"
               fill="rgba(18,28,48,0.92)" stroke="#0EA5E9" strokeWidth="2.5" />
-            {/* Input port dot */}
-            <circle cx="40" cy="310" r="3" fill="#0EA5E9" opacity="0.7" />
-            <text x="120" y="314" textAnchor="middle" fill="#F8FAFC" fontSize="16" fontWeight="700" fontFamily={F}>Intent Node</text>
+            <text x="120" y="306" textAnchor="middle" fill="#F8FAFC" fontSize="16" fontWeight="700" fontFamily={F}>Intent Node</text>
+            <text x="120" y="322" textAnchor="middle" fill="#94A3B8" fontSize="10" fontFamily={F}>Ingestion &amp; Triage</text>
           </g>
           <text id="pl-intent-label" className="pl-hidden" x="120" y="375"
             textAnchor="middle" fill="#94A3B8" fontSize="9.5" fontFamily={F}>Intent Capture</text>
@@ -377,23 +506,15 @@ export default function SlideHeroPipeline() {
           <text id="pl-ev-label-bot" className="pl-hidden" x="120" y="478"
             textAnchor="middle" fill="#94A3B8" fontSize="10" fontFamily={F}>Agentic Evidence</text>
 
-          {/* Query lines: Intent → Evidence (dashed, dark teal) */}
-          <line id="pl-query-sys" className="pl-hidden"
-            x1="80" y1="355" x2="55" y2="408"
-            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" opacity="0.5" />
-          <line id="pl-query-docs" className="pl-hidden"
-            x1="160" y1="355" x2="185" y2="408"
-            stroke="#0EA5E9" strokeWidth="1" strokeDasharray="4,3" opacity="0.5" />
-
-          {/* Return lines: Evidence → Intent (dashed, emerald with arrow) */}
-          <line id="pl-return-sys" className="pl-hidden"
-            x1="90" y1="408" x2="105" y2="355"
-            stroke="#10B981" strokeWidth="1.2" strokeDasharray="5,3" opacity="0.6"
+          {/* Return lines: Evidence → Intent (vertical, emerald with arrow, animated) */}
+          <line id="pl-return-sys" className="pl-hidden pl-ev-flow"
+            x1="72" y1="408" x2="72" y2="355"
+            stroke="#10B981" strokeWidth="1.5" strokeDasharray="5,3"
             markerEnd="url(#pl-arr-e)" />
-          <line id="pl-return-docs" className="pl-hidden"
-            x1="150" y1="408" x2="140" y2="355"
-            stroke="#10B981" strokeWidth="1.2" strokeDasharray="5,3" opacity="0.6"
-            markerEnd="url(#pl-arr-e)" />
+          <line id="pl-return-docs" className="pl-hidden pl-ev-flow"
+            x1="168" y1="408" x2="168" y2="355"
+            stroke="#10B981" strokeWidth="1.5" strokeDasharray="5,3"
+            markerEnd="url(#pl-arr-e)" style={{ animationDelay: '0.5s' }} />
 
           {/* ════════ Fan-out elbows from Intent Node to lane containers ════════ */}
           {/* Lane 1: right from Intent → turn up → right to container */}
@@ -412,18 +533,26 @@ export default function SlideHeroPipeline() {
           {/* ════════ ZONE 3: DAG Lanes ════════ */}
 
           {/* "The path is discovered" label */}
-          <text id="pl-path-label" className="pl-hidden" x="540" y="140"
+          <text id="pl-path-label" className="pl-hidden" x="520" y="140"
             textAnchor="middle" fill="#94A3B8" fontSize="11" fontStyle="italic" fontFamily={F}>
             The path is discovered, not designed
           </text>
 
-          {/* Lane container boxes — prominent, with labels INSIDE */}
+          {/* ════════ Outer DAG Engine container — dotted white ════════ */}
+          <rect id="pl-dag-bg" className="pl-hidden" x="240" y={L1Y - 72} width="560" height={L3Y - L1Y + 144} rx="14" ry="14"
+            fill="rgba(255,255,255,0.025)" stroke="none" />
+          <text id="pl-dag-title" className="pl-hidden" x="520" y={L1Y - 80}
+            textAnchor="middle" fill="#F8FAFC" fontSize="14" fontWeight="700" fontFamily={F}>
+            Clarioo Decision Path Composition Engine (DAG)
+          </text>
+
+          {/* Lane container boxes — opaque navy fill, not transparent */}
           <rect id="pl-lane-bg-1" className="pl-hidden" x="270" y={L1Y - 42} width="500" height="84" rx="8" ry="8"
-            fill="rgba(14,165,233,0.05)" stroke="rgba(14,165,233,0.25)" strokeWidth="1.5" />
+            fill="#0F1A2E" stroke="rgba(14,165,233,0.25)" strokeWidth="1.5" />
           <rect id="pl-lane-bg-2" className="pl-hidden" x="270" y={L2Y - 42} width="500" height="84" rx="8" ry="8"
-            fill="rgba(139,92,246,0.05)" stroke="rgba(139,92,246,0.25)" strokeWidth="1.5" />
+            fill="#0F1A2E" stroke="rgba(139,92,246,0.25)" strokeWidth="1.5" />
           <rect id="pl-lane-bg-3" className="pl-hidden" x="270" y={L3Y - 42} width="500" height="84" rx="8" ry="8"
-            fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.25)" strokeWidth="1.5" />
+            fill="#0F1A2E" stroke="rgba(245,158,11,0.25)" strokeWidth="1.5" />
 
           {/* Lane labels — inside containers, left side */}
           <g id="pl-lane-lbl-1" className="pl-hidden">
@@ -459,10 +588,14 @@ export default function SlideHeroPipeline() {
             <text x={BX2 + BW / 2} y={L1Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Policy</text>
             <text x={BX2 + BW / 2} y={L1Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Mapping</text>
           </g>
-          <g id="pl-l1ghost" className="pl-hidden" opacity="0.25">
-            <rect x={BX3} y={L1Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
-              fill="none" stroke="#0EA5E9" strokeWidth="0.6" strokeDasharray="2,4" />
-            <text x={BX3 + BW / 2} y={L1Y + 4} textAnchor="middle" fill="#0EA5E9" fontSize="18">+</text>
+          {/* Lane 1 mini-gate (hexagonal, same height as blocks) */}
+          <g id="pl-l1-gate" className="pl-hidden">
+            <polygon
+              points={`${BX3},${L1Y} ${BX3 + 18},${L1Y - BH / 2} ${BX3 + BW - 18},${L1Y - BH / 2} ${BX3 + BW},${L1Y} ${BX3 + BW - 18},${L1Y + BH / 2} ${BX3 + 18},${L1Y + BH / 2}`}
+              fill="rgba(14,165,233,0.06)" stroke="#0EA5E9" strokeWidth="1.5" />
+            <text x={BX3 + BW / 2} y={L1Y - 10} textAnchor="middle" fill="#F8FAFC" fontSize="10" fontWeight="600" fontFamily={F}>Human</text>
+            <text x={BX3 + BW / 2} y={L1Y + 2} textAnchor="middle" fill="#F8FAFC" fontSize="10" fontWeight="600" fontFamily={F}>Approval Gate</text>
+            <text x={BX3 + BW / 2} y={L1Y + 15} textAnchor="middle" fill="#F59E0B" fontSize="8.5" fontWeight="700" fontFamily={F}>Pending</text>
           </g>
 
           {/* Ambient edge dot */}
@@ -479,17 +612,20 @@ export default function SlideHeroPipeline() {
             <text x={BX1 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Contradiction</text>
             <text x={BX1 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Detection</text>
           </g>
-          <g id="pl-l2b2" className="pl-hidden" opacity="0.35">
+          <g id="pl-l2b2" className="pl-hidden">
+            {/* Block border */}
             <rect x={BX2} y={L2Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
               fill="rgba(255,255,255,0.05)" stroke="#8B5CF6" strokeWidth="1.5" />
-            <text x={BX2 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Scope</text>
-            <text x={BX2 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" fontFamily={F}>Assessment</text>
+            {/* Dark overlay wash */}
+            <rect x={BX2} y={L2Y - BH / 2} width={BW} height={BH} rx={BR} ry={BR}
+              fill="rgba(11,18,33,0.65)" stroke="none" />
+            {/* Faded text */}
+            <text x={BX2 + BW / 2} y={L2Y - 5} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.4" fontFamily={F}>Scope</text>
+            <text x={BX2 + BW / 2} y={L2Y + 9} textAnchor="middle" fill="#F8FAFC" fontSize="11" opacity="0.4" fontFamily={F}>Assessment</text>
+            {/* Red strikethrough — corner to corner */}
+            <line x1={BX2 + 2} y1={L2Y - BH / 2 + 2} x2={BX2 + BW - 2} y2={L2Y + BH / 2 - 2}
+              stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" />
           </g>
-
-          {/* Strikethrough (always visible in static) */}
-          <line id="pl-l2-strike"
-            x1={BX2 + 5} y1={L2Y - BH / 2 + 5} x2={BX2 + BW - 5} y2={L2Y + BH / 2 - 5}
-            stroke="#EF4444" strokeWidth="2.5" />
 
           {/* "New evidence" label */}
           <text id="pl-l2-newev" className="pl-hidden" x={BX2 + BW / 2} y={L2Y - BH / 2 - 6}
@@ -500,8 +636,7 @@ export default function SlideHeroPipeline() {
             x1={BX2 + BW} y1={L2Y} x2={BX3} y2={L2Y}
             stroke="#64748B" strokeWidth="2" markerEnd="url(#pl-arr-g)" />
 
-          {/* Disruption dot */}
-          <circle id="pl-disrupt-dot" className="pl-hidden" cx="270" cy={L2Y + 100} r="4" fill="#F59E0B" />
+          {/* Disruption dot removed */}
 
           {/* Bypass edge removed — direct B2→B3 edge handles this */}
 
@@ -574,8 +709,7 @@ export default function SlideHeroPipeline() {
             textAnchor="middle" fill="#10B981" fontSize="14">✓</text>
 
           <g id="pl-gate-badges" className="pl-hidden">
-            <text x={GX} y={L2Y + 52} textAnchor="middle" fill="#10B981" fontSize="9" fontWeight="600" fontFamily={F}>Approved ✓</text>
-            <text x={GX} y={L2Y + 64} textAnchor="middle" fill="#F59E0B" fontSize="8" fontWeight="700" fontFamily={F}>No bypass mode</text>
+            <text x={GX} y={L2Y + 56} textAnchor="middle" fill="#F59E0B" fontSize="8" fontWeight="700" fontFamily={F}>No bypass mode</text>
           </g>
 
           {/* Gate → Decision Record */}
@@ -595,24 +729,38 @@ export default function SlideHeroPipeline() {
 
           {/* ════════ ZONE 4: Provenance ════════ */}
 
-          {/* Provenance timeline with tick marks */}
+          {/* Provenance timeline with tick marks — centered under flow */}
           <g id="pl-timeline" className="pl-hidden">
-            {/* Main horizontal line */}
-            <line x1="280" y1="570" x2="1060" y2="570"
+            {/* Main horizontal line — centered at x=520 */}
+            <line x1="30" y1="570" x2="1010" y2="570"
               stroke="rgba(14,165,233,0.35)" strokeWidth="1.5" />
             {/* Tick marks — endcaps taller, inner ticks shorter */}
-            {[280, 358, 436, 514, 592, 670, 748, 826, 904, 982, 1060].map((tx, i) => {
+            {[30, 128, 226, 324, 422, 520, 618, 716, 814, 912, 1010].map((tx, i) => {
               const isEnd = i === 0 || i === 10
               return <line key={tx} x1={tx} y1={isEnd ? 562 : 564} x2={tx} y2={isEnd ? 578 : 576}
                 stroke="rgba(14,165,233,0.35)" strokeWidth="1.5" />
             })}
           </g>
-          <text id="pl-timeline-label" className="pl-hidden" x="670" y="594"
-            textAnchor="middle" fill="#475569" fontSize="11" fontFamily={F}>Provenance timeline</text>
-          <text id="pl-timeline-lock" className="pl-hidden" x="1080" y="575"
+          <text id="pl-timeline-label" className="pl-hidden" x="520" y="594"
+            textAnchor="middle" fill="#94A3B8" fontSize="11" fontFamily={F}>End-to-End Decision Provenance</text>
+          <text id="pl-timeline-lock" className="pl-hidden" x="1025" y="575"
             fill="#475569" fontSize="13">🔒</text>
 
         </svg>
+      </div>
+
+      {/* ═══ FRAME COUNTER ═══ */}
+      <div className="pl-frame-bar">
+        <button className="pl-frame-btn" onClick={rewind} title="Rewind">⏮</button>
+        <button className="pl-frame-btn" onClick={goPrev} title="Previous">◀</button>
+        <button className="pl-frame-btn" onClick={togglePlay} title="Play / Pause (Space)">
+          {playing ? '⏸' : '▶'}
+        </button>
+        <button className="pl-frame-btn" onClick={goNext} title="Next">▶</button>
+        <span className="pl-frame-label">
+          {frame < 0 ? '— / ' + totalFrames : (frame + 1) + ' / ' + totalFrames}
+          {frame >= 0 && FRAMES[frame] ? ` — ${FRAMES[frame].name}` : ''}
+        </span>
       </div>
     </div>
   )
