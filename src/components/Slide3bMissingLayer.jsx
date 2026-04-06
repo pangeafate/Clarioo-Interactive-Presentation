@@ -189,7 +189,7 @@ export default function Slide3bMissingLayer() {
     <div
       className="pdf-slide"
       style={{
-        padding: '1.6rem 3rem 1rem',
+        padding: '1.6rem 3rem 2.5rem',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
