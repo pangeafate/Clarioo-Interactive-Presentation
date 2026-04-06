@@ -8,7 +8,11 @@ export default function Slide4Strategy() {
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, margin: 0 }}>
           <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
-            We realized the need for the decision layer when we developed and started testing with our customers our first agent — the{' '}
+            We realized the need for the{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>decision layer</span>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            {' '}when we developed and started testing with our customers our first agent — the{' '}
           </span>
           <span style={{ color: 'var(--accent-cyan)' }}>
             Software Discovery-to-Decision Agent
