@@ -27,7 +27,7 @@ export default function Slide1Title() {
 
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', maxWidth: '800px', width: '100%' }}>
         
-        <div className="glass-card" style={{ padding: '4rem 6rem', marginBottom: '4rem', width: '100%' }}>
+        <div className="glass-card" style={{ padding: '1rem 2.5rem', marginBottom: '4rem' }}>
           <h1 style={{ 
             fontSize: '5rem', 
             fontWeight: 800, 
