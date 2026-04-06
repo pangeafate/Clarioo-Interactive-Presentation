@@ -331,7 +331,7 @@ export default function Slide3bMissingLayer() {
                 fontSize: '0.95rem',
                 fontWeight: 800,
                 letterSpacing: '0.24em',
-                color: 'var(--text-muted)',
+                color: 'var(--text-primary)',
               }}
             >
               TODAY
