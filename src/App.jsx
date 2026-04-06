@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 // Import all slides
 import SlideHeroPipeline from './components/SlideHeroPipeline'
 import Slide1Title from './components/Slide1Title'
+import Slide2TechStack from './components/Slide2TechStack'
 import Slide2Team from './components/Slide2Team'
 import Slide3Legacy from './components/Slide3Legacy'
 import Slide3bMissingLayer from './components/Slide3bMissingLayer'
@@ -27,6 +28,7 @@ function App() {
   const slides = [
     { name: "Pipeline", component: <SlideHeroPipeline /> },
     { name: "Title", component: <Slide1Title /> },
+    { name: "Tech Stack", component: <Slide2TechStack /> },
     { name: "Team", component: <Slide2Team /> },
     { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
