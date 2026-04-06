@@ -28,7 +28,7 @@ function App() {
     { name: "Pipeline", component: <SlideHeroPipeline /> },
 { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
-    { name: "Legacy Orgs", component: <Slide3Legacy /> },
+    // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
     { name: "Strategy", component: <Slide4Strategy /> },
     { name: "Product Snapshot", component: <Slide11Product /> },
