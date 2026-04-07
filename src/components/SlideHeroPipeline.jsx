@@ -350,7 +350,7 @@ export default function SlideHeroPipeline() {
   return (
     <div ref={slideRef} className="pdf-slide" style={{
       padding: 0, display: 'flex', flexDirection: 'column',
-      height: '100%', overflowY: 'auto', overflowX: 'hidden', background: 'var(--bg-deep-navy)'
+      height: '100%', overflow: 'hidden', background: 'var(--bg-deep-navy)'
     }}>
       <style>{PIPELINE_CSS}</style>
 
@@ -396,7 +396,7 @@ export default function SlideHeroPipeline() {
       </div>
 
       {/* ═══ SVG PIPELINE ═══ */}
-      <div style={{ flex: '1 0 auto', minHeight: '28rem', padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ flex: 1, minHeight: 0, padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg viewBox="-38 0 1200 650" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
           <defs>
             <marker id="pl-arr-c" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
