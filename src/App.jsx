@@ -37,7 +37,7 @@ function App() {
   const slides = [
     { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
-    { name: "Positioning", component: <SlidePositioning />, noZoom: true },
+    { name: "Positioning", component: <SlidePositioning /> },
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
     { name: "Clarioo", component: <SlideHeroPipeline />, noZoom: true },
