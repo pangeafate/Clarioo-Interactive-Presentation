@@ -61,10 +61,14 @@ export default function SlidePositioning() {
       }}>
         <div style={{
           display: 'flex',
-          alignItems: 'stretch',
+          flexDirection: 'column',
           width: '100%',
           maxWidth: '70rem',
         }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'stretch',
+          }}>
 
           {/* Y-Axis Label */}
           <div style={{
@@ -278,40 +282,39 @@ export default function SlidePositioning() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
 
-      {/* ── X-Axis ── */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.875rem',
-        marginLeft: '2.5rem',
-        marginTop: '0.25rem',
-        marginBottom: '0.375rem',
-      }}>
-        <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-          Process Execution
-        </span>
-        <svg
-          style={{ width: '22rem', height: '0.75rem' }}
-          viewBox="0 0 350 12"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <line
-            x1="0" y1="6" x2="330" y2="6"
-            stroke="var(--text-muted)" strokeWidth="1"
-            strokeDasharray="8 5" opacity="0.5"
-          />
-          <polygon
-            points="340,6 330,2 330,10"
-            fill="var(--text-muted)" opacity="0.5"
-          />
-        </svg>
-        <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-          Decision Deliberation
-        </span>
+          {/* ── X-Axis ── directly under the matrix grid */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.875rem',
+            marginLeft: '2.5rem',
+            marginTop: '0.5rem',
+          }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              Process Execution
+            </span>
+            <svg
+              style={{ flex: 1, height: '0.75rem' }}
+              viewBox="0 0 350 12"
+              preserveAspectRatio="none"
+            >
+              <line
+                x1="0" y1="6" x2="330" y2="6"
+                stroke="var(--text-muted)" strokeWidth="1"
+                strokeDasharray="8 5" opacity="0.5"
+              />
+              <polygon
+                points="340,6 330,2 330,10"
+                fill="var(--text-muted)" opacity="0.5"
+              />
+            </svg>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              Decision Deliberation
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* ── Bottom Insight ── */}

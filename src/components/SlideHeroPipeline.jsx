@@ -292,21 +292,21 @@ export default function SlideHeroPipeline() {
     return () => observer.disconnect()
   }, [hasStarted])
 
-  /* Auto-play: advance one frame every 800ms */
+  /* Auto-play: dynamic interval — faster between frames 10-22 */
   useEffect(() => {
-    if (playing) {
-      playRef.current = setInterval(() => {
-        setFrame(prev => {
-          if (prev >= totalFrames - 1) {
-            setPlaying(false)
-            return prev
-          }
-          return prev + 1
-        })
-      }, 1400)
-    }
-    return () => { if (playRef.current) clearInterval(playRef.current) }
-  }, [playing, totalFrames])
+    if (!playing) return
+    const delay = (frame >= 9 && frame < 22) ? 700 : 1400
+    playRef.current = setTimeout(() => {
+      setFrame(prev => {
+        if (prev >= totalFrames - 1) {
+          setPlaying(false)
+          return prev
+        }
+        return prev + 1
+      })
+    }, delay)
+    return () => { if (playRef.current) clearTimeout(playRef.current) }
+  }, [playing, frame, totalFrames])
 
   const goNext = () => setFrame(prev => Math.min(prev + 1, totalFrames - 1))
   const goPrev = () => setFrame(prev => Math.max(prev - 1, -1))
