@@ -295,21 +295,27 @@ export default function SlidePositioning() {
             <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
               Process Execution
             </span>
-            <svg
-              style={{ flex: 1, height: '0.75rem' }}
-              viewBox="0 0 350 12"
-              preserveAspectRatio="none"
-            >
-              <line
-                x1="0" y1="6" x2="330" y2="6"
-                stroke="var(--text-muted)" strokeWidth="1"
-                strokeDasharray="8 5" opacity="0.5"
-              />
-              <polygon
-                points="340,6 330,2 330,10"
-                fill="var(--text-muted)" opacity="0.5"
-              />
-            </svg>
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+            }}>
+              <div style={{
+                flex: 1,
+                height: '1px',
+                backgroundImage: 'repeating-linear-gradient(to right, var(--text-muted) 0, var(--text-muted) 0.5rem, transparent 0.5rem, transparent 0.875rem)',
+                opacity: 0.5,
+              }} />
+              <div style={{
+                width: 0,
+                height: 0,
+                borderTop: '0.3rem solid transparent',
+                borderBottom: '0.3rem solid transparent',
+                borderLeft: '0.5rem solid var(--text-muted)',
+                opacity: 0.5,
+                flexShrink: 0,
+              }} />
+            </div>
             <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
               Decision Deliberation
             </span>
