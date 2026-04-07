@@ -74,6 +74,16 @@ export default function Slide4Strategy() {
                 Understand how this Agent works
               </a>
             </div>
+            <img
+              src={`${import.meta.env.BASE_URL}agent-workflow.png`}
+              alt="Agent workflow: business need, criteria building, vendor evaluation, vendor comparison"
+              style={{
+                width: '100%',
+                borderRadius: '0.75rem',
+                marginTop: '0.875rem',
+                border: '1px solid var(--border-light)',
+              }}
+            />
           </div>
         </div>
 
