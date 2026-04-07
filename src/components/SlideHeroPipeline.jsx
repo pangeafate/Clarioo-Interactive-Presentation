@@ -113,15 +113,15 @@ const PIPELINE_CSS = `
 /* ── Mobile: fit chart to viewport, keep zoomable ── */
 @media (max-width: 768px) {
   .pl-slide-root { overflow: auto !important; height: auto !important; min-height: 100%; }
-  .pl-slide-root > div:first-of-type { padding: 0.5rem 0.75rem 0.15rem !important; }
-  .pl-slide-root > div:first-of-type h1 { font-size: 1.25rem !important; }
-  .pl-slide-root > div:first-of-type p  { font-size: 0.7rem !important; }
+  .pl-slide-root > div:first-of-type { padding: 1.5rem 1rem 1rem !important; }
+  .pl-slide-root > div:first-of-type h1 { margin-bottom: 0.5rem !important; }
+  .pl-slide-root > div:first-of-type p  { font-size: 0.85rem !important; margin-top: 0.5rem !important; }
   /* Pillar cards: 2×2 grid */
-  .pl-cards-row { flex-wrap: wrap !important; gap: 0.5rem !important; padding: 0.2rem 0.5rem 0.3rem !important; }
-  .pl-card { width: calc(50% - 0.25rem) !important; min-height: 0 !important; padding: 0.4rem 0.5rem !important; font-size: 0.7rem !important; }
-  .pl-card p { font-size: 0.65rem !important; line-height: 1.3 !important; }
-  /* SVG: fill remaining space */
-  .pl-svg-wrap { flex: 1 1 0% !important; min-height: 0 !important; width: 100% !important; padding: 0 0.25rem !important; }
+  .pl-cards-row { flex-wrap: wrap !important; gap: 0.5rem !important; padding: 0.6rem 0.5rem 1rem !important; }
+  .pl-card { width: calc(50% - 0.25rem) !important; height: 7.15rem !important; min-height: 0 !important; padding: 0.8rem 0.9rem !important; }
+  .pl-card p { font-size: 1.1rem !important; line-height: 1.35 !important; }
+  /* SVG: constrain to content aspect ratio so no vertical gap */
+  .pl-svg-wrap { flex: 0 0 auto !important; width: 100% !important; aspect-ratio: 1200/650 !important; padding: 0 0.25rem !important; }
   .pl-frame-bar { bottom: 0.25rem; padding: 0.25rem 0.5rem; gap: 0.4rem; }
   .pl-frame-btn { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
   .pl-frame-label { font-size: 0.7rem; min-width: 5rem; }

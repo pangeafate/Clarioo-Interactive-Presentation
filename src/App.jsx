@@ -40,7 +40,7 @@ function App() {
     { name: "Positioning", component: <SlidePositioning /> },
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
-    { name: "Clarioo", component: <SlideHeroPipeline />, noZoom: true },
+    { name: "Clarioo", component: <SlideHeroPipeline /> },
     { name: "The Journey", component: <Slide4Strategy /> },
     // { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
