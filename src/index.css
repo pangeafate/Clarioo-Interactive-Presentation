@@ -368,6 +368,17 @@ p, li, div {
     margin-bottom: 2rem !important;
   }
 
+  /* ---- Slide: Phase 3 ---- */
+  .phase3-cards {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  .phase3-icons {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
   /* ---- Slide 13: Waitlist ---- */
   .waitlist-content {
     flex-direction: column !important;

@@ -20,7 +20,7 @@ export default function Slide5Phase3() {
       </div>
 
       {/* Top two cards */}
-      <div style={{ display: 'flex', gap: '1.5rem', maxWidth: '73rem', width: '100%', alignSelf: 'center' }}>
+      <div className="phase3-cards" style={{ display: 'flex', gap: '1.5rem', maxWidth: '73rem', width: '100%', alignSelf: 'center' }}>
 
         {/* Left Split */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '1.25rem 1.5rem' }}>
@@ -75,7 +75,7 @@ export default function Slide5Phase3() {
         <h3 className="text-white" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.375rem', textAlign: 'center' }}>Unified decision & risk system</h3>
         <p style={{ textAlign: 'center', marginBottom: '1rem', color: 'var(--text-primary)', fontSize: '0.95rem', opacity: 0.85 }}>Every decision — who made it, why, what alternatives were considered — becomes structured, searchable, reusable organizational memory</p>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', fontSize: '0.95rem' }}>
+        <div className="phase3-icons" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', fontSize: '0.95rem' }}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <FileText size={28} style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem' }} />
             <div className="text-white" style={{ fontWeight: 700, fontSize: '0.95rem' }}>Explicit decisions</div>
