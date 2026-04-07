@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 
-const MATRIX_DESIGN_WIDTH = 960 // px — compact matrix, less horizontal stretch
+const MATRIX_W = 960  // px — 16:9 design size
+const MATRIX_H = 540
 
 export default function SlidePositioning() {
   const containerRef = useRef(null)
@@ -10,8 +11,7 @@ export default function SlidePositioning() {
     const el = containerRef.current
     if (!el) return
     const update = () => {
-      const available = el.clientWidth
-      setScale(Math.min(1, available / MATRIX_DESIGN_WIDTH))
+      setScale(Math.min(1, el.clientWidth / MATRIX_W, el.clientHeight / MATRIX_H))
     }
     update()
     const ro = new ResizeObserver(update)
@@ -79,14 +79,18 @@ export default function SlidePositioning() {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          width: MATRIX_DESIGN_WIDTH + 'px',
+          width: MATRIX_W,
+          height: MATRIX_H,
           flexShrink: 0,
+          overflow: 'hidden',
           transform: `scale(${scale})`,
           transformOrigin: 'top center',
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'stretch',
+            flex: 1,
+            minHeight: 0,
           }}>
 
           {/* Y-Axis Label */}
@@ -118,8 +122,7 @@ export default function SlidePositioning() {
             flex: 1,
             display: 'grid',
             gridTemplateColumns: '1fr 1.5fr',
-            gridTemplateRows: 'minmax(auto, 1fr) minmax(auto, 1fr)',
-            minHeight: '24rem',
+            gridTemplateRows: '1fr 1fr',
             position: 'relative',
             borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           }}>
