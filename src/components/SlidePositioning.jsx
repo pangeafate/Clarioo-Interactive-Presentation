@@ -16,7 +16,7 @@ export default function SlidePositioning() {
       `}</style>
 
       {/* ── Title Block ── */}
-      <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+      <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
         <div style={{
           fontSize: '0.85rem',
           fontWeight: 600,
