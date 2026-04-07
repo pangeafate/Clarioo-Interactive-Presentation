@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 // Import all slides
 import SlideHeroPipeline from './components/SlideHeroPipeline'
@@ -50,6 +50,22 @@ function App() {
   const nextSlide = () => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))
   const prevSlide = () => setCurrentSlide(prev => Math.max(prev - 1, 0))
 
+  /* Track multi-touch gestures to ignore synthesized clicks after pinch zoom */
+  const lastPinchRef = useRef(0)
+  useEffect(() => {
+    const onTouchStart = (e) => { if (e.touches.length > 1) lastPinchRef.current = Date.now() }
+    const onTouchEnd = (e) => { if (e.changedTouches.length > 0 && lastPinchRef.current) lastPinchRef.current = Date.now() }
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => { window.removeEventListener('touchstart', onTouchStart); window.removeEventListener('touchend', onTouchEnd) }
+  }, [])
+
+  const safeSetSlide = (index) => {
+    /* Ignore clicks within 600ms of a pinch gesture — they're synthesized by iOS */
+    if (Date.now() - lastPinchRef.current < 600) return
+    setCurrentSlide(index)
+  }
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') nextSlide()
@@ -70,7 +86,7 @@ function App() {
             <button 
               key={index} 
               className={`nav-tab ${index === currentSlide ? 'active' : ''}`}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => safeSetSlide(index)}
             >
               {index + 1}. {slide.name}
             </button>
