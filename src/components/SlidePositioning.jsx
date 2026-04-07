@@ -154,12 +154,12 @@ export default function SlidePositioning() {
               <div style={{
                 border: '1px solid rgba(139, 92, 246, 0.3)',
                 borderRadius: '2cqi',
-                padding: '2.5cqi 3cqi',
+                padding: '2cqi 2.5cqi',
                 flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
               }}>
+                {/* EMERGING ZONE badge — top left */}
                 <div style={{
                   fontSize: '1.8cqi',
                   fontWeight: 700,
@@ -171,58 +171,62 @@ export default function SlidePositioning() {
                   Emerging Zone
                 </div>
 
+                {/* Main content: left column (Clarioo + Cloverpop) + right column (What Clarioo Brings) */}
                 <div style={{
                   display: 'flex',
-                  alignItems: 'stretch',
+                  alignItems: 'flex-start',
                   gap: '2cqi',
+                  flex: 1,
                 }}>
-                  {/* Cloverpop */}
+                  {/* Left: Cloverpop below CLARIOO */}
                   <div style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    padding: '1.5cqi 2.5cqi',
-                    borderRadius: '1.5cqi',
-                    fontSize: '2.5cqi',
-                    color: 'var(--text-secondary)',
-                    opacity: 0.5,
-                    alignSelf: 'center',
-                    whiteSpace: 'nowrap',
-                  }}>Cloverpop</div>
-
-                  {/* CLARIOO Hero */}
-                  <div style={{
-                    background: 'linear-gradient(135deg, #1e3a8a, #6d28d9)',
-                    padding: '2.5cqi 4cqi',
-                    borderRadius: '2cqi',
-                    textAlign: 'center',
-                    boxShadow: '0 0 4cqi rgba(124,58,237,0.4), 0 0 8cqi rgba(14,165,233,0.2)',
-                    alignSelf: 'center',
-                    flexShrink: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '1.5cqi',
                   }}>
+                    {/* CLARIOO Hero */}
                     <div style={{
-                      fontSize: '4cqi',
-                      fontWeight: 900,
-                      color: '#fff',
-                      letterSpacing: '0.4cqi',
-                      marginBottom: '0.3cqi',
-                    }}>CLARIOO</div>
+                      background: 'linear-gradient(135deg, #1e3a8a, #6d28d9)',
+                      padding: '2.5cqi 4cqi',
+                      borderRadius: '2cqi',
+                      textAlign: 'center',
+                      boxShadow: '0 0 4cqi rgba(124,58,237,0.4), 0 0 8cqi rgba(14,165,233,0.2)',
+                    }}>
+                      <div style={{
+                        fontSize: '4cqi',
+                        fontWeight: 900,
+                        color: '#fff',
+                        letterSpacing: '0.4cqi',
+                        marginBottom: '0.3cqi',
+                      }}>CLARIOO</div>
+                      <div style={{
+                        fontSize: '2cqi',
+                        color: 'rgba(255,255,255,0.85)',
+                        fontWeight: 500,
+                      }}>Decision Intelligence System</div>
+                    </div>
+
+                    {/* Cloverpop */}
                     <div style={{
-                      fontSize: '2cqi',
-                      color: 'rgba(255,255,255,0.85)',
-                      fontWeight: 500,
-                    }}>Decision Intelligence System</div>
+                      background: 'rgba(255,255,255,0.1)',
+                      padding: '1.5cqi 2.5cqi',
+                      borderRadius: '1.5cqi',
+                      fontSize: '2.5cqi',
+                      color: 'var(--text-secondary)',
+                      opacity: 0.5,
+                      whiteSpace: 'nowrap',
+                    }}>Cloverpop</div>
                   </div>
 
-                  {/* What Clarioo Brings */}
+                  {/* Right: What Clarioo Brings — top-aligned with CLARIOO */}
                   <div style={{
                     background: 'rgba(255,255,255,0.06)',
                     borderRadius: '1.5cqi',
-                    padding: '3cqi 2.5cqi',
+                    padding: '2.5cqi 2.5cqi',
                     fontSize: '1.8cqi',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
                   }}>
                     <div style={{
                       fontWeight: 700,
