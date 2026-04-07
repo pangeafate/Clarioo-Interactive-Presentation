@@ -291,7 +291,7 @@ export default function SlidePositioning() {
             marginLeft: '2.5rem',
             marginTop: '0.5rem',
           }}>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
               Process Execution
             </span>
             <div style={{
@@ -302,7 +302,7 @@ export default function SlidePositioning() {
               <div style={{
                 flex: 1,
                 height: '1px',
-                backgroundImage: 'repeating-linear-gradient(to right, var(--text-muted) 0, var(--text-muted) 0.5rem, transparent 0.5rem, transparent 0.875rem)',
+                background: 'var(--text-muted)',
                 opacity: 0.5,
               }} />
               <div style={{
@@ -315,7 +315,7 @@ export default function SlidePositioning() {
                 flexShrink: 0,
               }} />
             </div>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
               Decision Deliberation
             </span>
           </div>
