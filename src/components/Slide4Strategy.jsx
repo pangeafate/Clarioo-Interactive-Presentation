@@ -66,24 +66,15 @@ export default function Slide4Strategy() {
                 Software Discovery-to-Decision Agent
               </a>
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href={`${import.meta.env.BASE_URL}agent-workflow.png`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-emerald)' }}
               >
                 Understand how this Agent works
               </a>
             </div>
-            <img
-              src={`${import.meta.env.BASE_URL}agent-workflow.png`}
-              alt="Agent workflow: business need, criteria building, vendor evaluation, vendor comparison"
-              style={{
-                width: '100%',
-                borderRadius: '0.75rem',
-                marginTop: '0.875rem',
-                border: '1px solid var(--border-light)',
-              }}
-            />
           </div>
         </div>
 
