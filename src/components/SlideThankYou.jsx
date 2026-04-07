@@ -57,6 +57,11 @@ export default function SlideThankYou() {
           The decision layer between your people, AI agents, and systems of record.
         </p>
 
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem', fontWeight: 600 }}>
+          <span style={{ color: 'var(--accent-cyan)' }}>olga@clarioo.io</span>
+          <span style={{ color: 'var(--accent-cyan)' }}>sergey@clarioo.io</span>
+          <span style={{ color: 'var(--accent-cyan)' }}>andrey@clarioo.io</span>
+        </div>
 
       </div>
 
