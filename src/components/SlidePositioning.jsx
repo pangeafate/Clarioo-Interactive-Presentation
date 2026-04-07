@@ -2,20 +2,20 @@ import React from 'react'
 
 export default function SlidePositioning() {
   const tileStyle = {
-    background: 'rgba(255, 255, 255, 0.07)',
+    background: 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem 1.125rem',
     borderRadius: '0.5rem',
-    fontSize: '0.85rem',
+    fontSize: '1rem',
     color: 'var(--text-secondary)',
     textAlign: 'center',
     whiteSpace: 'nowrap',
   }
 
   const quadrantHeaderStyle = {
-    fontSize: '0.75rem',
-    color: 'var(--text-muted)',
-    marginBottom: '0.625rem',
-    fontWeight: 500,
+    fontSize: '0.95rem',
+    color: 'var(--text-secondary)',
+    marginBottom: '0.75rem',
+    fontWeight: 600,
   }
 
   return (
@@ -30,7 +30,7 @@ export default function SlidePositioning() {
       {/* ── Title Block ── */}
       <div style={{ marginBottom: '1.25rem' }}>
         <div style={{
-          fontSize: '0.8rem',
+          fontSize: '0.85rem',
           fontWeight: 600,
           letterSpacing: '0.35rem',
           color: 'var(--text-muted)',
@@ -64,8 +64,6 @@ export default function SlidePositioning() {
           alignItems: 'stretch',
           width: '100%',
           maxWidth: '70rem',
-          height: '100%',
-          maxHeight: '34rem',
         }}>
 
           {/* Y-Axis Label */}
@@ -73,22 +71,22 @@ export default function SlidePositioning() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '1.75rem',
+            width: '2.5rem',
             flexShrink: 0,
           }}>
             <div style={{
               transform: 'rotate(-90deg)',
               whiteSpace: 'nowrap',
-              fontSize: '0.65rem',
+              fontSize: '0.8rem',
               color: 'var(--text-secondary)',
-              letterSpacing: '0.02rem',
-              opacity: 0.6,
+              letterSpacing: '0.03rem',
+              opacity: 0.8,
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
+              gap: '0.625rem',
             }}>
               <span>Breadth (High-volume tasks)</span>
-              <span style={{ fontSize: '0.8rem' }}>↑</span>
+              <span style={{ fontSize: '1rem', color: 'var(--text-primary)', opacity: 0.5 }}>↑</span>
               <span>Depth (High-stakes decisions)</span>
             </div>
           </div>
@@ -98,9 +96,9 @@ export default function SlidePositioning() {
             flex: 1,
             display: 'grid',
             gridTemplateColumns: '1fr 1.5fr',
-            gridTemplateRows: '1.15fr 1fr',
+            gridTemplateRows: 'auto auto',
             position: 'relative',
-            borderLeft: '1px solid rgba(255, 255, 255, 0.06)',
+            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           }}>
 
             {/* Crosshair – vertical */}
@@ -110,7 +108,7 @@ export default function SlidePositioning() {
               bottom: 0,
               left: '40%',
               width: '1px',
-              background: 'rgba(255, 255, 255, 0.06)',
+              background: 'rgba(255, 255, 255, 0.1)',
               pointerEvents: 'none',
             }} />
             {/* Crosshair – horizontal */}
@@ -120,7 +118,7 @@ export default function SlidePositioning() {
               right: 0,
               top: '53.5%',
               height: '1px',
-              background: 'rgba(255, 255, 255, 0.06)',
+              background: 'rgba(255, 255, 255, 0.1)',
               pointerEvents: 'none',
             }} />
 
@@ -142,8 +140,8 @@ export default function SlidePositioning() {
             }}>
               {/* Emerging Category label */}
               <div style={{
-                fontSize: '0.65rem',
-                color: 'var(--text-muted)',
+                fontSize: '0.8rem',
+                color: 'var(--text-secondary)',
                 marginBottom: '0.375rem',
                 marginTop: '0.5rem',
                 fontWeight: 400,
@@ -154,9 +152,9 @@ export default function SlidePositioning() {
 
               {/* Container with accent border */}
               <div style={{
-                border: '1px solid rgba(139, 92, 246, 0.2)',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
                 borderRadius: '0.75rem',
-                padding: '0.75rem 1rem',
+                padding: '0.875rem 1.125rem',
                 flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
@@ -164,12 +162,12 @@ export default function SlidePositioning() {
               }}>
                 {/* YOUR ZONE badge */}
                 <div style={{
-                  fontSize: '0.575rem',
+                  fontSize: '0.7rem',
                   fontWeight: 700,
                   letterSpacing: '0.15rem',
                   color: 'var(--accent-cyan)',
                   textTransform: 'uppercase',
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.625rem',
                 }}>
                   Your Zone
                 </div>
@@ -178,7 +176,7 @@ export default function SlidePositioning() {
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.875rem',
+                  gap: '1rem',
                 }}>
                   {/* Cloverpop */}
                   <div style={{ ...tileStyle, opacity: 0.5, flexShrink: 0 }}>
@@ -191,38 +189,38 @@ export default function SlidePositioning() {
                     padding: '1.125rem 2rem',
                     borderRadius: '0.75rem',
                     textAlign: 'center',
-                    boxShadow: '0 0 1.75rem rgba(124, 58, 237, 0.35), 0 0 3.5rem rgba(14, 165, 233, 0.15)',
+                    boxShadow: '0 0 1.75rem rgba(124, 58, 237, 0.4), 0 0 3.5rem rgba(14, 165, 233, 0.2)',
                     flexShrink: 0,
                   }}>
                     <div style={{
-                      fontSize: '1.35rem',
+                      fontSize: '1.5rem',
                       fontWeight: 900,
                       color: '#fff',
                       letterSpacing: '0.15rem',
                       marginBottom: '0.125rem',
                     }}>CLARIOO</div>
                     <div style={{
-                      fontSize: '0.625rem',
-                      color: 'rgba(255, 255, 255, 0.8)',
+                      fontSize: '0.75rem',
+                      color: 'rgba(255, 255, 255, 0.85)',
                       fontWeight: 500,
                     }}>Decision Intelligence System</div>
                   </div>
 
                   {/* What Doesn't Exist callout */}
                   <div style={{
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    background: 'rgba(255, 255, 255, 0.06)',
                     borderRadius: '0.5rem',
-                    padding: '0.5rem 0.75rem',
-                    fontSize: '0.575rem',
-                    color: 'var(--text-muted)',
+                    padding: '0.625rem 0.875rem',
+                    fontSize: '0.7rem',
+                    color: 'var(--text-secondary)',
                     lineHeight: 1.55,
-                    flexShrink: 0,
+                    minWidth: 0,
                   }}>
                     <div style={{
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
-                      marginBottom: '0.2rem',
-                      fontSize: '0.625rem',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                      marginBottom: '0.25rem',
+                      fontSize: '0.8rem',
                     }}>What Doesn&apos;t Exist</div>
                     <div>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
@@ -261,11 +259,11 @@ export default function SlidePositioning() {
                 <div style={tileStyle}>ChatGPT</div>
                 <div style={tileStyle}>Copilot</div>
                 <div style={{
-                  fontSize: '0.5rem',
+                  fontSize: '0.7rem',
                   color: 'var(--text-muted)',
                   fontStyle: 'italic',
                   lineHeight: 1.3,
-                  padding: '0 0.125rem',
+                  padding: '0 0.25rem',
                 }}>crowded<br />space</div>
               </div>
               {/* Row 2 */}
@@ -288,12 +286,12 @@ export default function SlidePositioning() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '0.75rem',
-        marginLeft: '1.75rem',
+        gap: '0.875rem',
+        marginLeft: '2.5rem',
         marginTop: '0.25rem',
-        marginBottom: '0.625rem',
+        marginBottom: '0.375rem',
       }}>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
           Process Execution
         </span>
         <svg
@@ -304,14 +302,14 @@ export default function SlidePositioning() {
           <line
             x1="0" y1="6" x2="330" y2="6"
             stroke="var(--text-muted)" strokeWidth="1"
-            strokeDasharray="8 5" opacity="0.4"
+            strokeDasharray="8 5" opacity="0.5"
           />
           <polygon
             points="340,6 330,2 330,10"
-            fill="var(--text-muted)" opacity="0.4"
+            fill="var(--text-muted)" opacity="0.5"
           />
         </svg>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
           Decision Deliberation
         </span>
       </div>
@@ -319,7 +317,7 @@ export default function SlidePositioning() {
       {/* ── Bottom Insight ── */}
       <div style={{
         textAlign: 'center',
-        fontSize: '0.95rem',
+        fontSize: '1.1rem',
         color: 'var(--text-secondary)',
         lineHeight: 1.55,
         maxWidth: '50rem',
@@ -340,7 +338,7 @@ export default function SlidePositioning() {
           right: '2rem',
           width: '2rem',
           height: '2rem',
-          opacity: 0.2,
+          opacity: 0.25,
         }}
         viewBox="0 0 24 24"
         fill="none"
