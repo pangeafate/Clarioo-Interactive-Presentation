@@ -47,7 +47,7 @@ export default function SlidePositioning() {
           display: 'flex',
           flexDirection: 'column',
           minHeight: 0,
-          width: '80%',
+          width: '60%',
         }}>
         {/* Row: Y-axis + 16:9 Grid */}
         <div style={{
