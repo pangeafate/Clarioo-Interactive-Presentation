@@ -286,8 +286,10 @@ p, li, div {
 
   /* Allow vertical scroll when stacked content exceeds viewport */
   .slide-wrapper.active {
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch;
+    /* Force GPU layer — fixes iOS bounce-back on absolute-positioned scroll containers */
+    transform: translate3d(0, 0, 0);
   }
 
   /* Nav tabs: hide slide names, keep numbers compact */
