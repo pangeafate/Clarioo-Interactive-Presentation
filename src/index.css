@@ -255,8 +255,10 @@ p, li, div {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Desktop: suppress pinch-zoom via touch-action */
-@media (min-width: 769px) {
+/* Desktop with mouse: suppress pinch-zoom via touch-action.
+   Use (hover:hover)+(pointer:fine) so touch-capable tablets/laptops
+   in tablet-mode still get pan-y for scrolling. */
+@media (hover: hover) and (pointer: fine) {
   .presentation-container {
     touch-action: none;
   }
@@ -284,7 +286,7 @@ p, li, div {
    * and rubber-band the viewport instead of scrolling the child container.
    */
   .presentation-container {
-    touch-action: pan-y !important;
+    touch-action: pan-x pan-y !important;
   }
 
   /* General: reduce slide padding, allow content to exceed viewport */
@@ -312,11 +314,20 @@ p, li, div {
    *   both achieve the same compositing promotion but will-change is the
    *   modern approach and avoids creating a stacking context side-effect
    */
+  /* Hide inactive wrappers entirely so iOS Safari's gesture engine
+     doesn't see 15 stacked absolute layers when resolving the scroll
+     target — only the active wrapper exists in the render tree. */
+  .slide-wrapper {
+    display: none !important;
+  }
+
   .slide-wrapper.active {
+    display: flex !important;
     overflow-y: scroll !important;
     overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
+    touch-action: pan-y;
   }
 
   /* Nav tabs: hide slide names, keep numbers compact */
