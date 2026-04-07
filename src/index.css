@@ -262,6 +262,11 @@ p, li, div {
    Laptop view (>= 768px) is completely untouched.
    ============================================= */
 @media (max-width: 768px) {
+  /* Re-enable vertical touch scrolling on mobile */
+  .presentation-container {
+    touch-action: pan-y !important;
+  }
+
   /* General: reduce slide padding, allow content to exceed viewport */
   .pdf-slide {
     padding: 1.5rem 1.25rem !important;
