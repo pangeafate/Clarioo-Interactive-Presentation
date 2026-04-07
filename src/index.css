@@ -59,10 +59,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Suppress browser pinch-zoom and double-tap zoom at the CSS level.
-     This prevents touch gestures from being misinterpreted as navigation
-     or from synthesizing spurious click events on the nav bar. */
-  touch-action: none;
+  /* touch-action is set per-breakpoint: none on desktop (suppress pinch-zoom),
+     pan-y on mobile (allow vertical scroll) — see media queries below */
 }
 
 /* NAV */
@@ -257,14 +255,24 @@ p, li, div {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Desktop: suppress pinch-zoom via touch-action */
+@media (min-width: 769px) {
+  .presentation-container {
+    touch-action: none;
+  }
+}
+
 /* =============================================
    MOBILE RESPONSIVE — activates below 768px.
    Laptop view (>= 768px) is completely untouched.
    ============================================= */
 @media (max-width: 768px) {
-  /* Re-enable vertical touch scrolling on mobile */
-  .presentation-container {
-    touch-action: pan-y !important;
+  html, body {
+    overscroll-behavior: auto !important;
+  }
+
+  body {
+    overflow: visible !important;
   }
 
   /* General: reduce slide padding, allow content to exceed viewport */
@@ -280,11 +288,6 @@ p, li, div {
   .slide-wrapper.active {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-  }
-
-  body {
-    overflow: visible !important;
-    overscroll-behavior: auto !important;
   }
 
   /* Nav tabs: hide slide names, keep numbers compact */
