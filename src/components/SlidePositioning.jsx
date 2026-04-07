@@ -2,13 +2,18 @@ import React from 'react'
 
 export default function SlidePositioning() {
   return (
-    <div className="pdf-slide" style={{
+    <div className="pdf-slide pos-slide-root" style={{
       padding: '2.25rem 3.5rem 1.5rem',
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
       overflow: 'hidden',
     }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .pos-slide-root { overflow: auto !important; height: auto !important; min-height: 100%; }
+        }
+      `}</style>
 
       {/* ── Title Block ── */}
       <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
