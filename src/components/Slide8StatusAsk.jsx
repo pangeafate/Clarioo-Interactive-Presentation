@@ -1,5 +1,5 @@
 import React from 'react'
-import { Brain, Plug, Users, Rocket, Cpu } from 'lucide-react'
+import { Brain, Plug, Users, Rocket, Cpu, Code, FlaskConical, Server, Shield, Megaphone } from 'lucide-react'
 
 export default function Slide8StatusAsk() {
   return (
@@ -66,51 +66,29 @@ export default function Slide8StatusAsk() {
         <div className="glass-card" style={{ flex: 1, padding: '2.5rem', position: 'relative', overflow: 'hidden', borderLeft: '4px solid var(--accent-emerald) !important' }}>
           <div className="text-emerald" style={{ position: 'absolute', right: '-1rem', top: '-1rem', fontSize: '8rem', opacity: 0.1, fontWeight: 900 }}>$3M</div>
 
-          <h3 className="text-emerald" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <h3 className="text-emerald" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', borderBottom: '2px solid var(--accent-emerald)', paddingBottom: '1rem', display: 'inline-block' }}>
             Ask: $3M
           </h3>
 
-          {/* 1. Core Engine */}
-          <div style={{ marginBottom: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-              <Brain size={18} color="var(--accent-emerald)" />
-              <h4 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                Core Engine & Agent Development
-              </h4>
-              <span style={{ fontSize: '1.15rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>~50% / ~$1.5M</span>
+          {/* Breakdown items */}
+          {[
+            { icon: <Users size={18} color="var(--accent-emerald)" />, label: 'Engineering & Team', amount: '$900K' },
+            { icon: <Code size={18} color="var(--accent-emerald)" />, label: 'Dev tokens + R&D benchmarking', amount: '$570K' },
+            { icon: <FlaskConical size={18} color="var(--accent-emerald)" />, label: 'Client pilots (infra + LLM subsidy)', amount: '$720K' },
+            { icon: <Server size={18} color="var(--accent-emerald)" />, label: 'Our infra / capex', amount: '$180K' },
+            { icon: <Shield size={18} color="var(--accent-emerald)" />, label: 'Legal & compliance', amount: '$80K' },
+            { icon: <Megaphone size={18} color="var(--accent-emerald)" />, label: 'GTM + optional hires', amount: '$550K' },
+          ].map((item, i) => (
+            <div key={i} style={{ marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                {item.icon}
+                <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0, flex: 1 }}>
+                  {item.label}
+                </h4>
+                <span style={{ fontSize: '1.15rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>{item.amount}</span>
+              </div>
             </div>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5, paddingLeft: '1.65rem' }}>
-              Decision DAG execution engine, specialist sub-agents, <span className="text-white">Intent Knowledge Graph</span> infrastructure, provenance & audit layer. <span style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}>This is the moat investment.</span>
-            </p>
-          </div>
-
-          {/* 2. Enterprise Integration */}
-          <div style={{ marginBottom: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-              <Plug size={18} color="var(--accent-emerald)" />
-              <h4 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                Enterprise Integration & Pilots
-              </h4>
-              <span style={{ fontSize: '1.15rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>~30% / ~$900K</span>
-            </div>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5, paddingLeft: '1.65rem' }}>
-              MCP/API connectors (Slack, Confluence, Jira, CRM), agentic search, <span className="text-white">3–5 anchor client pilots</span>, feedback pipeline feeding the decision memory flywheel. <span style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}>This is where the flywheel starts spinning.</span>
-            </p>
-          </div>
-
-          {/* 3. Team */}
-          <div style={{ marginBottom: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-              <Users size={18} color="var(--accent-emerald)" />
-              <h4 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                Team
-              </h4>
-              <span style={{ fontSize: '1.15rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>~20% / ~$600K</span>
-            </div>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5, paddingLeft: '1.65rem' }}>
-              2–3 senior engineers (graph/backend, LLM/agent, frontend), 1 enterprise pilot lead. <span className="text-white">Lean team — sub-agents do the scaling, not headcount.</span>
-            </p>
-          </div>
+          ))}
 
           {/* Narrative line */}
           <div style={{
