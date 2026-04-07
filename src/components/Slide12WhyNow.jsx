@@ -58,7 +58,7 @@ export default function Slide12WhyNow() {
         </div>
 
         {/* Bottom: summary box — fills same parent width */}
-        <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', fontSize: '0.85rem', gap: '1.5rem' }}>
+        <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', fontSize: '1rem', gap: '2rem' }}>
           <div className="text-white">Copilots reveal processes <span className="text-cyan">→ observable decision flows</span></div>
           <div className="text-white">AI changes build economics <span className="text-emerald">→ need for rational frameworks</span></div>
           <div className="text-white">Graph + Vector DB <span className="text-purple">→ most defensible AI layer</span></div>
