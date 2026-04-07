@@ -1,5 +1,5 @@
 import React from 'react'
-import { FileText, MessageSquare } from 'lucide-react'
+import { FileText, MessageSquare, Brain } from 'lucide-react'
 
 export default function Slide5Phase3() {
   return (
@@ -75,14 +75,10 @@ export default function Slide5Phase3() {
             <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>Reasoning, context, tacit knowledge that never made it into a doc</div>
           </div>
           <div className="text-cyan" style={{ fontWeight: 800, fontSize: '2rem' }}>=</div>
-          <div style={{
-            flex: 1,
-            padding: '1rem',
-            borderRadius: '0.75rem',
-            background: 'rgba(14,165,233,0.1)',
-            border: '1px solid rgba(14,165,233,0.2)',
-          }}>
-            <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.1rem' }}>Complete organizational decision memory</div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Brain size={36} style={{ color: 'var(--accent-emerald)', marginBottom: '0.625rem' }} />
+            <div className="text-white" style={{ fontWeight: 700, fontSize: '1.05rem' }}>Complete organizational decision memory</div>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>Structured, searchable, reusable across the company</div>
           </div>
         </div>
       </div>
