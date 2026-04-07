@@ -12,11 +12,13 @@ export default function SlidePositioning() {
       <style>{`
         @media (max-width: 768px) {
           .pos-slide-root { overflow: auto !important; height: auto !important; min-height: 100%; }
+          .pos-slide-root h1 { font-size: 1.4rem !important; }
+          .pos-title-block { margin-bottom: 2rem !important; }
         }
       `}</style>
 
       {/* ── Title Block ── */}
-      <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
+      <div className="pos-title-block" style={{ marginBottom: '5rem', textAlign: 'center' }}>
         <div style={{
           fontSize: '0.85rem',
           fontWeight: 600,
