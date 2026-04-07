@@ -36,10 +36,10 @@ function App() {
   const slides = [
     { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
-    { name: "Positioning", component: <SlidePositioning /> },
+    { name: "Positioning", component: <SlidePositioning />, noZoom: true },
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
-    { name: "Clarioo", component: <SlideHeroPipeline /> },
+    { name: "Clarioo", component: <SlideHeroPipeline />, noZoom: true },
     { name: "The Journey", component: <Slide4Strategy /> },
     // { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
@@ -79,6 +79,18 @@ function App() {
     if (Date.now() - lastPinchEndRef.current < 600) return
     setCurrentSlide(index)
   }
+
+  /* Toggle zoom on/off per slide */
+  useEffect(() => {
+    const meta = document.querySelector('meta[name="viewport"]')
+    if (!meta) return
+    const slide = slides[currentSlide]
+    if (slide && slide.noZoom) {
+      meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    } else {
+      meta.setAttribute('content', 'width=device-width, initial-scale=1.0')
+    }
+  }, [currentSlide])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
