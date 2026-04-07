@@ -28,7 +28,7 @@ export default function Slide4Strategy() {
       <div className="journey-cards" style={{ display: 'flex', gap: '3rem', height: '100%', maxWidth: '80%', margin: '0 auto' }}>
 
         {/* Phase 1 Card — dimmed to let Phase 2 be the focal point */}
-        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column', opacity: 0.55 }}>
+        <div className="glass-card" style={{ flex: 1, borderLeft: '4px solid var(--accent-emerald) !important', padding: '2.5rem', display: 'flex', flexDirection: 'column', opacity: 0.7 }}>
 
           <div className="journey-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
