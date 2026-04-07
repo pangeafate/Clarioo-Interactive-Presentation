@@ -348,6 +348,13 @@ p, li, div {
     flex-direction: column !important;
   }
 
+  /* ---- Slide: Status & Ask ---- */
+  .status-ask-columns {
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 2rem !important;
+  }
+
   /* ---- Slide 13: Waitlist ---- */
   .waitlist-content {
     flex-direction: column !important;
