@@ -58,7 +58,7 @@ export default function SlidePositioning() {
           minHeight: 0,
         }}>
           <div style={{
-            aspectRatio: '16/9',
+            aspectRatio: '16/8',
             width: '100%',
             maxHeight: '100%',
             display: 'grid',
