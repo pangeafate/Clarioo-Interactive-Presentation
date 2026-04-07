@@ -98,7 +98,8 @@ export default function SlidePositioning() {
             flex: 1,
             display: 'grid',
             gridTemplateColumns: '1fr 1.5fr',
-            gridTemplateRows: 'auto auto',
+            gridTemplateRows: 'minmax(auto, 1fr) minmax(auto, 1fr)',
+            minHeight: '24rem',
             position: 'relative',
             borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           }}>
