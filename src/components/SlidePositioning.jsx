@@ -83,13 +83,14 @@ export default function SlidePositioning() {
               overflow: 'hidden',
             }}>
               <div style={{
-                writingMode: 'vertical-lr',
-                transform: 'rotate(180deg)',
-                fontSize: '0.8rem',
-                color: 'var(--text-muted)',
-                textAlign: 'center',
+                transform: 'rotate(-90deg)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                lineHeight: 1.3,
               }}>
-                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Depth</strong> (High-stakes decisions)
+                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', whiteSpace: 'nowrap' }}>Depth</strong>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>(High-stakes decisions)</span>
               </div>
             </div>
 
@@ -103,13 +104,14 @@ export default function SlidePositioning() {
               overflow: 'hidden',
             }}>
               <div style={{
-                writingMode: 'vertical-lr',
-                transform: 'rotate(180deg)',
-                fontSize: '0.8rem',
-                color: 'var(--text-muted)',
-                textAlign: 'center',
+                transform: 'rotate(-90deg)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                lineHeight: 1.3,
               }}>
-                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Breadth</strong> (High-volume tasks)
+                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', whiteSpace: 'nowrap' }}>Breadth</strong>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>(High-volume tasks)</span>
               </div>
             </div>
 
