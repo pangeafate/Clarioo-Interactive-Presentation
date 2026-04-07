@@ -41,14 +41,20 @@ export default function SlidePositioning() {
         minHeight: 0,
         alignItems: 'center',
       }}>
+        {/* Shared 80% wrapper — grid + X-axis align to this */}
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          width: '80%',
+        }}>
         {/* Row: Y-axis + 16:9 Grid */}
         <div style={{
           flex: 1,
           display: 'flex',
           alignItems: 'center',
           minHeight: 0,
-          width: '100%',
-          justifyContent: 'center',
         }}>
           {/* Y-Axis Label */}
           <div style={{
@@ -76,8 +82,8 @@ export default function SlidePositioning() {
           {/* 16:9 Grid — always maintains aspect ratio */}
           <div style={{
             aspectRatio: '16/9',
-            width: '80%',
-            maxHeight: '80%',
+            width: '100%',
+            maxHeight: '100%',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gridTemplateRows: '1fr 1fr',
@@ -312,14 +318,13 @@ export default function SlidePositioning() {
           </div>
         </div>
 
-        {/* ── X-Axis ── */}
+        {/* ── X-Axis — aligned under the grid, offset by Y-axis width ── */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '0.875rem',
           marginLeft: '2.5rem',
           marginTop: '0.5rem',
-          alignSelf: 'stretch',
         }}>
           <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
             Process Execution
@@ -338,6 +343,7 @@ export default function SlidePositioning() {
             Decision Deliberation
           </span>
         </div>
+        </div>{/* end shared 80% wrapper */}
 
         {/* ── Bottom Insight ── */}
         <div style={{
