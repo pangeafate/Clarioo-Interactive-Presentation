@@ -77,7 +77,7 @@ export default function SlidePositioning() {
           <div style={{
             aspectRatio: '16/9',
             width: '80%',
-            maxHeight: '100%',
+            maxHeight: '80%',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gridTemplateRows: '1fr 1fr',
