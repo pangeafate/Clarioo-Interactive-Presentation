@@ -13,7 +13,7 @@ export default function Slide5Phase3() {
       </div>
 
       {/* Top two cards */}
-      <div style={{ display: 'flex', flex: 1, gap: '1.5rem', minHeight: 0, maxWidth: '73rem', width: '100%', alignSelf: 'center' }}>
+      <div style={{ display: 'flex', gap: '1.5rem', maxWidth: '73rem', width: '100%', alignSelf: 'center' }}>
 
         {/* Left Split */}
         <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '1.25rem 1.5rem' }}>
