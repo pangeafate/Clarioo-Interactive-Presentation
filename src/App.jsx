@@ -28,10 +28,10 @@ function App() {
   const slides = [
     { name: "Title", component: <Slide1Title /> },
     { name: "Team", component: <Slide2Team /> },
+    { name: "Positioning", component: <SlidePositioning /> },
     // { name: "Legacy Orgs", component: <Slide3Legacy /> },
     { name: "Missing Layer", component: <Slide3bMissingLayer /> },
     { name: "Clarioo", component: <SlideHeroPipeline /> },
-    { name: "Positioning", component: <SlidePositioning /> },
     { name: "The Journey", component: <Slide4Strategy /> },
     // { name: "Product Snapshot", component: <Slide11Product /> },
     { name: "Phase 3", component: <Slide5Phase3 /> },
