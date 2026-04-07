@@ -149,11 +149,11 @@ export default function SlidePositioning() {
             }} />
 
             {/* ─── Top-Left: Governed Execution ─── */}
-            <div style={{ padding: '1.25rem 1.5rem', zIndex: 1 }}>
+            <div style={{ padding: '1.25rem 1.5rem', zIndex: 1, display: 'flex', flexDirection: 'column' }}>
               <div style={quadrantHeaderStyle}>Governed Execution</div>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <div style={tileStyle}>ServiceNow</div>
-                <div style={tileStyle}>Moveworks</div>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', flex: 1, alignContent: 'flex-start' }}>
+                <div style={{ ...tileStyle, flex: 1 }}>ServiceNow</div>
+                <div style={{ ...tileStyle, flex: 1 }}>Moveworks</div>
               </div>
             </div>
 
@@ -184,6 +184,7 @@ export default function SlidePositioning() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                flex: 1,
               }}>
                 {/* EMERGING ZONE badge */}
                 <div style={{
@@ -260,13 +261,14 @@ export default function SlidePositioning() {
             </div>
 
             {/* ─── Bottom-Left: Automation / Workflow ─── */}
-            <div style={{ padding: '1.25rem 1.5rem', zIndex: 1 }}>
+            <div style={{ padding: '1.25rem 1.5rem', zIndex: 1, display: 'flex', flexDirection: 'column' }}>
               <div style={quadrantHeaderStyle}>Automation / Workflow</div>
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
                 gap: '0.5rem',
-                maxWidth: '14rem',
+                flex: 1,
+                alignContent: 'flex-start',
               }}>
                 <div style={tileStyle}>UiPath</div>
                 <div style={tileStyle}>Kore.ai</div>
@@ -276,7 +278,7 @@ export default function SlidePositioning() {
             </div>
 
             {/* ─── Bottom-Right: Copilots ─── */}
-            <div style={{ padding: '1.25rem 1.25rem', zIndex: 1 }}>
+            <div style={{ padding: '1.25rem 1.25rem', zIndex: 1, display: 'flex', flexDirection: 'column' }}>
               <div style={quadrantHeaderStyle}>Copilots</div>
               {/* Row 1 */}
               <div style={{
@@ -285,8 +287,8 @@ export default function SlidePositioning() {
                 alignItems: 'center',
                 marginBottom: '0.5rem',
               }}>
-                <div style={tileStyle}>ChatGPT</div>
-                <div style={tileStyle}>Copilot</div>
+                <div style={{ ...tileStyle, flex: 1 }}>ChatGPT</div>
+                <div style={{ ...tileStyle, flex: 1 }}>Copilot</div>
                 <div style={{
                   fontSize: '0.7rem',
                   color: 'var(--text-muted)',
@@ -301,9 +303,9 @@ export default function SlidePositioning() {
                 gap: '0.5rem',
                 alignItems: 'center',
               }}>
-                <div style={tileStyle}>Gemini</div>
-                <div style={tileStyle}>Glean</div>
-                <div style={tileStyle}>Sierra</div>
+                <div style={{ ...tileStyle, flex: 1 }}>Gemini</div>
+                <div style={{ ...tileStyle, flex: 1 }}>Glean</div>
+                <div style={{ ...tileStyle, flex: 1 }}>Sierra</div>
               </div>
             </div>
           </div>
