@@ -12,13 +12,12 @@ export default function SlidePositioning() {
       <style>{`
         @media (max-width: 768px) {
           .pos-slide-root { overflow: auto !important; height: auto !important; min-height: 100%; }
-          .pos-slide-root h1 { font-size: 1.4rem !important; }
-          .pos-title-block { margin-bottom: 2rem !important; }
-        }
+          .pos-insight { font-size: 0.75rem !important; }
+}
       `}</style>
 
       {/* ── Title Block ── */}
-      <div className="pos-title-block" style={{ marginBottom: '5rem', textAlign: 'center' }}>
+      <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
         <div style={{
           fontSize: '0.85rem',
           fontWeight: 600,
@@ -57,7 +56,7 @@ export default function SlidePositioning() {
           width: '60%',
         }}>
         {/* ── Insight ── */}
-        <div style={{
+        <div className="pos-insight" style={{
           textAlign: 'center',
           fontSize: '1.1rem',
           color: 'var(--text-secondary)',
