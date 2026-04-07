@@ -225,7 +225,7 @@ export default function SlidePositioning() {
                       marginBottom: '0.25rem',
                       fontSize: '0.8rem',
                     }}>What Clarioo Brings</div>
-                    <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>No existing system provides:</div>
+                    <div style={{ fontWeight: 700 }}>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
                     <div>• Progressive path composition</div>
                   </div>
