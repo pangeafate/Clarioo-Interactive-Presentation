@@ -11,7 +11,7 @@ export default function Slide13GTM() {
         </h2>
       </div>
 
-      <div style={{ display: 'flex', gap: '4rem' }}>
+      <div style={{ display: 'flex', gap: '4rem', maxWidth: '75rem', margin: '0 auto' }}>
         
         {/* Left Side: GTM Timeline */}
         <div style={{ flex: 1 }}>
