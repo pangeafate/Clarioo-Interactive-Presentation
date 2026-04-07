@@ -255,14 +255,8 @@ p, li, div {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Desktop with mouse: suppress pinch-zoom via touch-action.
-   Use (hover:hover)+(pointer:fine) so touch-capable tablets/laptops
-   in tablet-mode still get pan-y for scrolling. */
-@media (hover: hover) and (pointer: fine) {
-  .presentation-container {
-    touch-action: none;
-  }
-}
+/* Zoom control is handled per-slide via viewport meta (noZoom flag in App.jsx).
+   No blanket touch-action:none — that blocks zoom on slides that should allow it. */
 
 /* =============================================
    MOBILE RESPONSIVE — activates below 768px.
