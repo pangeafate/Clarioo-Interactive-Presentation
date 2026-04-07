@@ -347,5 +347,12 @@ p, li, div {
   .journey-buttons {
     flex-direction: column !important;
   }
+
+  /* ---- Slide 13: Waitlist ---- */
+  .waitlist-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
 }
 

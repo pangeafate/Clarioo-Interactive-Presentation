@@ -10,7 +10,7 @@ export default function Slide15Waitlist() {
         </h2>
       </div>
 
-      <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
+      <div className="waitlist-content" style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
         
         {/* Left: Logo collage image */}
         <div style={{ 
