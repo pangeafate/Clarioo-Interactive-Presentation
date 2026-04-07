@@ -335,7 +335,7 @@ export default function Slide3bMissingLayer() {
                 color: 'var(--text-primary)',
               }}
             >
-              TODAY
+              TODAY DECISIONS AND REASONING ARE NOT CAPTURED
             </span>
             <span
               style={{
