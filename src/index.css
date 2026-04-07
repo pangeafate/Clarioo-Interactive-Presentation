@@ -267,12 +267,24 @@ p, li, div {
    Laptop view (>= 768px) is completely untouched.
    ============================================= */
 @media (max-width: 768px) {
-  html, body {
-    overscroll-behavior: auto !important;
-  }
+  /*
+   * iOS Safari scroll fix — do NOT set overflow:visible or overscroll-behavior:auto
+   * on html/body. Doing so causes the body itself to become the scroll target,
+   * which produces the "black gap + elastic bounce" symptom where the entire
+   * viewport pans instead of the content inside .slide-wrapper scrolling.
+   *
+   * Keep html and body locked (overflow:hidden, overscroll-behavior:none) so
+   * that Safari's hit-test finds no scrollable ancestor above .slide-wrapper.
+   * The scroll happens exclusively inside .slide-wrapper, which is correct.
+   */
 
-  body {
-    overflow: visible !important;
+  /*
+   * Allow vertical pan gestures to propagate to the .slide-wrapper scroll
+   * container. Without pan-y here, iOS may claim the gesture at this ancestor
+   * and rubber-band the viewport instead of scrolling the child container.
+   */
+  .presentation-container {
+    touch-action: pan-y !important;
   }
 
   /* General: reduce slide padding, allow content to exceed viewport */
@@ -284,12 +296,27 @@ p, li, div {
     overflow: visible !important;
   }
 
-  /* Allow vertical scroll when stacked content exceeds viewport */
+  /*
+   * The scroll container for mobile. Key properties:
+   * - overflow-y: scroll  — tells Safari this IS a scroll box (not just auto,
+   *   which can be ambiguous on iOS during gesture classification)
+   * - overscroll-behavior-y: contain — prevents the elastic overscroll from
+   *   bubbling up to the viewport once the user reaches the top/bottom of the
+   *   slide content
+   * - -webkit-overflow-scrolling: touch — enables momentum scrolling on older
+   *   iOS (< 13); harmless on modern iOS where it is the default
+   * - will-change: scroll-position — promotes the element to its own
+   *   compositing layer so scroll updates are handled on the GPU thread,
+   *   preventing the "detached layer snaps back" visual glitch
+   * - transform: translate3d(0,0,0) is NOT needed when will-change is set;
+   *   both achieve the same compositing promotion but will-change is the
+   *   modern approach and avoids creating a stacking context side-effect
+   */
   .slide-wrapper.active {
     overflow-y: scroll !important;
+    overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch;
-    /* Force GPU layer — fixes iOS bounce-back on absolute-positioned scroll containers */
-    transform: translate3d(0, 0, 0);
+    will-change: scroll-position;
   }
 
   /* Nav tabs: hide slide names, keep numbers compact */
