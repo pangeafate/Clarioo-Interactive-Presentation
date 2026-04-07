@@ -89,8 +89,8 @@ export default function SlidePositioning() {
               alignItems: 'center',
               gap: '0.625rem',
             }}>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Breadth</strong> (High-volume tasks)</span>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Depth</strong> (High-stakes decisions)</span>
+              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', opacity: 1 }}>Breadth</strong> (High-volume tasks)</span>
+              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', opacity: 1 }}>Depth</strong> (High-stakes decisions)</span>
             </div>
           </div>
 
