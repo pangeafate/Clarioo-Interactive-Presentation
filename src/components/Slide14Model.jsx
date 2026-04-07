@@ -11,7 +11,7 @@ export default function Slide14Model() {
         <p className="text-cyan" style={{ fontSize: '1.25rem' }}>Two revenue streams, scaling with trust and depth of integration</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '3rem', marginBottom: '4rem' }}>
+      <div className="model-cards" style={{ display: 'flex', gap: '3rem', marginBottom: '4rem' }}>
         
         {/* Flow 1 */}
         <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-orange) !important' }}>

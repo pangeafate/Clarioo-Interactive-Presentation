@@ -355,6 +355,13 @@ p, li, div {
     gap: 2rem !important;
   }
 
+  /* ---- Slide: Business Model ---- */
+  .model-cards {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
   /* ---- Slide 13: Waitlist ---- */
   .waitlist-content {
     flex-direction: column !important;
