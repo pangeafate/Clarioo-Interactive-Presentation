@@ -41,8 +41,8 @@ export default function SlidePositioning() {
         minHeight: 0,
         alignItems: 'center',
       }}>
-        {/* Shared 80% wrapper — grid + X-axis align to this */}
-        <div style={{
+        {/* Shared wrapper — 60% on desktop, 100% on mobile */}
+        <div className="positioning-wrapper" style={{
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
