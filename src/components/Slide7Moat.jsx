@@ -59,10 +59,10 @@ export default function Slide7Moat() {
           >
             <Icon size={24} color={color} style={{ flexShrink: 0, marginTop: '0.1rem' }} />
             <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color, marginBottom: '0.3rem' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color, marginBottom: '0.35rem' }}>
                 {title}
               </h3>
-              <p style={{ fontSize: '0.85rem', lineHeight: 1.5, color: 'var(--text-secondary)', margin: 0 }}>
+              <p style={{ fontSize: '1rem', lineHeight: 1.55, color: 'var(--text-secondary)', margin: 0 }}>
                 {body}
               </p>
             </div>
