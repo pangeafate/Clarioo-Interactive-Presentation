@@ -110,10 +110,17 @@ const PIPELINE_CSS = `
 .pl-frame-label { color: #94A3B8; font-size: 0.9rem; font-family: Inter, system-ui, sans-serif; min-width: 8rem; text-align: center; }
 .pl-frame-play { color: #10B981; }
 
-/* ── Mobile: scrollable, 2x chart size ── */
+/* ── Mobile: fit chart to viewport ── */
 @media (max-width: 768px) {
-  .pl-slide-root { overflow-y: auto !important; overflow-x: auto !important; }
-  .pl-svg-wrap { flex: 0 0 auto !important; min-height: 0 !important; width: 200%; min-width: 800px; }
+  .pl-slide-root { overflow: hidden !important; }
+  .pl-slide-root > div:first-of-type { padding: 0.6rem 0.75rem 0.2rem !important; }
+  .pl-slide-root > div:first-of-type h1 { font-size: 1.4rem !important; }
+  .pl-slide-root > div:first-of-type p  { font-size: 0.75rem !important; }
+  .pl-slide-root > div:nth-of-type(2) { display: none !important; }
+  .pl-svg-wrap { flex: 1 1 0% !important; min-height: 0 !important; width: 100% !important; padding: 0 !important; }
+  .pl-frame-bar { bottom: 0.25rem; padding: 0.25rem 0.5rem; gap: 0.4rem; }
+  .pl-frame-btn { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
+  .pl-frame-label { font-size: 0.7rem; min-width: 5rem; }
 }
 `;
 
