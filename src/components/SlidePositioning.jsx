@@ -156,16 +156,16 @@ export default function SlidePositioning() {
             <div className="pos-quadrant" style={{
               background: 'var(--bg-deep-navy)',
               overflow: 'hidden',
-              padding: '1.5cqi 2cqi',
+              padding: '2cqi',
               display: 'flex',
               flexDirection: 'column',
             }}>
               <div style={{
-                fontSize: '2.2cqi',
+                fontSize: '3cqi',
                 color: 'var(--text-secondary)',
-                marginBottom: '1cqi',
-                fontWeight: 400,
-                fontStyle: 'italic',
+                marginBottom: '2.5cqi',
+                fontWeight: 600,
+                textTransform: 'uppercase',
               }}>
                 Emerging Category: Decision Intelligence
               </div>
