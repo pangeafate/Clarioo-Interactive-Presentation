@@ -63,7 +63,7 @@ export default function SlidePositioning() {
             maxHeight: '100%',
             display: 'grid',
             gridTemplateColumns: '2.5rem 1fr 1fr',
-            gridTemplateRows: '1fr 1fr',
+            gridTemplateRows: '1fr 1fr auto',
             position: 'relative',
           }}>
             {/* Left border — at start of data columns */}
@@ -341,35 +341,21 @@ export default function SlidePositioning() {
                 ))}
               </div>
             </div>
+
+            {/* X-axis labels — row 3, centered under each bottom quadrant */}
+            <div style={{ gridRow: 3, gridColumn: 2, textAlign: 'center', padding: '0.5rem 0' }}>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                Process Execution
+              </span>
+            </div>
+            <div style={{ gridRow: 3, gridColumn: 3, textAlign: 'center', padding: '0.5rem 0' }}>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                Decision Deliberation
+              </span>
+            </div>
           </div>
         </div>{/* end grid + flex-center */}
-
-        {/* ── X-Axis — aligned under the grid, offset by Y-axis width ── */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.875rem',
-          marginLeft: '2.5rem',
-          marginTop: '0.5rem',
-        }}>
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-            Process Execution
-          </span>
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-            <div style={{ flex: 1, height: '1px', background: 'var(--text-muted)', opacity: 0.5 }} />
-            <div style={{
-              width: 0, height: 0,
-              borderTop: '0.3rem solid transparent',
-              borderBottom: '0.3rem solid transparent',
-              borderLeft: '0.5rem solid var(--text-muted)',
-              opacity: 0.5,
-            }} />
-          </div>
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-            Decision Deliberation
-          </span>
-        </div>
-        </div>{/* end shared 80% wrapper */}
+        </div>{/* end shared wrapper */}
 
         {/* ── Bottom Insight ── */}
         <div style={{
