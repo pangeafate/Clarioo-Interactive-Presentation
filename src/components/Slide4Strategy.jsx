@@ -125,8 +125,9 @@ export default function Slide4Strategy() {
                 Decision path
               </a>
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href="https://www.loom.com/share/3bdc73c758844c5184d724fbc498df1e"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
               >
