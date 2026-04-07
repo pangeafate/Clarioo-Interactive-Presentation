@@ -28,7 +28,7 @@ export default function SlidePositioning() {
     }}>
 
       {/* ── Title Block ── */}
-      <div style={{ marginBottom: '1.25rem' }}>
+      <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
         <div style={{
           fontSize: '0.85rem',
           fontWeight: 600,
@@ -44,7 +44,6 @@ export default function SlidePositioning() {
           fontWeight: 800,
           color: 'var(--text-primary)',
           lineHeight: 1.15,
-          maxWidth: '52rem',
         }}>
           The market is organized around execution<br />
           and assistance — not decision-making.
