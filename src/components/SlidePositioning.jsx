@@ -232,7 +232,7 @@ export default function SlidePositioning() {
                       background: 'rgba(255,255,255,0.1)',
                       padding: '1.5cqi 4cqi',
                       borderRadius: '1.5cqi',
-                      fontSize: '2.5cqi',
+                      fontSize: '3cqi',
                       color: 'var(--text-secondary)',
                       textAlign: 'center',
                       whiteSpace: 'nowrap',
