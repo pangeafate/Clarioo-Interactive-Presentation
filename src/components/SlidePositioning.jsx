@@ -236,7 +236,7 @@ export default function SlidePositioning() {
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.06)',
                     borderRadius: '0.5rem',
-                    padding: '0.875rem 0.75rem',
+                    padding: '1.25rem 0.75rem',
                     fontSize: '0.65rem',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
