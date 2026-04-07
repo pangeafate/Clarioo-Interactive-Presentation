@@ -29,7 +29,7 @@ export default function SlidePositioning() {
           lineHeight: 1.15,
         }}>
           Clarioo is in the emerging category of <span className="text-cyan">decision intelligence</span>.<br />
-          It is not one of execution or assistance tools that crowd the market.
+          It is not an execution or assistance tool.
         </h1>
       </div>
 
