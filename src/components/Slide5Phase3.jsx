@@ -1,5 +1,5 @@
 import React from 'react'
-import { FileText, MessageSquare, Brain } from 'lucide-react'
+import { FileText, MessageSquare, GitGraph } from 'lucide-react'
 
 export default function Slide5Phase3() {
   return (
@@ -62,7 +62,7 @@ export default function Slide5Phase3() {
         <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.75rem', textAlign: 'center' }}>Unified decision & risk system</h3>
         <p style={{ textAlign: 'center', marginBottom: '1.75rem', color: 'var(--text-primary)', fontSize: '1.05rem', opacity: 0.85 }}>Every decision — who made it, why, what alternatives were considered — becomes structured, searchable, reusable organizational memory</p>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', textAlign: 'center', fontSize: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', textAlign: 'center', fontSize: '1rem', maxWidth: '80%', margin: '0 auto' }}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <FileText size={36} style={{ color: 'var(--accent-cyan)', marginBottom: '0.625rem' }} />
             <div className="text-white" style={{ fontWeight: 700, fontSize: '1.05rem' }}>Explicit decisions</div>
@@ -76,7 +76,7 @@ export default function Slide5Phase3() {
           </div>
           <div className="text-cyan" style={{ fontWeight: 800, fontSize: '2rem' }}>=</div>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Brain size={36} style={{ color: 'var(--accent-emerald)', marginBottom: '0.625rem' }} />
+            <GitGraph size={36} style={{ color: 'var(--accent-emerald)', marginBottom: '0.625rem' }} />
             <div className="text-white" style={{ fontWeight: 700, fontSize: '1.05rem' }}>Complete organizational decision memory</div>
             <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>Structured, searchable, reusable across the company</div>
           </div>
