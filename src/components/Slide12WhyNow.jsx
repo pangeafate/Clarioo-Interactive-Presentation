@@ -53,7 +53,7 @@ export default function Slide12WhyNow() {
 
       </div>
 
-      <div className="glass-card" style={{ marginTop: '5rem', display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', maxWidth: '1100px', margin: '5rem auto 0', fontSize: '0.85rem', gap: '1.5rem' }}>
+      <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', maxWidth: 'calc((2 * 1100px - 3rem) / 3)', margin: '5rem auto 0', fontSize: '0.85rem', gap: '1.5rem' }}>
         <div className="text-white">Copilots reveal processes <span className="text-cyan">→ observable decision flows</span></div>
         <div className="text-white">AI changes build economics <span className="text-emerald">→ need for rational frameworks</span></div>
         <div className="text-white">Graph + Vector DB <span className="text-purple">→ most defensible AI layer</span></div>
