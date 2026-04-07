@@ -38,7 +38,7 @@ export default function SlidePositioning() {
         </h1>
       </div>
 
-      {/* ── Matrix + Axes ── */}
+      {/* ── Insight + Matrix container ── */}
       <div style={{
         flex: 1,
         display: 'flex',
@@ -54,11 +54,26 @@ export default function SlidePositioning() {
           minHeight: 0,
           width: '60%',
         }}>
+        {/* ── Insight ── */}
+        <div style={{
+          textAlign: 'center',
+          fontSize: '1.1rem',
+          color: 'var(--text-secondary)',
+          lineHeight: 1.55,
+          marginBottom: '0.5rem',
+          flexShrink: 0,
+        }}>
+          All existing systems either execute predefined processes or assist fragmented decisions.
+          <br />
+          <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
+            None structure how organizations deliberate complex decisions over time.
+          </strong>
+        </div>
         {/* 16:9 Grid with integrated Y-axis labels */}
         <div style={{
           flex: 1,
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'center',
           minHeight: 0,
         }}>
@@ -371,20 +386,6 @@ export default function SlidePositioning() {
         </div>{/* end grid + flex-center */}
         </div>{/* end shared wrapper */}
 
-        {/* ── Bottom Insight ── */}
-        <div style={{
-          textAlign: 'center',
-          fontSize: '1.1rem',
-          color: 'var(--text-secondary)',
-          lineHeight: 1.55,
-          marginTop: '0.75rem',
-        }}>
-          All existing systems either execute predefined processes or assist fragmented decisions.
-          <br />
-          <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
-            None structure how organizations deliberate complex decisions over time.
-          </strong>
-        </div>
       </div>
 
       {/* Decorative sparkle */}
