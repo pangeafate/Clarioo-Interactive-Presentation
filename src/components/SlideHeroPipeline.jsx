@@ -149,9 +149,11 @@ const FRAMES = [
 export default function SlideHeroPipeline() {
   const [frame, setFrame] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [hasStarted, setHasStarted] = useState(false)
   const playRef = useRef(null)
+  const startedRef = useRef(false)
+  const debounceRef = useRef(null)
   const slideRef = useRef(null)
+  const keyHandlerRef = useRef(null)
 
   const totalFrames = FRAMES.length
 
@@ -262,35 +264,34 @@ export default function SlideHeroPipeline() {
   useEffect(() => {
     const el = slideRef.current
     if (!el) return
-    const observer = new MutationObserver(() => {
-      const wrapper = el.closest('.slide-wrapper')
-      if (wrapper && wrapper.classList.contains('active')) {
-        if (!hasStarted) {
-          setHasStarted(true)
-          setFrame(0)
-          setPlaying(true)
-        }
-      } else {
-        /* Reset when navigating away so it replays on return */
-        if (hasStarted) {
-          setHasStarted(false)
-          setPlaying(false)
-          setFrame(0)
-        }
-      }
-    })
     const wrapper = el.closest('.slide-wrapper')
-    if (wrapper) {
-      observer.observe(wrapper, { attributes: true, attributeFilter: ['class'] })
-      /* Check immediately in case already active */
-      if (wrapper.classList.contains('active') && !hasStarted) {
-        setHasStarted(true)
+    if (!wrapper) return
+
+    const checkActive = () => {
+      const isActive = wrapper.classList.contains('active')
+      if (isActive && !startedRef.current) {
+        startedRef.current = true
         setFrame(0)
         setPlaying(true)
+      } else if (!isActive && startedRef.current) {
+        startedRef.current = false
+        setPlaying(false)
+        setFrame(0)
       }
     }
-    return () => observer.disconnect()
-  }, [hasStarted])
+
+    const observer = new MutationObserver(() => {
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      debounceRef.current = setTimeout(checkActive, 150)
+    })
+    observer.observe(wrapper, { attributes: true, attributeFilter: ['class'] })
+    checkActive()
+
+    return () => {
+      observer.disconnect()
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
+  }, [])
 
   /* Auto-play: dynamic interval — faster between frames 10-22 */
   useEffect(() => {
@@ -316,17 +317,24 @@ export default function SlideHeroPipeline() {
     setPlaying(p => !p)
   }
 
-  /* Keyboard: left/right arrows, space to play/pause */
+  /* Keep a stable ref pointing to the latest action callbacks so the
+     capture-phase listener below never needs to be re-registered. */
+  keyHandlerRef.current = { goNext, goPrev, togglePlay }
+
+  /* Keyboard: left/right arrows, space to play/pause.
+     Registered once (empty dep array); reads latest callbacks via ref
+     so there is never a stale-closure window or duplicate listener storm. */
   useEffect(() => {
     function handleKey(e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      const { goNext, goPrev, togglePlay } = keyHandlerRef.current
       if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); goNext() }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); goPrev() }
       else if (e.key === ' ') { e.preventDefault(); e.stopPropagation(); togglePlay() }
     }
     window.addEventListener('keydown', handleKey, true)
     return () => window.removeEventListener('keydown', handleKey, true)
-  }, [frame, totalFrames])
+  }, [])
 
   /* ═══════════════════════ CONSTANTS ═══════════════════════ */
   const F = 'Inter, system-ui, sans-serif'

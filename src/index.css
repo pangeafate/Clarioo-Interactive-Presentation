@@ -57,6 +57,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Suppress browser pinch-zoom and double-tap zoom at the CSS level.
+     This prevents touch gestures from being misinterpreted as navigation
+     or from synthesizing spurious click events on the nav bar. */
+  touch-action: none;
 }
 
 /* NAV */
