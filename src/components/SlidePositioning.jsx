@@ -224,7 +224,7 @@ export default function SlidePositioning() {
                       color: 'var(--text-primary)',
                       marginBottom: '0.25rem',
                       fontSize: '0.8rem',
-                    }}>What Doesn&apos;t Exist</div>
+                    }}>What Clarioo Brings</div>
                     <div>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
                     <div>• Progressive path composition</div>
