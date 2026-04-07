@@ -280,7 +280,7 @@ p, li, div {
    * and rubber-band the viewport instead of scrolling the child container.
    */
   .presentation-container {
-    touch-action: pan-x pan-y !important;
+    touch-action: manipulation !important;
   }
 
   /* General: reduce slide padding, allow content to exceed viewport */
