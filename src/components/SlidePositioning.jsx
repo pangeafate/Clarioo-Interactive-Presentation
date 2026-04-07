@@ -136,7 +136,7 @@ export default function SlidePositioning() {
 
             {/* ─── Top-Right: Decision Intelligence Zone ─── */}
             <div style={{
-              padding: '0 1.25rem 0.5rem',
+              padding: '0 1.25rem 0.875rem',
               zIndex: 1,
               display: 'flex',
               flexDirection: 'column',
@@ -157,7 +157,7 @@ export default function SlidePositioning() {
               <div style={{
                 border: '1px solid rgba(139, 92, 246, 0.3)',
                 borderRadius: '0.75rem',
-                padding: '0.5rem 1rem',
+                padding: '0.75rem 1rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -169,7 +169,7 @@ export default function SlidePositioning() {
                   letterSpacing: '0.15rem',
                   color: 'var(--accent-cyan)',
                   textTransform: 'uppercase',
-                  marginBottom: '0.375rem',
+                  marginBottom: '0.5rem',
                 }}>
                   Emerging Zone
                 </div>
@@ -188,7 +188,7 @@ export default function SlidePositioning() {
                   {/* CLARIOO Hero Tile */}
                   <div style={{
                     background: 'linear-gradient(135deg, #1e3a8a, #6d28d9)',
-                    padding: '0.75rem 1.75rem',
+                    padding: '0.875rem 1.75rem',
                     borderRadius: '0.75rem',
                     textAlign: 'center',
                     boxShadow: '0 0 1.75rem rgba(124, 58, 237, 0.4), 0 0 3.5rem rgba(14, 165, 233, 0.2)',
