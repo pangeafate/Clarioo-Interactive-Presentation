@@ -177,8 +177,10 @@ export default function SlidePositioning() {
                   alignItems: 'flex-start',
                   gap: '2cqi',
                   flex: 1,
+                  justifyContent: 'center',
+                  paddingTop: '2cqi',
                 }}>
-                  {/* Left: Cloverpop below CLARIOO */}
+                  {/* Left: CLARIOO above Cloverpop, centered vertically */}
                   <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -207,19 +209,19 @@ export default function SlidePositioning() {
                       }}>Decision Intelligence System</div>
                     </div>
 
-                    {/* Cloverpop */}
+                    {/* Cloverpop — same style as other chart tiles */}
                     <div style={{
                       background: 'rgba(255,255,255,0.1)',
-                      padding: '1.5cqi 2.5cqi',
+                      padding: '1.5cqi 4cqi',
                       borderRadius: '1.5cqi',
                       fontSize: '2.5cqi',
                       color: 'var(--text-secondary)',
-                      opacity: 0.5,
+                      textAlign: 'center',
                       whiteSpace: 'nowrap',
                     }}>Cloverpop</div>
                   </div>
 
-                  {/* Right: What Clarioo Brings — top-aligned with CLARIOO */}
+                  {/* Right: What Clarioo Brings — same width as CLARIOO, 1.5× height */}
                   <div style={{
                     background: 'rgba(255,255,255,0.06)',
                     borderRadius: '1.5cqi',
@@ -227,6 +229,10 @@ export default function SlidePositioning() {
                     fontSize: '1.8cqi',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
+                    alignSelf: 'stretch',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
                   }}>
                     <div style={{
                       fontWeight: 700,
