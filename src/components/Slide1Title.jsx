@@ -18,7 +18,7 @@ export default function Slide1Title() {
           height: '100%',
           objectFit: 'cover',
           zIndex: 0,
-          opacity: 0.15,
+          opacity: 0.35,
           pointerEvents: 'none'
         }}
       >
