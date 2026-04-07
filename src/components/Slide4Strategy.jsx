@@ -57,8 +57,9 @@ export default function Slide4Strategy() {
             <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Check our first Decision Agent</p>
             <div className="journey-buttons" style={{ display: 'flex', gap: '1rem' }}>
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href="https://clarioo.io"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-emerald)' }}
               >
