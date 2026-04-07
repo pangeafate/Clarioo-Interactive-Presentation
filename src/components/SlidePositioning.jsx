@@ -136,7 +136,7 @@ export default function SlidePositioning() {
 
             {/* ─── Top-Right: Decision Intelligence Zone ─── */}
             <div style={{
-              padding: '0 1.25rem 1.25rem',
+              padding: '0 1.25rem 0.5rem',
               zIndex: 1,
               display: 'flex',
               flexDirection: 'column',
@@ -145,7 +145,7 @@ export default function SlidePositioning() {
               <div style={{
                 fontSize: '0.8rem',
                 color: 'var(--text-secondary)',
-                marginBottom: '0.375rem',
+                marginBottom: '0.25rem',
                 marginTop: '0.5rem',
                 fontWeight: 400,
                 fontStyle: 'italic',
@@ -157,29 +157,28 @@ export default function SlidePositioning() {
               <div style={{
                 border: '1px solid rgba(139, 92, 246, 0.3)',
                 borderRadius: '0.75rem',
-                padding: '0.875rem 1.125rem',
-                flex: 1,
+                padding: '0.5rem 1rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}>
-                {/* YOUR ZONE badge */}
+                {/* EMERGING ZONE badge */}
                 <div style={{
-                  fontSize: '0.7rem',
+                  fontSize: '0.65rem',
                   fontWeight: 700,
                   letterSpacing: '0.15rem',
                   color: 'var(--accent-cyan)',
                   textTransform: 'uppercase',
-                  marginBottom: '0.625rem',
+                  marginBottom: '0.375rem',
                 }}>
                   Emerging Zone
                 </div>
 
-                {/* Content row: Cloverpop + CLARIOO + What Doesn't Exist */}
+                {/* Content row: Cloverpop + CLARIOO + What Clarioo Brings */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1rem',
+                  gap: '0.75rem',
                 }}>
                   {/* Cloverpop */}
                   <div style={{ ...tileStyle, opacity: 0.5, flexShrink: 0 }}>
@@ -189,41 +188,41 @@ export default function SlidePositioning() {
                   {/* CLARIOO Hero Tile */}
                   <div style={{
                     background: 'linear-gradient(135deg, #1e3a8a, #6d28d9)',
-                    padding: '1.125rem 2rem',
+                    padding: '0.75rem 1.75rem',
                     borderRadius: '0.75rem',
                     textAlign: 'center',
                     boxShadow: '0 0 1.75rem rgba(124, 58, 237, 0.4), 0 0 3.5rem rgba(14, 165, 233, 0.2)',
                     flexShrink: 0,
                   }}>
                     <div style={{
-                      fontSize: '1.5rem',
+                      fontSize: '1.35rem',
                       fontWeight: 900,
                       color: '#fff',
                       letterSpacing: '0.15rem',
                       marginBottom: '0.125rem',
                     }}>CLARIOO</div>
                     <div style={{
-                      fontSize: '0.75rem',
+                      fontSize: '0.7rem',
                       color: 'rgba(255, 255, 255, 0.85)',
                       fontWeight: 500,
                     }}>Decision Intelligence System</div>
                   </div>
 
-                  {/* What Doesn't Exist callout */}
+                  {/* What Clarioo Brings callout */}
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.06)',
                     borderRadius: '0.5rem',
-                    padding: '0.625rem 0.875rem',
-                    fontSize: '0.7rem',
+                    padding: '0.5rem 0.75rem',
+                    fontSize: '0.65rem',
                     color: 'var(--text-secondary)',
-                    lineHeight: 1.55,
+                    lineHeight: 1.5,
                     minWidth: 0,
                   }}>
                     <div style={{
                       fontWeight: 700,
                       color: 'var(--text-primary)',
-                      marginBottom: '0.25rem',
-                      fontSize: '0.8rem',
+                      marginBottom: '0.2rem',
+                      fontSize: '0.75rem',
                     }}>What Clarioo Brings</div>
                     <div style={{ fontWeight: 700 }}>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
