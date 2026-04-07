@@ -80,12 +80,14 @@ export default function SlidePositioning() {
               justifyContent: 'center',
               gridRow: 1,
               gridColumn: 1,
+              overflow: 'hidden',
             }}>
               <div style={{
-                transform: 'rotate(-90deg)',
-                whiteSpace: 'nowrap',
+                writingMode: 'vertical-lr',
+                transform: 'rotate(180deg)',
                 fontSize: '0.8rem',
                 color: 'var(--text-muted)',
+                textAlign: 'center',
               }}>
                 <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Depth</strong> (High-stakes decisions)
               </div>
@@ -98,12 +100,14 @@ export default function SlidePositioning() {
               justifyContent: 'center',
               gridRow: 2,
               gridColumn: 1,
+              overflow: 'hidden',
             }}>
               <div style={{
-                transform: 'rotate(-90deg)',
-                whiteSpace: 'nowrap',
+                writingMode: 'vertical-lr',
+                transform: 'rotate(180deg)',
                 fontSize: '0.8rem',
                 color: 'var(--text-muted)',
+                textAlign: 'center',
               }}>
                 <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Breadth</strong> (High-volume tasks)
               </div>
