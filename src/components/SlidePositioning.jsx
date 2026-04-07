@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 
-const MATRIX_DESIGN_WIDTH = 1134 // px — matches 70rem at 16.2px root
+const MATRIX_DESIGN_WIDTH = 960 // px — compact matrix, less horizontal stretch
 
 export default function SlidePositioning() {
   const containerRef = useRef(null)
@@ -45,7 +45,7 @@ export default function SlidePositioning() {
     }}>
 
       {/* ── Title Block ── */}
-      <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
+      <div style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
         <div style={{
           fontSize: '0.85rem',
           fontWeight: 600,
