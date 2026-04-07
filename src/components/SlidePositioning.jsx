@@ -61,7 +61,7 @@ export default function SlidePositioning() {
           fontSize: '1.1rem',
           color: 'var(--text-secondary)',
           lineHeight: 1.55,
-          marginBottom: '0.5rem',
+          marginBottom: '2rem',
           flexShrink: 0,
         }}>
           All existing systems either execute predefined processes or assist fragmented decisions.
