@@ -394,7 +394,7 @@ export default function SlideHeroPipeline() {
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Graph as Execution Engine: </span>
             <span style={{ color: 'var(--text-secondary)' }}>
               The graph is both the <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>data structure</span> and
-              the <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>execution engine</span> — LLMs compose the DAG, not just query it
+              the <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>execution engine</span> — LLMs compose the DAG as typed-blocks workflow, not just query it
             </span>
           </p>
         </div>
