@@ -49,52 +49,65 @@ export default function SlidePositioning() {
           minHeight: 0,
           width: '60%',
         }}>
-        {/* Row: Y-axis + 16:9 Grid */}
+        {/* 16:9 Grid with integrated Y-axis labels */}
         <div style={{
           flex: 1,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
           minHeight: 0,
         }}>
-          {/* Y-Axis Label */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '2.5rem',
-            flexShrink: 0,
-            alignSelf: 'stretch',
-          }}>
-            <div style={{
-              transform: 'rotate(-90deg)',
-              whiteSpace: 'nowrap',
-              fontSize: '0.8rem',
-              color: 'var(--text-muted)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.625rem',
-            }}>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Breadth</strong> (High-volume tasks)</span>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Depth</strong> (High-stakes decisions)</span>
-            </div>
-          </div>
-
-          {/* 16:9 Grid — always maintains aspect ratio */}
           <div style={{
             aspectRatio: '16/9',
             width: '100%',
             maxHeight: '100%',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: '2.5rem 1fr 1fr',
             gridTemplateRows: '1fr 1fr',
             position: 'relative',
           }}>
-            {/* Left border */}
-            <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '1px', background: 'rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
-            {/* Vertical center line */}
-            <div style={{ position: 'absolute', top: 0, bottom: 0, left: '50%', width: '1px', background: 'rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
+            {/* Left border — at start of data columns */}
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: '2.5rem', width: '1px', background: 'rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
+            {/* Vertical center line — between data columns */}
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: 'calc(2.5rem + (100% - 2.5rem) / 2)', width: '1px', background: 'rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
             {/* Horizontal center line */}
             <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: '1px', background: 'rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
+
+            {/* Y-label: Depth — centered on top row */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gridRow: 1,
+              gridColumn: 1,
+            }}>
+              <div style={{
+                transform: 'rotate(-90deg)',
+                whiteSpace: 'nowrap',
+                fontSize: '0.8rem',
+                color: 'var(--text-muted)',
+              }}>
+                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Depth</strong> (High-stakes decisions)
+              </div>
+            </div>
+
+            {/* Y-label: Breadth — centered on bottom row */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gridRow: 2,
+              gridColumn: 1,
+            }}>
+              <div style={{
+                transform: 'rotate(-90deg)',
+                whiteSpace: 'nowrap',
+                fontSize: '0.8rem',
+                color: 'var(--text-muted)',
+              }}>
+                <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Breadth</strong> (High-volume tasks)
+              </div>
+            </div>
 
             {/* ─── Q1 Top-Left: Governed Execution ─── */}
             <div className="pos-quadrant" style={{
@@ -329,7 +342,7 @@ export default function SlidePositioning() {
               </div>
             </div>
           </div>
-        </div>
+        </div>{/* end grid + flex-center */}
 
         {/* ── X-Axis — aligned under the grid, offset by Y-axis width ── */}
         <div style={{
