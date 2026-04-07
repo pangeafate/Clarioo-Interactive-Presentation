@@ -100,7 +100,7 @@ export default function SlidePositioning() {
             <div className="pos-quadrant" style={{
               background: 'var(--bg-deep-navy)',
               overflow: 'hidden',
-              padding: '4cqi',
+              padding: '2cqi',
               display: 'flex',
               flexDirection: 'column',
             }}>
@@ -136,7 +136,7 @@ export default function SlidePositioning() {
             <div className="pos-quadrant" style={{
               background: 'var(--bg-deep-navy)',
               overflow: 'hidden',
-              padding: '3cqi 4cqi',
+              padding: '1.5cqi 2cqi',
               display: 'flex',
               flexDirection: 'column',
             }}>
@@ -242,7 +242,7 @@ export default function SlidePositioning() {
             <div className="pos-quadrant" style={{
               background: 'var(--bg-deep-navy)',
               overflow: 'hidden',
-              padding: '4cqi',
+              padding: '2cqi',
               display: 'flex',
               flexDirection: 'column',
             }}>
@@ -274,7 +274,7 @@ export default function SlidePositioning() {
             <div className="pos-quadrant" style={{
               background: 'var(--bg-deep-navy)',
               overflow: 'hidden',
-              padding: '4cqi',
+              padding: '2cqi',
               display: 'flex',
               flexDirection: 'column',
             }}>
