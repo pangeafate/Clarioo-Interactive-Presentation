@@ -438,17 +438,6 @@ p, li, div {
     gap: 0.75rem !important;
   }
 
-  /* ---- Slide: Positioning ---- */
-  .positioning-wrapper,
-  .pos-quadrant {
-    overflow: visible !important;
-    touch-action: manipulation !important;
-  }
-
-  .pos-quadrant {
-    container-type: normal !important;
-  }
-
   /* ---- Slide 13: Waitlist ---- */
   .waitlist-content {
     flex-direction: column !important;
