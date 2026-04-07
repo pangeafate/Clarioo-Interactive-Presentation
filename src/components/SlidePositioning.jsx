@@ -172,7 +172,7 @@ export default function SlidePositioning() {
                   textTransform: 'uppercase',
                   marginBottom: '0.625rem',
                 }}>
-                  Your Zone
+                  Emerging Zone
                 </div>
 
                 {/* Content row: Cloverpop + CLARIOO + What Doesn't Exist */}
