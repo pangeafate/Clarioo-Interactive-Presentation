@@ -330,31 +330,5 @@ p, li, div {
   .journey-buttons {
     flex-direction: column !important;
   }
-
-  /* ---- Slide: Positioning (Market Landscape) ---- */
-  .positioning-y-axis {
-    display: none !important;
-  }
-
-  .positioning-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-    min-height: auto !important;
-    border-left: none !important;
-    gap: 0.5rem !important;
-  }
-
-  .positioning-crosshair {
-    display: none !important;
-  }
-
-  .positioning-emerging-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-
-  .positioning-x-axis {
-    margin-left: 0 !important;
-  }
 }
 

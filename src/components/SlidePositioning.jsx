@@ -64,13 +64,13 @@ export default function SlidePositioning() {
           width: '100%',
           maxWidth: '70rem',
         }}>
-          <div className="positioning-matrix-row" style={{
+          <div style={{
             display: 'flex',
             alignItems: 'stretch',
           }}>
 
           {/* Y-Axis Label */}
-          <div className="positioning-y-axis" style={{
+          <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -81,6 +81,8 @@ export default function SlidePositioning() {
               transform: 'rotate(-90deg)',
               whiteSpace: 'nowrap',
               fontSize: '0.8rem',
+              color: 'var(--text-secondary)',
+              letterSpacing: '0.03rem',
               color: 'var(--text-muted)',
               display: 'flex',
               alignItems: 'center',
@@ -92,7 +94,7 @@ export default function SlidePositioning() {
           </div>
 
           {/* Matrix Grid */}
-          <div className="positioning-grid" style={{
+          <div style={{
             flex: 1,
             display: 'grid',
             gridTemplateColumns: '1fr 1.5fr',
@@ -103,7 +105,7 @@ export default function SlidePositioning() {
           }}>
 
             {/* Crosshair – vertical */}
-            <div className="positioning-crosshair" style={{
+            <div style={{
               position: 'absolute',
               top: 0,
               bottom: 0,
@@ -113,7 +115,7 @@ export default function SlidePositioning() {
               pointerEvents: 'none',
             }} />
             {/* Crosshair – horizontal */}
-            <div className="positioning-crosshair" style={{
+            <div style={{
               position: 'absolute',
               left: 0,
               right: 0,
@@ -173,7 +175,7 @@ export default function SlidePositioning() {
                 </div>
 
                 {/* Content row: Cloverpop + CLARIOO + What Clarioo Brings */}
-                <div className="positioning-emerging-row" style={{
+                <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.75rem',
@@ -281,7 +283,7 @@ export default function SlidePositioning() {
           </div>
 
           {/* ── X-Axis ── directly under the matrix grid */}
-          <div className="positioning-x-axis" style={{
+          <div style={{
             display: 'flex',
             alignItems: 'center',
             gap: '0.875rem',
