@@ -1,21 +1,33 @@
 import React from 'react'
 import { Lightbulb, Scissors, Shield } from 'lucide-react'
 
+const WHY_NOW_CSS = `
+@media (max-width: 768px) {
+  .wn-root { padding: 2rem 1.25rem !important; overflow-y: auto !important; }
+  .wn-title { font-size: 2rem !important; margin-bottom: 1.5rem !important; }
+  .wn-title-wrap { margin-bottom: 1.5rem !important; }
+  .wn-pillars { flex-direction: column !important; gap: 1.25rem !important; }
+  .wn-container { gap: 1.25rem !important; }
+  .wn-summary { flex-direction: column !important; gap: 0.75rem !important; text-align: center; }
+}
+`
+
 export default function Slide12WhyNow() {
   return (
-    <div className="pdf-slide" style={{ padding: '6rem' }}>
+    <div className="pdf-slide wn-root" style={{ padding: '6rem' }}>
+      <style>{WHY_NOW_CSS}</style>
 
-      <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <h2 className="text-white" style={{ fontSize: '3rem', fontWeight: 800 }}>
+      <div className="wn-title-wrap" style={{ textAlign: 'center', marginBottom: '5rem' }}>
+        <h2 className="text-white wn-title" style={{ fontSize: '3rem', fontWeight: 800 }}>
           Why Now
         </h2>
       </div>
 
       {/* Single parent container — both sections fill its width */}
-      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+      <div className="wn-container" style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
 
         {/* Top: three pillars */}
-        <div style={{ display: 'flex', gap: '3rem' }}>
+        <div className="wn-pillars" style={{ display: 'flex', gap: '3rem' }}>
 
           {/* Pillar 1 */}
           <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -58,7 +70,7 @@ export default function Slide12WhyNow() {
         </div>
 
         {/* Bottom: summary box — fills same parent width */}
-        <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', fontSize: '1rem', gap: '2rem' }}>
+        <div className="glass-card wn-summary" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, alignItems: 'center', fontSize: '1rem', gap: '2rem' }}>
           <div className="text-white">Copilots reveal processes <span className="text-cyan">→ observable decision flows</span></div>
           <div className="text-white">AI changes build economics <span className="text-emerald">→ need for rational frameworks</span></div>
           <div className="text-white">Graph + Vector DB <span className="text-purple">→ most defensible AI layer</span></div>
