@@ -1,23 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react'
-
-const MATRIX_W = 960  // px — 16:9 design size
-const MATRIX_H = 540
+import React from 'react'
 
 export default function SlidePositioning() {
-  const containerRef = useRef(null)
-  const [scale, setScale] = useState(1)
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const update = () => {
-      setScale(Math.min(1, el.clientWidth / MATRIX_W, el.clientHeight / MATRIX_H))
-    }
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
   const tileStyle = {
     background: 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem 1.125rem',
@@ -26,6 +9,7 @@ export default function SlidePositioning() {
     color: 'var(--text-secondary)',
     textAlign: 'center',
     whiteSpace: 'nowrap',
+    flex: 1,
   }
 
   const quadrantHeaderStyle = {
@@ -62,36 +46,25 @@ export default function SlidePositioning() {
           color: 'var(--text-primary)',
           lineHeight: 1.15,
         }}>
-          The market is organized around execution<br />
-          and assistance — not decision-making.
+          Clarioo is in the emerging category of <span className="text-cyan">decision intelligence</span>.<br />
+          It is not one of execution or assistance tools that crowd the market.
         </h1>
       </div>
 
-      {/* ── Matrix Area ── */}
-      <div ref={containerRef} style={{
+      {/* ── Matrix Area — fully fluid, fills available space ── */}
+      <div style={{
         flex: 1,
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        flexDirection: 'column',
         minHeight: 0,
-        overflow: 'hidden',
       }}>
+        {/* Row: Y-axis + Grid */}
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
-          width: MATRIX_W,
-          height: MATRIX_H,
-          flexShrink: 0,
-          overflow: 'hidden',
-          transform: `scale(${scale})`,
-          transformOrigin: 'top center',
+          alignItems: 'stretch',
+          flex: 1,
+          minHeight: 0,
         }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            flex: 1,
-            minHeight: 0,
-          }}>
 
           {/* Y-Axis Label */}
           <div style={{
@@ -105,8 +78,6 @@ export default function SlidePositioning() {
               transform: 'rotate(-90deg)',
               whiteSpace: 'nowrap',
               fontSize: '0.8rem',
-              color: 'var(--text-secondary)',
-              letterSpacing: '0.03rem',
               color: 'var(--text-muted)',
               display: 'flex',
               alignItems: 'center',
@@ -142,7 +113,7 @@ export default function SlidePositioning() {
               position: 'absolute',
               left: 0,
               right: 0,
-              top: '53.5%',
+              top: '50%',
               height: '1px',
               background: 'rgba(255, 255, 255, 0.1)',
               pointerEvents: 'none',
@@ -152,8 +123,8 @@ export default function SlidePositioning() {
             <div style={{ padding: '1.25rem 1.5rem', zIndex: 1, display: 'flex', flexDirection: 'column' }}>
               <div style={quadrantHeaderStyle}>Governed Execution</div>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', flex: 1, alignContent: 'flex-start' }}>
-                <div style={{ ...tileStyle, flex: 1 }}>ServiceNow</div>
-                <div style={{ ...tileStyle, flex: 1 }}>Moveworks</div>
+                <div style={tileStyle}>ServiceNow</div>
+                <div style={tileStyle}>Moveworks</div>
               </div>
             </div>
 
@@ -205,7 +176,7 @@ export default function SlidePositioning() {
                   gap: '0.75rem',
                 }}>
                   {/* Cloverpop */}
-                  <div style={{ ...tileStyle, opacity: 0.5, flexShrink: 0, alignSelf: 'center' }}>
+                  <div style={{ ...tileStyle, opacity: 0.5, flexShrink: 0, alignSelf: 'center', flex: 'none' }}>
                     Cloverpop
                   </div>
 
@@ -233,7 +204,7 @@ export default function SlidePositioning() {
                     }}>Decision Intelligence System</div>
                   </div>
 
-                  {/* What Clarioo Brings callout — 1.3× taller than CLARIOO tile */}
+                  {/* What Clarioo Brings callout */}
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.06)',
                     borderRadius: '0.5rem',
@@ -287,8 +258,8 @@ export default function SlidePositioning() {
                 alignItems: 'center',
                 marginBottom: '0.5rem',
               }}>
-                <div style={{ ...tileStyle, flex: 1 }}>ChatGPT</div>
-                <div style={{ ...tileStyle, flex: 1 }}>Copilot</div>
+                <div style={tileStyle}>ChatGPT</div>
+                <div style={tileStyle}>Copilot</div>
                 <div style={{
                   fontSize: '0.7rem',
                   color: 'var(--text-muted)',
@@ -303,68 +274,67 @@ export default function SlidePositioning() {
                 gap: '0.5rem',
                 alignItems: 'center',
               }}>
-                <div style={{ ...tileStyle, flex: 1 }}>Gemini</div>
-                <div style={{ ...tileStyle, flex: 1 }}>Glean</div>
-                <div style={{ ...tileStyle, flex: 1 }}>Sierra</div>
+                <div style={tileStyle}>Gemini</div>
+                <div style={tileStyle}>Glean</div>
+                <div style={tileStyle}>Sierra</div>
               </div>
             </div>
           </div>
-          </div>
+        </div>
 
-          {/* ── X-Axis ── directly under the matrix grid */}
+        {/* ── X-Axis ── directly under the matrix grid */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.875rem',
+          marginLeft: '2.5rem',
+          marginTop: '0.5rem',
+        }}>
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+            Process Execution
+          </span>
           <div style={{
+            flex: 1,
             display: 'flex',
             alignItems: 'center',
-            gap: '0.875rem',
-            marginLeft: '2.5rem',
-            marginTop: '0.5rem',
           }}>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-              Process Execution
-            </span>
             <div style={{
               flex: 1,
-              display: 'flex',
-              alignItems: 'center',
-            }}>
-              <div style={{
-                flex: 1,
-                height: '1px',
-                background: 'var(--text-muted)',
-                opacity: 0.5,
-              }} />
-              <div style={{
-                width: 0,
-                height: 0,
-                borderTop: '0.3rem solid transparent',
-                borderBottom: '0.3rem solid transparent',
-                borderLeft: '0.5rem solid var(--text-muted)',
-                opacity: 0.5,
-                flexShrink: 0,
-              }} />
-            </div>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-              Decision Deliberation
-            </span>
+              height: '1px',
+              background: 'var(--text-muted)',
+              opacity: 0.5,
+            }} />
+            <div style={{
+              width: 0,
+              height: 0,
+              borderTop: '0.3rem solid transparent',
+              borderBottom: '0.3rem solid transparent',
+              borderLeft: '0.5rem solid var(--text-muted)',
+              opacity: 0.5,
+              flexShrink: 0,
+            }} />
           </div>
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+            Decision Deliberation
+          </span>
+        </div>
 
-          {/* ── Bottom Insight ── */}
-          <div style={{
-            textAlign: 'center',
-            fontSize: '1.1rem',
-            color: 'var(--text-secondary)',
-            lineHeight: 1.55,
-            maxWidth: '50rem',
-            alignSelf: 'center',
-            marginTop: '1.25rem',
-            marginLeft: '2.5rem',
-          }}>
-        All existing systems either execute predefined processes or assist fragmented decisions.
-        <br />
-        <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
-          None structure how organizations deliberate complex decisions over time.
-        </strong>
-          </div>
+        {/* ── Bottom Insight ── */}
+        <div style={{
+          textAlign: 'center',
+          fontSize: '1.1rem',
+          color: 'var(--text-secondary)',
+          lineHeight: 1.55,
+          maxWidth: '50rem',
+          alignSelf: 'center',
+          marginTop: '1.25rem',
+          marginLeft: '2.5rem',
+        }}>
+          All existing systems either execute predefined processes or assist fragmented decisions.
+          <br />
+          <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
+            None structure how organizations deliberate complex decisions over time.
+          </strong>
         </div>
       </div>
 
