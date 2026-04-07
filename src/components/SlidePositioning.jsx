@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
+
+const MATRIX_DESIGN_WIDTH = 1134 // px — matches 70rem at 16.2px root
 
 export default function SlidePositioning() {
+  const containerRef = useRef(null)
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const update = () => {
+      const available = el.clientWidth
+      setScale(Math.min(1, available / MATRIX_DESIGN_WIDTH))
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
   const tileStyle = {
     background: 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem 1.125rem',
@@ -51,18 +68,21 @@ export default function SlidePositioning() {
       </div>
 
       {/* ── Matrix Area ── */}
-      <div style={{
+      <div ref={containerRef} style={{
         flex: 1,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         minHeight: 0,
+        overflow: 'hidden',
       }}>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          width: '100%',
-          maxWidth: '70rem',
+          width: MATRIX_DESIGN_WIDTH + 'px',
+          flexShrink: 0,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top center',
         }}>
           <div style={{
             display: 'flex',
