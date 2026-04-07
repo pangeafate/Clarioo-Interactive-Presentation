@@ -117,8 +117,9 @@ export default function Slide4Strategy() {
             <p className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800 }}>See the decision layer prototype:</p>
             <div className="journey-buttons" style={{ display: 'flex', gap: '1rem' }}>
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href="https://clarioo.decisionbot.lakestrom.com/d/4"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
               >
