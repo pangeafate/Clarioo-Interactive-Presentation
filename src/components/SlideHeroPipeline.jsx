@@ -110,14 +110,18 @@ const PIPELINE_CSS = `
 .pl-frame-label { color: #94A3B8; font-size: 0.9rem; font-family: Inter, system-ui, sans-serif; min-width: 8rem; text-align: center; }
 .pl-frame-play { color: #10B981; }
 
-/* ── Mobile: fit chart to viewport ── */
+/* ── Mobile: fit chart to viewport, keep zoomable ── */
 @media (max-width: 768px) {
-  .pl-slide-root { overflow: hidden !important; }
-  .pl-slide-root > div:first-of-type { padding: 0.6rem 0.75rem 0.2rem !important; }
-  .pl-slide-root > div:first-of-type h1 { font-size: 1.4rem !important; }
-  .pl-slide-root > div:first-of-type p  { font-size: 0.75rem !important; }
-  .pl-slide-root > div:nth-of-type(2) { display: none !important; }
-  .pl-svg-wrap { flex: 1 1 0% !important; min-height: 0 !important; width: 100% !important; padding: 0 !important; }
+  .pl-slide-root { overflow: auto !important; height: auto !important; min-height: 100%; }
+  .pl-slide-root > div:first-of-type { padding: 0.5rem 0.75rem 0.15rem !important; }
+  .pl-slide-root > div:first-of-type h1 { font-size: 1.25rem !important; }
+  .pl-slide-root > div:first-of-type p  { font-size: 0.7rem !important; }
+  /* Pillar cards: 2×2 grid */
+  .pl-cards-row { flex-wrap: wrap !important; gap: 0.5rem !important; padding: 0.2rem 0.5rem 0.3rem !important; }
+  .pl-card { width: calc(50% - 0.25rem) !important; min-height: 0 !important; padding: 0.4rem 0.5rem !important; font-size: 0.7rem !important; }
+  .pl-card p { font-size: 0.65rem !important; line-height: 1.3 !important; }
+  /* SVG: fill remaining space */
+  .pl-svg-wrap { flex: 1 1 0% !important; min-height: 0 !important; width: 100% !important; padding: 0 0.25rem !important; }
   .pl-frame-bar { bottom: 0.25rem; padding: 0.25rem 0.5rem; gap: 0.4rem; }
   .pl-frame-btn { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
   .pl-frame-label { font-size: 0.7rem; min-width: 5rem; }
@@ -378,7 +382,7 @@ export default function SlideHeroPipeline() {
       </div>
 
       {/* ═══ PILLAR CARDS ═══ */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.3rem 1rem 0.4rem', flex: '0 0 auto' }}>
+      <div className="pl-cards-row" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.3rem 1rem 0.4rem', flex: '0 0 auto' }}>
         <div id="pl-card-2" className="pl-card">
           <p style={{ fontSize: '0.92rem', lineHeight: 1.45, margin: 0 }}>
             <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>Agentic Evidence: </span>
