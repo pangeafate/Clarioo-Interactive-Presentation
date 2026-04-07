@@ -109,6 +109,12 @@ const PIPELINE_CSS = `
 .pl-frame-btn:hover { background: rgba(255,255,255,0.08); color: #F8FAFC; }
 .pl-frame-label { color: #94A3B8; font-size: 0.9rem; font-family: Inter, system-ui, sans-serif; min-width: 8rem; text-align: center; }
 .pl-frame-play { color: #10B981; }
+
+/* ── Mobile: scrollable, 2x chart size ── */
+@media (max-width: 768px) {
+  .pl-slide-root { overflow-y: auto !important; overflow-x: auto !important; }
+  .pl-svg-wrap { flex: 0 0 auto !important; min-height: 0 !important; width: 200%; min-width: 800px; }
+}
 `;
 
 
@@ -348,7 +354,7 @@ export default function SlideHeroPipeline() {
   const GX = 865, DRX = 960
 
   return (
-    <div ref={slideRef} className="pdf-slide" style={{
+    <div ref={slideRef} className="pdf-slide pl-slide-root" style={{
       padding: 0, display: 'flex', flexDirection: 'column',
       height: '100%', overflow: 'hidden', background: 'var(--bg-deep-navy)'
     }}>
@@ -396,7 +402,7 @@ export default function SlideHeroPipeline() {
       </div>
 
       {/* ═══ SVG PIPELINE ═══ */}
-      <div style={{ flex: 1, minHeight: 0, padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="pl-svg-wrap" style={{ flex: 1, minHeight: 0, padding: '0 0.5rem 0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg viewBox="-38 0 1200 650" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
           <defs>
             <marker id="pl-arr-c" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
