@@ -50,25 +50,39 @@ export default function Slide5Phase3() {
 
       </div>
 
-      <div className="glass-card" style={{ marginTop: '3rem', padding: '2rem' }}>
-        <h3 className="text-white" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1rem', textAlign: 'center' }}>Unified decision & risk system</h3>
-        <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>Every decision — who made it, why, what alternatives were considered — becomes structured, searchable, reusable organizational memory</p>
-        
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', fontSize: '0.875rem' }}>
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem 2.5rem',
+        borderRadius: '1rem',
+        border: '1.5px solid var(--border-cyan)',
+        background: 'linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(139,92,246,0.05) 100%)',
+        boxShadow: 'var(--glow-cyan)',
+        backdropFilter: 'blur(12px)',
+      }}>
+        <h3 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.75rem', textAlign: 'center' }}>Unified decision & risk system</h3>
+        <p style={{ textAlign: 'center', marginBottom: '1.75rem', color: 'var(--text-primary)', fontSize: '1.05rem', opacity: 0.85 }}>Every decision — who made it, why, what alternatives were considered — becomes structured, searchable, reusable organizational memory</p>
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', textAlign: 'center', fontSize: '1rem' }}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <FileText size={32} className="text-white" style={{ marginBottom: '0.5rem' }} />
-            <div className="text-white" style={{ fontWeight: 700 }}>Explicit decisions</div>
-            <div style={{ color: 'var(--text-muted)' }}>Documented choices, approvals, trade-offs</div>
+            <FileText size={36} style={{ color: 'var(--accent-cyan)', marginBottom: '0.625rem' }} />
+            <div className="text-white" style={{ fontWeight: 700, fontSize: '1.05rem' }}>Explicit decisions</div>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>Documented choices, approvals, trade-offs</div>
           </div>
-          <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.5rem' }}>+</div>
+          <div className="text-cyan" style={{ fontWeight: 800, fontSize: '2rem' }}>+</div>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <MessageSquare size={32} className="text-white" style={{ marginBottom: '0.5rem' }} />
-            <div className="text-white" style={{ fontWeight: 700 }}>Implicit decisions</div>
-            <div style={{ color: 'var(--text-muted)' }}>Reasoning, context, tacit knowledge that never made it into a doc</div>
+            <MessageSquare size={36} style={{ color: 'var(--accent-purple)', marginBottom: '0.625rem' }} />
+            <div className="text-white" style={{ fontWeight: 700, fontSize: '1.05rem' }}>Implicit decisions</div>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>Reasoning, context, tacit knowledge that never made it into a doc</div>
           </div>
-          <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.5rem' }}>=</div>
-          <div style={{ flex: 1 }}>
-            <div className="text-cyan" style={{ fontWeight: 800 }}>Complete organizational decision memory</div>
+          <div className="text-cyan" style={{ fontWeight: 800, fontSize: '2rem' }}>=</div>
+          <div style={{
+            flex: 1,
+            padding: '1rem',
+            borderRadius: '0.75rem',
+            background: 'rgba(14,165,233,0.1)',
+            border: '1px solid rgba(14,165,233,0.2)',
+          }}>
+            <div className="text-cyan" style={{ fontWeight: 800, fontSize: '1.1rem' }}>Complete organizational decision memory</div>
           </div>
         </div>
       </div>
