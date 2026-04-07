@@ -319,23 +319,25 @@ export default function SlidePositioning() {
               Decision Deliberation
             </span>
           </div>
-        </div>
-      </div>
 
-      {/* ── Bottom Insight ── */}
-      <div style={{
-        textAlign: 'center',
-        fontSize: '1.1rem',
-        color: 'var(--text-secondary)',
-        lineHeight: 1.55,
-        maxWidth: '50rem',
-        alignSelf: 'center',
-      }}>
+          {/* ── Bottom Insight ── */}
+          <div style={{
+            textAlign: 'center',
+            fontSize: '1.1rem',
+            color: 'var(--text-secondary)',
+            lineHeight: 1.55,
+            maxWidth: '50rem',
+            alignSelf: 'center',
+            marginTop: '1.25rem',
+            marginLeft: '2.5rem',
+          }}>
         All existing systems either execute predefined processes or assist fragmented decisions.
         <br />
         <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
           None structure how organizations deliberate complex decisions over time.
         </strong>
+          </div>
+        </div>
       </div>
 
       {/* Decorative 4-pointed sparkle – bottom right */}
