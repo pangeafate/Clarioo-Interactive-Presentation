@@ -349,7 +349,7 @@ export default function SlideHeroPipeline() {
       {/* ═══ HEADER ═══ */}
       <div style={{ textAlign: 'center', padding: '1.2rem 2rem 0.4rem', flex: '0 0 auto' }}>
         <h1 style={{ color: 'var(--text-primary)', fontSize: '2.4rem', fontWeight: 700, margin: 0, lineHeight: 1.2 }}>
-          From Signals to Executable Decisions
+          Technology: From Signals to Executable Decisions
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontStyle: 'italic', margin: '0.3rem 0 0', lineHeight: 1.4 }}>
           A self-composing, evidence-driven decision architecture — not a workflow tool, not a knowledge base.
