@@ -122,6 +122,7 @@ export default function SlidePositioning() {
                 color: 'var(--text-secondary)',
                 marginBottom: '2.5cqi',
                 fontWeight: 600,
+                textTransform: 'uppercase',
               }}>Governed Execution</div>
               <div style={{ display: 'flex', gap: '2cqi', flexWrap: 'wrap' }}>
                 <div style={{
@@ -273,6 +274,7 @@ export default function SlidePositioning() {
                 color: 'var(--text-secondary)',
                 marginBottom: '2.5cqi',
                 fontWeight: 600,
+                textTransform: 'uppercase',
               }}>Automation / Workflow</div>
               <div style={{
                 display: 'grid',
@@ -305,6 +307,7 @@ export default function SlidePositioning() {
                 color: 'var(--text-secondary)',
                 marginBottom: '2.5cqi',
                 fontWeight: 600,
+                textTransform: 'uppercase',
               }}>Copilots</div>
               {/* Row 1 */}
               <div style={{ display: 'flex', gap: '2cqi', alignItems: 'center', marginBottom: '2cqi' }}>
