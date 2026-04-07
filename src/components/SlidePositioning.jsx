@@ -225,11 +225,10 @@ export default function SlidePositioning() {
                   <div style={{
                     background: 'rgba(255,255,255,0.06)',
                     borderRadius: '1.5cqi',
-                    padding: '2.5cqi 2.5cqi',
+                    padding: '4cqi 4cqi',
                     fontSize: '1.8cqi',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
-                    alignSelf: 'stretch',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
