@@ -59,18 +59,24 @@ function App() {
   const prevSlide = () => setCurrentSlide(prev => Math.max(prev - 1, 0))
 
   /* Track multi-touch gestures to ignore synthesized clicks after pinch zoom */
-  const lastPinchRef = useRef(0)
+  const pinchActiveRef = useRef(false)
+  const lastPinchEndRef = useRef(0)
   useEffect(() => {
-    const onTouchStart = (e) => { if (e.touches.length > 1) lastPinchRef.current = Date.now() }
-    const onTouchEnd = (e) => { if (e.changedTouches.length > 0 && lastPinchRef.current) lastPinchRef.current = Date.now() }
+    const onTouchStart = (e) => { if (e.touches.length > 1) pinchActiveRef.current = true }
+    const onTouchEnd = () => {
+      if (pinchActiveRef.current) {
+        lastPinchEndRef.current = Date.now()
+        pinchActiveRef.current = false
+      }
+    }
     window.addEventListener('touchstart', onTouchStart, { passive: true })
     window.addEventListener('touchend', onTouchEnd, { passive: true })
     return () => { window.removeEventListener('touchstart', onTouchStart); window.removeEventListener('touchend', onTouchEnd) }
   }, [])
 
   const safeSetSlide = (index) => {
-    /* Ignore clicks within 600ms of a pinch gesture — they're synthesized by iOS */
-    if (Date.now() - lastPinchRef.current < 600) return
+    /* Ignore clicks within 600ms of a pinch gesture ending — they're synthesized by iOS */
+    if (Date.now() - lastPinchEndRef.current < 600) return
     setCurrentSlide(index)
   }
 
