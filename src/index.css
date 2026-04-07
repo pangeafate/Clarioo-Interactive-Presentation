@@ -39,11 +39,13 @@
  */
 html {
   font-size: clamp(10px, min(1.5vh, 0.85vw), 24px);
+  overscroll-behavior: none;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   overflow: hidden;
+  overscroll-behavior: none;
   background-color: var(--bg-deep-navy);
   color: var(--text-primary);
   line-height: 1.6;

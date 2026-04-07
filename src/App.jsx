@@ -1,4 +1,12 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Component } from 'react'
+
+/* Error boundary: prevents React crashes from reloading the page */
+class SlideErrorBoundary extends Component {
+  state = { hasError: false }
+  static getDerivedStateFromError() { return { hasError: true } }
+  componentDidCatch(err) { console.warn('Slide error caught:', err) }
+  render() { return this.state.hasError ? null : this.props.children }
+}
 
 // Import all slides
 import SlideHeroPipeline from './components/SlideHeroPipeline'
@@ -97,7 +105,7 @@ function App() {
       <div className="slides-viewport">
         {slides.map((slide, index) => (
           <div key={index} className={`slide-wrapper ${index === currentSlide ? 'active' : ''}`}>
-            {slide.component}
+            <SlideErrorBoundary>{slide.component}</SlideErrorBoundary>
           </div>
         ))}
       </div>
