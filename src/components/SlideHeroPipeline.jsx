@@ -118,7 +118,7 @@ const PIPELINE_CSS = `
   .pl-slide-root > div:first-of-type p  { font-size: 0.85rem !important; margin-top: 0.5rem !important; }
   /* Pillar cards: 2×2 grid */
   .pl-cards-row { flex-wrap: wrap !important; gap: 0.5rem !important; padding: 0.6rem 0.5rem 1rem !important; }
-  .pl-card { width: calc(50% - 0.25rem) !important; height: 7.15rem !important; min-height: 0 !important; padding: 0.8rem 0.9rem !important; }
+  .pl-card { width: calc(50% - 0.25rem) !important; height: auto !important; min-height: 8.5rem !important; padding: 0.8rem 0.9rem !important; }
   .pl-card p { font-size: 1.1rem !important; line-height: 1.35 !important; }
   /* SVG: constrain to content aspect ratio so no vertical gap */
   .pl-svg-wrap { flex: 0 0 auto !important; width: 100% !important; aspect-ratio: 1200/650 !important; padding: 0 0.25rem !important; }
