@@ -10,7 +10,6 @@ export default function Slide2Team() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        overflow: 'hidden'
       }}
     >
       {/* Header */}
