@@ -84,13 +84,13 @@ export default function SlidePositioning() {
               fontSize: '0.8rem',
               color: 'var(--text-secondary)',
               letterSpacing: '0.03rem',
-              opacity: 0.8,
+              color: 'var(--text-muted)',
               display: 'flex',
               alignItems: 'center',
               gap: '0.625rem',
             }}>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', opacity: 1 }}>Breadth</strong> (High-volume tasks)</span>
-              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem', opacity: 1 }}>Depth</strong> (High-stakes decisions)</span>
+              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Breadth</strong> (High-volume tasks)</span>
+              <span><strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>Depth</strong> (High-stakes decisions)</span>
             </div>
           </div>
 
