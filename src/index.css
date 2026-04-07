@@ -355,6 +355,12 @@ p, li, div {
     gap: 2rem !important;
   }
 
+  /* ---- Slide: Go-to-Market ---- */
+  .gtm-columns {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
   /* ---- Slide: Business Model ---- */
   .model-cards {
     flex-direction: column !important;
