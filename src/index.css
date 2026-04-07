@@ -329,6 +329,11 @@ p, li, div {
     grid-template-columns: 1fr !important;
     gap: 1.25rem !important;
     flex: none !important;
+    min-height: auto !important;
+  }
+
+  .missing-layer-panels > div {
+    min-height: auto !important;
   }
 
   /* ---- Slide 4: The Journey ---- */
