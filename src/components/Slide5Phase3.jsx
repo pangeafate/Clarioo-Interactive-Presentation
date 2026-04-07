@@ -5,11 +5,18 @@ export default function Slide5Phase3() {
   return (
     <div className="pdf-slide" style={{ padding: '2.5rem 4rem 2rem', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
 
-      <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-        <h2 className="text-cyan" style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-          Phase 3: The Full Decision Layer
+      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, margin: 0 }}>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            Phase 3:{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>The Full Decision Layer</span>
+          <br />
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+            Integrating all organizational information into a unified{' '}
+          </span>
+          <span style={{ color: 'var(--text-primary)' }}>decision and risk system</span>
         </h2>
-        <p className="text-white" style={{ fontSize: '1.125rem', fontWeight: 600 }}>Integrating all organizational information into a unified decision and risk system</p>
       </div>
 
       {/* Top two cards */}
