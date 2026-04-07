@@ -356,7 +356,7 @@ export default function SlideHeroPipeline() {
   return (
     <div ref={slideRef} className="pdf-slide pl-slide-root" style={{
       padding: 0, display: 'flex', flexDirection: 'column',
-      height: '100%', overflow: 'hidden', background: 'var(--bg-deep-navy)'
+      height: '100%', background: 'var(--bg-deep-navy)'
     }}>
       <style>{PIPELINE_CSS}</style>
 

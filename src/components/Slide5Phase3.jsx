@@ -3,7 +3,7 @@ import { FileText, MessageSquare, GitGraph } from 'lucide-react'
 
 export default function Slide5Phase3() {
   return (
-    <div className="pdf-slide" style={{ padding: '2.5rem 4rem 2rem', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+    <div className="pdf-slide" style={{ padding: '2.5rem 4rem 2rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h2 style={{ fontSize: '2.35rem', fontWeight: 800, lineHeight: 1.22, margin: 0 }}>
