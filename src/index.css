@@ -237,6 +237,11 @@ p, li, div {
   transform: translateY(-0.15rem);
 }
 
+/* Positioning slide: quadrant container query context */
+.pos-quadrant {
+  container-type: inline-size;
+}
+
 .glow-btn:hover::before {
   opacity: 1;
   animation-duration: 3s;
