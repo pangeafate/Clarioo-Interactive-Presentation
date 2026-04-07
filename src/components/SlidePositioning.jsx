@@ -238,8 +238,8 @@ export default function SlidePositioning() {
                   <div style={{
                     background: 'rgba(255,255,255,0.06)',
                     borderRadius: '1.5cqi',
-                    padding: '5cqi 5cqi',
-                    fontSize: '3.6cqi',
+                    padding: '3.5cqi 3.5cqi',
+                    fontSize: '2.5cqi',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
                     display: 'flex',
@@ -250,7 +250,7 @@ export default function SlidePositioning() {
                       fontWeight: 700,
                       color: 'var(--text-primary)',
                       marginBottom: '0.5cqi',
-                      fontSize: '4.4cqi',
+                      fontSize: '3cqi',
                     }}>What Clarioo Brings</div>
                     <div style={{ fontWeight: 700 }}>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
