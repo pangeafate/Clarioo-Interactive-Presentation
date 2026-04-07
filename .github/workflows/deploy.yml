@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages + Lakestrom
 
 on:
   push:
@@ -30,7 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      # ── GitHub Pages build ──
+      - name: Build for GitHub Pages
         run: npm run build
 
       - name: Deploy to gh-pages
@@ -40,3 +41,21 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
           commit_message: "Deploy ${{ github.sha }}"
+
+      # ── Lakestrom server build + deploy ──
+      - name: Build for Lakestrom
+        run: npx vite build --base /presentation/ --outDir dist-presentation
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.LAKESTROM_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.LAKESTROM_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Deploy to Lakestrom
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            dist-presentation/ \
+            root@46.101.189.137:/home/openclaw/clarioo-web/web/static/presentation/
