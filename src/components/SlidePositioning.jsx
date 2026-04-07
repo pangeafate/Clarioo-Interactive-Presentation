@@ -234,12 +234,12 @@ export default function SlidePositioning() {
                     }}>Cloverpop</div>
                   </div>
 
-                  {/* Right: What Clarioo Brings — same width as CLARIOO, 1.5× height */}
+                  {/* Right: What Clarioo Brings */}
                   <div style={{
                     background: 'rgba(255,255,255,0.06)',
                     borderRadius: '1.5cqi',
-                    padding: '4cqi 4cqi',
-                    fontSize: '1.8cqi',
+                    padding: '5cqi 5cqi',
+                    fontSize: '3.6cqi',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.5,
                     display: 'flex',
@@ -250,7 +250,7 @@ export default function SlidePositioning() {
                       fontWeight: 700,
                       color: 'var(--text-primary)',
                       marginBottom: '0.5cqi',
-                      fontSize: '2.2cqi',
+                      fontSize: '4.4cqi',
                     }}>What Clarioo Brings</div>
                     <div style={{ fontWeight: 700 }}>No existing system provides:</div>
                     <div>• Cross-decision dependency graphs</div>
