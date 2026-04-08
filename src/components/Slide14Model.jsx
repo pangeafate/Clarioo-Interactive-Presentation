@@ -30,7 +30,7 @@ export default function Slide14Model() {
         <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-cyan) !important', boxShadow: 'var(--glow-cyan)' }}>
           <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: 'var(--accent-cyan)', opacity: 0.1 }}>2+</div>
           <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>2+ Phase</h3>
-          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Client Side: Subscription Revenue</h4>
+          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Client Side: pay-as-you-go revenue</h4>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <li>Free decision memory infrastructure + token pricing for efficient plumbing / agentic scaffolding</li>
             <li>Priced by process complexity, not per-seat</li>
