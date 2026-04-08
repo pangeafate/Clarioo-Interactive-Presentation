@@ -17,9 +17,10 @@ export default function Slide14Model() {
         <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-orange) !important' }}>
           <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: '#f97316', opacity: 0.1 }}>1</div>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>Phase 1</h3>
-          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Free Agent that drives decision layer adoption</h4>
+          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>SaaS Decisions Agent that drives decision layer adoption</h4>
+          <p style={{ fontSize: '1rem', color: 'var(--text-muted)', fontStyle: 'italic', margin: '0 0 1.5rem 0' }}>(This is hypothesis in testing)</p>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <li>SaaS Discovery-to-Decision Agent (open-source) — captures intent, scores vendors, orchestrates stakeholder alignment</li>
+            <li>SaaS Discovery-to-Decision Agent (token-based fee) — captures intent, scores vendors, orchestrates stakeholder alignment</li>
             <li>The agent runs on Clarioo's decision infrastructure: structured paths, evidence assembly, decision memory</li>
             <li>Companies experience the value through the agent — adopt the decision layer infrastructure to develop their own agents</li>
           </ul>
