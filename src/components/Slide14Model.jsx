@@ -41,9 +41,30 @@ export default function Slide14Model() {
 
       </div>
 
-      <div className="glass-card" style={{ textAlign: 'center' }}>
-        <h3 className="text-emerald" style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>Addressable Market</h3>
-        <p className="text-white" style={{ fontSize: '1.125rem' }}>We thought about addressable market, but even if we are successful only in the Buy vs Build decision capture, it is huge.</p>
+      <div className="glass-card" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: '14rem' }}>
+          <h3 className="text-emerald" style={{ fontSize: '1.25rem', marginBottom: '0.75rem', fontWeight: 700 }}>Market size is large and layered</h3>
+          <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <li><strong className="text-white">TAM: $1T+</strong> — enterprise decision management, consulting spend, governance, decision support, context graphs</li>
+            <li><strong className="text-white">SAM: $40B+</strong> — decision intelligence platforms + change orchestration</li>
+            <li><strong className="text-white">SOM: $500M+</strong> — near-term reachable segment</li>
+          </ul>
+        </div>
+        <div style={{ flex: 1, minWidth: '14rem' }}>
+          <h3 className="text-emerald" style={{ fontSize: '1.25rem', marginBottom: '0.75rem', fontWeight: 700 }}>Current market signals</h3>
+          <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <li>~$500B global consulting market exists largely because decision-making is inefficient</li>
+            <li>~$20B+ already allocated to decision management / intelligence platforms</li>
+          </ul>
+          <h3 className="text-emerald" style={{ fontSize: '1.25rem', marginTop: '1rem', marginBottom: '0.75rem', fontWeight: 700 }}>Structural gap</h3>
+          <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <li>~98% of enterprise decisions lack proper infrastructure today</li>
+          </ul>
+          <h3 className="text-emerald" style={{ fontSize: '1.25rem', marginTop: '1rem', marginBottom: '0.75rem', fontWeight: 700 }}>Direction of demand</h3>
+          <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <li>Increasing need for decision structure, memory, governance, and auditability</li>
+          </ul>
+        </div>
       </div>
 
     </div>
