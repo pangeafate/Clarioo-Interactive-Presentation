@@ -8,7 +8,7 @@ export default function Slide14Model() {
         <h2 className="text-white" style={{ fontSize: '3rem', fontWeight: 800 }}>
           (Preliminary) Business Model
         </h2>
-        <p className="text-cyan" style={{ fontSize: '1.25rem' }}>Two revenue streams, scaling with trust and depth of integration</p>
+        <p className="text-cyan" style={{ fontSize: '1.25rem' }}>Per-use revenue, scaling with decision complexity and depth of integration</p>
       </div>
 
       <div className="model-cards" style={{ display: 'flex', gap: '3rem', marginBottom: '4rem' }}>
