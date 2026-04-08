@@ -14,9 +14,9 @@ export default function Slide14Model() {
       <div className="model-cards" style={{ display: 'flex', gap: '3rem', marginBottom: '4rem' }}>
         
         {/* Flow 1 */}
-        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-orange) !important' }}>
-          <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: '#f97316', opacity: 0.1 }}>1</div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>Phase 1</h3>
+        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-emerald) !important' }}>
+          <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: 'var(--accent-emerald)', opacity: 0.1 }}>1</div>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}>1 Phase</h3>
           <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>SaaS Decisions Agent that drives decision layer adoption</h4>
           <p style={{ fontSize: '1rem', color: 'var(--text-muted)', fontStyle: 'italic', margin: '0 0 1.5rem 0' }}>(This is hypothesis in testing)</p>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -27,9 +27,9 @@ export default function Slide14Model() {
         </div>
 
         {/* Flow 2 */}
-        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-cyan) !important', boxShadow: 'var(--glow-cyan)' }}>
-          <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: 'var(--accent-cyan)', opacity: 0.1 }}>2+</div>
-          <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>2+ Phase</h3>
+        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid #f97316 !important' }}>
+          <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: '#f97316', opacity: 0.1 }}>2+</div>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>2+ Phase</h3>
           <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Client Side: pay-as-you-go revenue</h4>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <li>Free decision memory infrastructure + token pricing for efficient plumbing / agentic scaffolding</li>
