@@ -16,13 +16,12 @@ export default function Slide14Model() {
         {/* Flow 1 */}
         <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-orange) !important' }}>
           <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: '#f97316', opacity: 0.1 }}>1</div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>1 Phase</h3>
-          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Vendor Side: Performance Revenue</h4>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>Phase 1</h3>
+          <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Free Agent that drives decision layer adoption</h4>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <li>3-5% of contract value on successful vendor matches</li>
-            <li>Clarioo delivers high-intent, criteria-qualified leads to vendors</li>
-            <li>Contract range: $50K to $300K+</li>
-            <li>This is lead generation with decision context</li>
+            <li>SaaS Discovery-to-Decision Agent (open-source) — captures intent, scores vendors, orchestrates stakeholder alignment</li>
+            <li>The agent runs on Clarioo's decision infrastructure: structured paths, evidence assembly, decision memory</li>
+            <li>Companies experience the value through the agent — adopt the decision layer infrastructure to develop their own agents</li>
           </ul>
         </div>
 
