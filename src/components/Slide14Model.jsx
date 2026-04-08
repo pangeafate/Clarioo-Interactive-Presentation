@@ -32,7 +32,7 @@ export default function Slide14Model() {
           <h3 className="text-cyan" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>2+ Phase</h3>
           <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Client Side: Subscription Revenue</h4>
           <ul className="text-secondary" style={{ paddingLeft: '1.5rem', margin: 0, lineHeight: '1.6', fontSize: '1.125rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <li>Subscription for the decision layer</li>
+            <li>Free decision memory infrastructure + token pricing for efficient plumbing / agentic scaffolding</li>
             <li>Priced by process complexity, not per-seat</li>
             <li>The system maintains institutional memory that no individual inside the company will sustain</li>
             <li>Value grows with depth of integration</li>
