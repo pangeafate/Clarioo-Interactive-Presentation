@@ -54,7 +54,7 @@ export default function Slide15Waitlist() {
 
           {/* Email mockup */}
           <div className="glass-card" style={{ marginTop: '0.5rem' }}>
-            <div style={{ fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.75rem', color: 'var(--text-muted)' }}>Quote from "Alexander" (Angi):</div>
+            <div style={{ fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.75rem', color: 'var(--text-muted)' }}>Quote from "Alexander" ($US 3Bn Retailer):</div>
             <p className="text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.5', fontFamily: 'monospace' }}>
               "Hi Olga,<br/><br/>
               Yes that sounds interesting, hopefully we can replace all the RFI/RFP Excel files and endless PDF files someday! :)<br/><br/>
