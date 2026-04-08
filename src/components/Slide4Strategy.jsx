@@ -123,7 +123,16 @@ export default function Slide4Strategy() {
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
               >
-                Decision path
+                See the Prototype
+              </a>
+              <a
+                href="https://okots28.github.io/buy-vs-built/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glow-btn"
+                style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
+              >
+                Explore Buy vs Build process
               </a>
               <a
                 href="https://www.loom.com/share/3bdc73c758844c5184d724fbc498df1e"
@@ -132,7 +141,7 @@ export default function Slide4Strategy() {
                 className="glow-btn"
                 style={{ flex: 1, '--glow-color': 'var(--accent-amber)' }}
               >
-                Watch how the functional prototype works
+                Watch how decisions are captured (Video)
               </a>
             </div>
           </div>
