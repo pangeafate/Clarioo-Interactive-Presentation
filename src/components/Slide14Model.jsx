@@ -11,10 +11,14 @@ export default function Slide14Model() {
         <p className="text-cyan" style={{ fontSize: '1.25rem' }}>Per-use revenue, scaling with decision complexity and depth of integration</p>
       </div>
 
+      <style>{`
+        .model-card-green { border: 1px solid var(--accent-emerald) !important; }
+        .model-card-orange { border: 1px solid #f97316 !important; }
+      `}</style>
       <div className="model-cards" style={{ display: 'flex', gap: '3rem', marginBottom: '4rem' }}>
-        
+
         {/* Flow 1 */}
-        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-emerald) !important' }}>
+        <div className="glass-card model-card-green" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: 'var(--accent-emerald)', opacity: 0.1 }}>1</div>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}>1 Phase</h3>
           <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>SaaS Decisions Agent that drives decision layer adoption</h4>
@@ -27,7 +31,7 @@ export default function Slide14Model() {
         </div>
 
         {/* Flow 2 */}
-        <div className="glass-card" style={{ flex: 1, position: 'relative', overflow: 'hidden', border: '1px solid #f97316 !important' }}>
+        <div className="glass-card model-card-orange" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', top: '-2rem', right: '-1rem', fontSize: '10rem', fontWeight: 900, color: '#f97316', opacity: 0.1 }}>2+</div>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f97316', marginBottom: '0.5rem' }}>2+ Phase</h3>
           <h4 className="text-white" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Client Side: pay-as-you-go revenue</h4>
